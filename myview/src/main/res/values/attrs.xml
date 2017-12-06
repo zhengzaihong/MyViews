@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- 适用于任何控件刷新   start-->
+
+    <declare-styleable name="EasyPullLayout">
+        <attr name="trigger_offset_left" format="dimension" />
+        <attr name="trigger_offset_top" format="dimension" />
+        <attr name="trigger_offset_right" format="dimension" />
+        <attr name="trigger_offset_bottom" format="dimension" />
+        <attr name="max_offset_left" format="dimension" />
+        <attr name="max_offset_top" format="dimension" />
+        <attr name="max_offset_right" format="dimension" />
+        <attr name="max_offset_bottom" format="dimension" />
+        <attr name="fixed_content_left" format="boolean" />
+        <attr name="fixed_content_top" format="boolean" />
+        <attr name="fixed_content_right" format="boolean" />
+        <attr name="fixed_content_bottom" format="boolean" />
+        <attr name="roll_back_duration" format="integer" />
+        <attr name="sticky_factor" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="EasyPullLayout_LayoutParams">
+        <attr name="layout_type" format="enum">
+            <enum name="edge_left" value="0" />
+            <enum name="edge_top" value="1" />
+            <enum name="edge_right" value="2" />
+            <enum name="edge_bottom" value="3" />
+            <enum name="content" value="4" />
+        </attr>
+        <attr name="layout_content_fixed" format="boolean" />
+    </declare-styleable>
+
+    <!-- 适用于任何控件刷新   end-->
+
+
+    <!-- 圆角策略   start-->
+    <declare-styleable name="roundedimageview">
+        <attr name="border_thickness" format="dimension" />
+        <attr name="border_inside_color" format="color" />
+        <attr name="border_outside_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_corner_radius" format="dimension" />
+        <attr name="riv_corner_radius_top_left" format="dimension" />
+        <attr name="riv_corner_radius_top_right" format="dimension" />
+        <attr name="riv_corner_radius_bottom_left" format="dimension" />
+        <attr name="riv_corner_radius_bottom_right" format="dimension" />
+        <attr name="riv_border_width" format="dimension" />
+        <attr name="riv_border_color" format="color" />
+        <attr name="riv_mutate_background" format="boolean" />
+        <attr name="riv_oval" format="boolean" />
+        <attr name="android:scaleType" />
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+    </declare-styleable>
+    <!-- 圆角策略   en'd-->
+
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="text" format="string" />
+        <attr name="textcolorprogress" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="barColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="rimWidth" format="dimension" />
+        <attr name="spinSpeed" format="dimension" />
+        <attr name="delayMillis" format="integer" />
+        <attr name="circleColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="barWidth" format="dimension" />
+        <attr name="circlebarLength" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="PieProgress">
+        <attr name="foregroundColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
+</resources>
