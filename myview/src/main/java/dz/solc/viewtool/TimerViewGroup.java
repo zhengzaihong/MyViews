@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,6 +46,7 @@ public class TimerViewGroup {
         }
         return instance;
     }
+
     /**
      * 该方法在退出程序时调用 即在application 中做处理
      * 或是在不想保存倒计时 时调用
@@ -122,7 +125,7 @@ public class TimerViewGroup {
     /**
      * Activity 或 Fragment中实现该接口
      */
-    interface TimerViewGroupListener {
+   public interface TimerViewGroupListener {
         void startfresh(int currentime);
 
         void endfresh(int currentime);

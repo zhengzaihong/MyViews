@@ -1,18 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="dz.solc.myviews.MainActivity">
 
     <TextView
+        android:gravity="center_vertical"
+        android:id="@+id/tv_timego"
+        android:text="测试任意view倒计时"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp" />
+    <dz.solc.viewtool.MarqueeView
+        android:id="@+id/marqueeview"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:mvTextColor="@android:color/holo_red_dark" />
 
-</android.support.constraint.ConstraintLayout>
+    <dz.solc.viewtool.CountdownTextView
+        android:id="@+id/countdowntextview"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <dz.solc.viewtool.ProgressWheel
+        android:layout_width="70dp"
+        app:text="双圆环"
+        app:textSize="6sp"
+        app:barColor="@android:color/darker_gray"
+        app:rimColor="@android:color/holo_red_dark"
+        app:textcolorprogress="@color/colorPrimary"
+        app:rimWidth="10dp"
+        app:spinSpeed="10dp"
+        app:delayMillis="20"
+        app:circleColor="@android:color/holo_orange_dark"
+        app:barWidth="10dp"
+        app:radius="15dp"
+        app:circlebarLength="20dp"
+        android:layout_height="70dp" />
+
+    <dz.solc.viewtool.RotateImageView
+        android:id="@+id/riv_cycle"
+        android:background="@mipmap/ic_launcher_round"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+    <dz.solc.viewtool.RoundImageView
+        android:src="@mipmap/bj"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <dz.solc.viewtool.RoundIconView
+        android:id="@+id/riv_round"
+        android:src="@mipmap/bj"
+        android:scaleType="centerCrop"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+</LinearLayout>
