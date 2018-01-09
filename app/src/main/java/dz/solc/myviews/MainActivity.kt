@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity(),TimerViewGroup.TimerViewGroupListener {
         countdowntextview.start(0)
 
         riv_round.setRectAdius(20.0f)
-        instance =  TimerViewGroup.getinstance(application,"测试任意view倒计时");
+        instance =  TimerViewGroup.getinstance();
         tv_timego.setOnClickListener{
             if(instance.iswait){
-               Toast.makeText(MainActivity@this,"请稍等",Toast.LENGTH_SHORT).show();
+               Toast.makeText(MainActivity@this,"请"+instance.gettime()+"秒后再试",Toast.LENGTH_SHORT).show();
             }else{
                 instance.start(this,80);
             }
