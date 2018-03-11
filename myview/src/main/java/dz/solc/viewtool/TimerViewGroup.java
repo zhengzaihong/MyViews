@@ -34,17 +34,9 @@ public class TimerViewGroup {
         return handlerMessage != null ? handlerMessage.currentime : 0;
     }
 
-    private static TimerViewGroup instance = null;
 
-    public static TimerViewGroup getinstance() {
-        if (null == instance) {
-            synchronized (TimerViewGroup.class) {
-                if (null == instance) {
-                    instance = new TimerViewGroup();
-                }
-            }
-        }
-        return instance;
+    public static TimerViewGroup create() {
+        return new TimerViewGroup();
     }
 
     public void start(final TimerViewGroupListener listener, int time) {
