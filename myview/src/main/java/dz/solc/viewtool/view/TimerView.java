@@ -1,13 +1,8 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
-import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,15 +14,20 @@ import java.util.TimerTask;
  * describe 用于倒计时的类 不绑定任何view
  **/
 
-public class TimerViewGroup {
+public class TimerView {
     //false 表示可以重新获取 true表示还在倒计时
     public boolean iswait = false;
     //保证多次触发只有一条线程
     private boolean singlethread = true;
     private int initime = 0;
-    private HandlerMessage handlerMessage;
 
-    private TimerViewGroup() {
+    private HandlerMessage handlerMessage;
+    //创建句柄 避免每次接受到事件创建定时器和任务
+    private Timer timer = new Timer();
+    private AsyncTimerTask asyncTimerTask;
+
+
+    private TimerView() {
     }
 
     public int gettime() {
@@ -35,11 +35,12 @@ public class TimerViewGroup {
     }
 
 
-    public static TimerViewGroup create() {
-        return new TimerViewGroup();
+    public synchronized static TimerView create() {
+        return new TimerView();
     }
 
-    public void start(final TimerViewGroupListener listener, int time) {
+    //启动倒计时
+    public void start(final TimerViewListener listener, int time) {
         if (null != listener && singlethread) {
             handlerMessage = new HandlerMessage(listener, time);
             Message msg = Message.obtain();
@@ -48,13 +49,20 @@ public class TimerViewGroup {
         }
     }
 
+    //关闭倒计时
+    public void closeTimer() {
+        if (null != asyncTimerTask) {
+            asyncTimerTask.cancel();
+        }
+        iswait = false;
+        singlethread = true;
+    }
+
     private class HandlerMessage extends Handler {
-        private HandlerMessage handlerMessage;
-        private TimerViewGroupListener listener;
+        private TimerViewListener listener;
         private int currentime;
 
-        public HandlerMessage(TimerViewGroupListener listener, int time) {
-            handlerMessage = this;
+        public HandlerMessage(TimerViewListener listener, int time) {
             this.listener = listener;
             this.currentime = time;
         }
@@ -67,37 +75,40 @@ public class TimerViewGroup {
                 if (currentime == 0) {
                     iswait = false;
                     currentime = initime;
-                    listener.endfresh(currentime);
+                    listener.endfresh();
                     singlethread = true;
                 } else {
                     iswait = true;
                     singlethread = false;
                     listener.startfresh(currentime);
-                    sendMessage(handlerMessage);
+                    //取消掉一次性task
+                    if (null != asyncTimerTask) {
+                        asyncTimerTask.cancel();
+                        asyncTimerTask = null;
+                    }
+                    timer.schedule(asyncTimerTask = new AsyncTimerTask(), 1000);
                 }
             }
         }
+    }
 
-        private void sendMessage(final HandlerMessage handlerMessage) {
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Message msg = Message.obtain();
-                    msg.what = 1;
-                    handlerMessage.sendMessage(msg);
-                }
-            }, 1000);
+    private class AsyncTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            Message msg = Message.obtain();
+            msg.what = 1;
+            handlerMessage.sendMessage(msg);
         }
     }
 
-
     /**
-     * Activity 或 Fragment中实现该接口
+     * 倒计时监听回调
      */
-    public interface TimerViewGroupListener {
+    public interface TimerViewListener {
+
         void startfresh(int currentime);
 
-        void endfresh(int currentime);
+        void endfresh();
+
     }
 }

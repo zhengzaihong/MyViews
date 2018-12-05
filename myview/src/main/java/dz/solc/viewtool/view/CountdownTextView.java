@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

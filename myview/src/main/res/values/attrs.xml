@@ -2,16 +2,10 @@
 <resources>
 
 
-
-
     <declare-styleable name="AirPanelLinearLayout">
         <attr name="airPanelMinHeight" format="dimension" />
         <attr name="airPanelMaxHeight" format="dimension" />
     </declare-styleable>
-
-
-
-
 
 
     <!-- 圆角策略   start-->
@@ -72,21 +66,57 @@
 
 
     <declare-styleable name="MarqueeViewStyle">
-        <attr name="mvInterval" format="integer|reference"/>
-        <attr name="mvAnimDuration" format="integer|reference"/>
-        <attr name="mvTextSize" format="dimension|reference"/>
-        <attr name="mvTextColor" format="color"/>
-        <attr name="mvSingleLine" format="boolean"/>
+        <attr name="mvInterval" format="integer|reference" />
+        <attr name="mvAnimDuration" format="integer|reference" />
+        <attr name="mvTextSize" format="dimension|reference" />
+        <attr name="mvTextColor" format="color" />
+        <attr name="mvSingleLine" format="boolean" />
         <attr name="mvGravity">
-            <enum name="left" value="0"/>
-            <enum name="center" value="1"/>
-            <enum name="right" value="2"/>
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
         </attr>
         <attr name="mvDirection">
-            <enum name="bottom_to_top" value="0"/>
-            <enum name="top_to_bottom" value="1"/>
-            <enum name="right_to_left" value="2"/>
-            <enum name="left_to_right" value="3"/>
+            <enum name="bottom_to_top" value="0" />
+            <enum name="top_to_bottom" value="1" />
+            <enum name="right_to_left" value="2" />
+            <enum name="left_to_right" value="3" />
         </attr>
     </declare-styleable>
+
+
+    <declare-styleable name="UnderlinedTextView">
+        <attr name="underlineWidth" format="dimension" />
+        <attr name="underlineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="circleProgressBar">
+        <attr name="circleWidth" format="dimension" />
+        <attr name="betaAngle" format="integer" />
+        <attr name="firstColor" format="color" />
+        <attr name="secondColor" format="color" />
+        <attr name="progress" format="integer" />
+        <attr name="showText" format="boolean" />
+    </declare-styleable>
+
+
+    <style name="mOftenDialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+
+        <!--   <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+           <item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
+    </style>
+
 </resources>

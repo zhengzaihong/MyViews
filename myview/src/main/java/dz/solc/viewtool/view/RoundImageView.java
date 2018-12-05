@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 
 import android.annotation.SuppressLint;
@@ -16,6 +16,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import dz.solc.viewtool.R;
 
 
 /**

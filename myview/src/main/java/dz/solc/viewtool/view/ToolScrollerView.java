@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,17 +8,17 @@ import android.widget.ScrollView;
  * @author 
  *
  */
-public class ScrollerScrollerView extends ScrollView {
+public class ToolScrollerView extends ScrollView {
 
-	public ScrollerScrollerView(Context context) {
+	public ToolScrollerView(Context context) {
 		super(context);
 	}
 
-	public ScrollerScrollerView(Context context, AttributeSet attrs) {
+	public ToolScrollerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public ScrollerScrollerView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ToolScrollerView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 	@Override

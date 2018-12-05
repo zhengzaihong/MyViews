@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

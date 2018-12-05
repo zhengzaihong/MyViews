@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 
+import dz.solc.viewtool.R;
 
 
 /**
@@ -454,4 +455,21 @@ public class ProgressWheel extends View {
 	public void setDelayMillis(int delayMillis) {
 		this.delayMillis = delayMillis;
 	}
+
+	/*
+		<dz.solc.viewtool.view.ProgressWheel
+	android:layout_width="70dp"
+	app:text="双圆环"
+	app:textSize="6sp"
+	app:barColor="@android:color/darker_gray"
+	app:rimColor="@android:color/holo_red_dark"
+	app:textcolorprogress="@color/colorPrimary"
+	app:rimWidth="10dp"
+	app:spinSpeed="10dp"
+	app:delayMillis="20"
+	app:circleColor="@android:color/holo_orange_dark"
+	app:barWidth="10dp"
+	app:radius="15dp"
+	app:circlebarLength="20dp"
+	android:layout_height="70dp" />*/
 }

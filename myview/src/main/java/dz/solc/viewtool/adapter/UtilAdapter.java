@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 * creat_time: 10:30
 * describe 为listview,gridView,为ExpandableListView设置高度
 **/
-public class UtilAdapterListView {
+public class UtilAdapter {
 	// 为listview设置高度
 	public static void setListViewHeightBasedOnChildren(ListView listView) {
 		// 获取ListView对应的Adapter

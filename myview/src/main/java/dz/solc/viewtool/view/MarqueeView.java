@@ -1,4 +1,4 @@
-package dz.solc.viewtool;
+package dz.solc.viewtool.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import dz.solc.viewtool.R;
 
 public class MarqueeView extends ViewFlipper {
 
