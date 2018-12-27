@@ -6,9 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+
 /**
- * Created by zl on 2016/7/18.
- */
+ *creat_user: zhengzaihong
+ *email:1096877329@qq.com
+ *creat_date: 2018/12/24 0024
+ *creat_time: 15:45
+ *describe: 处理滑动事件导致无法点击的问题
+ **/
+
+
 public class MyTouchViewPage extends ViewPager {
 
     /** 触摸时按下的点 **/

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_photo_root_view"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/len_20"
+    android:layout_marginLeft="@dimen/len_10"
+    android:layout_marginRight="@dimen/len_10"
+    android:background="@color/transparent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/len_20">
+
+    <LinearLayout
+        android:id="@+id/ll_photo_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corners_dialog_main"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="@dimen/len_10"
+            android:paddingTop="@dimen/len_10"
+            android:text="请选择图片" />
+
+        <View
+            android:id="@+id/view_line_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line_color"></View>
+
+        <TextView
+            android:id="@+id/tv_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="@dimen/len_18"
+            android:paddingTop="@dimen/len_18"
+            android:text="拍照"
+            android:textColor="@color/light_blue_400" />
+
+        <View
+            android:id="@+id/view_line2_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line_color"></View>
+
+        <TextView
+            android:id="@+id/tv_form_abulm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="@dimen/len_18"
+            android:paddingTop="@dimen/len_18"
+            android:text="从手机相册选择"
+            android:textColor="@color/light_blue_400" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/len_15"
+        android:background="@drawable/bg_corners_dialog_cancle"
+        android:gravity="center"
+        android:paddingBottom="@dimen/len_18"
+        android:paddingTop="@dimen/len_18"
+        android:text="取消"
+        android:textColor="@color/light_blue_400" />
+
+</LinearLayout>

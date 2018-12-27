@@ -25,6 +25,8 @@ public class TimerView {
     //创建句柄 避免每次接受到事件创建定时器和任务
     private Timer timer = new Timer();
     private AsyncTimerTask asyncTimerTask;
+    //倒计时时速度 单位毫秒.
+    private int speed = 1000;
 
 
     private TimerView() {
@@ -37,6 +39,10 @@ public class TimerView {
 
     public synchronized static TimerView create() {
         return new TimerView();
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     //启动倒计时
@@ -54,8 +60,10 @@ public class TimerView {
         if (null != asyncTimerTask) {
             asyncTimerTask.cancel();
         }
-        iswait = false;
-        singlethread = true;
+
+        //触发结束回调
+        handlerMessage.setCurrentime(1);
+        sendMsg();
     }
 
     private class HandlerMessage extends Handler {
@@ -65,6 +73,10 @@ public class TimerView {
         public HandlerMessage(TimerViewListener listener, int time) {
             this.listener = listener;
             this.currentime = time;
+        }
+
+        public void setCurrentime(int currentime) {
+            this.currentime = currentime;
         }
 
         @Override
@@ -86,7 +98,7 @@ public class TimerView {
                         asyncTimerTask.cancel();
                         asyncTimerTask = null;
                     }
-                    timer.schedule(asyncTimerTask = new AsyncTimerTask(), 1000);
+                    timer.schedule(asyncTimerTask = new AsyncTimerTask(), speed);
                 }
             }
         }
@@ -95,10 +107,14 @@ public class TimerView {
     private class AsyncTimerTask extends TimerTask {
         @Override
         public void run() {
-            Message msg = Message.obtain();
-            msg.what = 1;
-            handlerMessage.sendMessage(msg);
+            sendMsg();
         }
+    }
+
+    private void sendMsg() {
+        Message msg = Message.obtain();
+        msg.what = 1;
+        handlerMessage.sendMessage(msg);
     }
 
     /**

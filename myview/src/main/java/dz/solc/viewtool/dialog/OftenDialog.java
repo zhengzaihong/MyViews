@@ -2,6 +2,7 @@ package dz.solc.viewtool.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.support.annotation.StyleRes;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class OftenDialog {
         dialog = new Dialog(context, R.style.mOftenDialog);
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER);
-        view = LayoutInflater.from(context).inflate(R.layout.dialog_often, null);
+        view = LayoutInflater.from(context).inflate(R.layout.dialog_often_bg, null);
         dialog.setContentView(view);
         DisplayMetrics outMetrics = new DisplayMetrics();
         dialog.setCanceledOnTouchOutside(outTouchside);
@@ -84,6 +85,24 @@ public class OftenDialog {
         });
     }
 
+    //提供的样式不满足 外部拿到view 自定义样式
+    public View getView(){
+        return view;
+    }
+
+
+    public OftenDialog cancleGone() {
+        tv_cance.setVisibility(View.GONE);
+        view_line2.setVisibility(View.GONE);
+        return this;
+    }
+
+    public OftenDialog sureGone() {
+        tv_suer.setVisibility(View.GONE);
+        view_line2.setVisibility(View.GONE);
+        return this;
+    }
+
 
     public OftenDialog initData(String title, String content) {
         tv_title.setText(title);
@@ -96,6 +115,16 @@ public class OftenDialog {
         return this;
     }
 
+    public OftenDialog setDialogAnimation(int style) {
+        dialog.getWindow().setWindowAnimations(style);
+        return this;
+    }
+
+    //屏幕背景变暗度
+    public OftenDialog setDialogDim(float bg_dim) {
+        dialog.getWindow().setDimAmount(bg_dim);
+        return this;
+    }
 
     public OftenDialog setDialogWidth(int width) {
         Window window = dialog.getWindow();
@@ -177,7 +206,7 @@ public class OftenDialog {
 
     private OnClickButtonListener listener;
 
-    public OftenDialog setClickButtonListener(OnClickButtonListener listener) {
+    public OftenDialog setOnClickButtonListener(OnClickButtonListener listener) {
         this.listener = listener;
         return this;
     }
@@ -190,7 +219,7 @@ public class OftenDialog {
     }
 
     public void showDialog() {
-        if (null != dialog && dialog.isShowing() == false) {
+        if (null != dialog && !dialog.isShowing()) {
             dialog.show();
         }
     }

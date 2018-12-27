@@ -27,6 +27,22 @@
             android:layout_marginLeft="@dimen/len_10"
             android:gravity="center_vertical"
             android:text="停止" />
+
+
+        <TextView
+            android:id="@+id/tv_often_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center_vertical"
+            android:text="通用提示框" />
+        <TextView
+            android:id="@+id/tv_photo_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center_vertical"
+            android:text="相册框" />
     </LinearLayout>
 
     <dz.solc.viewtool.view.MarqueeView

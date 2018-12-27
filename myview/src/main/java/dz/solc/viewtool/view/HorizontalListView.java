@@ -66,8 +66,8 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
     }  
   
     private DataSetObserver mDataObserver = new DataSetObserver() {  
-  
-        @Override  
+
+        @Override
         public void onChanged() {  
             synchronized(HorizontalListView.this){  
                 mDataChanged = true;  
