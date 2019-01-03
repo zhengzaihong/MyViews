@@ -36,6 +36,7 @@
             android:layout_marginLeft="@dimen/len_10"
             android:gravity="center_vertical"
             android:text="通用提示框" />
+
         <TextView
             android:id="@+id/tv_photo_dialog"
             android:layout_width="wrap_content"
@@ -45,94 +46,124 @@
             android:text="相册框" />
     </LinearLayout>
 
-    <dz.solc.viewtool.view.MarqueeView
-        android:id="@+id/marqueeview"
+
+    <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Hello World!"
-        app:mvTextColor="@android:color/holo_red_dark" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <dz.solc.viewtool.view.CountdownTextView
-        android:id="@+id/countdowntextview"
+        <dz.solc.viewtool.view.MarqueeView
+            android:id="@+id/marqueeview"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Hello World!"
+            app:mvTextColor="@android:color/holo_red_dark" />
+
+        <dz.solc.viewtool.view.CountdownTextView
+            android:id="@+id/countdowntextview"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <dz.solc.viewtool.view.ProgressWheel
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:barColor="@android:color/darker_gray"
+            app:barWidth="10dp"
+            app:circleColor="@android:color/holo_orange_dark"
+            app:circlebarLength="20dp"
+            app:delayMillis="20"
+            app:radius="15dp"
+            app:rimColor="@android:color/holo_red_dark"
+            app:rimWidth="10dp"
+            app:spinSpeed="10dp"
+            app:text="双圆环"
+            app:textSize="6sp"
+            app:textcolorprogress="@color/colorPrimary" />
+
+        <dz.solc.viewtool.view.RotateImageView
+            android:id="@+id/riv_cycle"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/ic_launcher_round" />
+
+        <dz.solc.viewtool.view.RoundImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/bj" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="wrap_content">
 
-    <dz.solc.viewtool.view.ProgressWheel
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:barColor="@android:color/darker_gray"
-        app:barWidth="10dp"
-        app:circleColor="@android:color/holo_orange_dark"
-        app:circlebarLength="20dp"
-        app:delayMillis="20"
-        app:radius="15dp"
-        app:rimColor="@android:color/holo_red_dark"
-        app:rimWidth="10dp"
-        app:spinSpeed="10dp"
-        app:text="双圆环"
-        app:textSize="6sp"
-        app:textcolorprogress="@color/colorPrimary" />
-
-    <dz.solc.viewtool.view.RotateImageView
-        android:id="@+id/riv_cycle"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@mipmap/ic_launcher_round" />
-
-    <dz.solc.viewtool.view.RoundImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@mipmap/bj" />
-
-    <dz.solc.viewtool.view.RoundIconView
-        android:id="@+id/riv_round"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bj" />
-
-    <RelativeLayout
-        android:layout_width="@dimen/len_100"
-        android:layout_height="@dimen/len_100"
-        android:layout_marginTop="@dimen/len_10">
-
-        <dz.solc.viewtool.view.CircleProgressBar
-            android:id="@+id/circleProgressBar"
+        <dz.solc.viewtool.view.RoundIconView
+            android:id="@+id/riv_round"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            app:circleWidth="6dp"
-            app:firstColor="#ff9800"
-            app:progress="10"
-            app:secondColor="#fce4ec"
-            app:showText="false" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bj" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="@dimen/len_100"
+            android:layout_height="@dimen/len_100">
 
-            <TextView
-                android:id="@+id/tv_score"
+            <dz.solc.viewtool.view.CircleProgressBar
+                android:id="@+id/circleProgressBar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:circleWidth="6dp"
+                app:firstColor="#ff9800"
+                app:progress="55"
+                app:secondColor="#fce4ec"
+                app:showText="false" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="98"
-                android:textColor="@color/light_blue_200"
-                android:textSize="@dimen/font_24" />
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="综合得分"
-                android:textColor="@color/red"
-                android:textSize="@dimen/font_12" />
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="55"
+                    android:textColor="@color/light_blue_200"
+                    android:textSize="@dimen/font_24" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="综合得分"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/font_12" />
 
-    </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <dz.solc.viewtool.calendar.CalendarView
+        android:id="@+id/calendarview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_30"
+        android:layout_marginRight="@dimen/len_30">
+
+    </dz.solc.viewtool.calendar.CalendarView>
+
 </LinearLayout>

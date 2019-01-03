@@ -223,8 +223,9 @@ public class PhotoDialog {
 
     private OnItemClickListener listener;
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public PhotoDialog setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+        return this;
     }
 
     public interface OnItemClickListener {
