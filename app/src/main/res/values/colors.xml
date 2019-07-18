@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
 
+
+
+    <color name="button_press">#4C6DE1</color>
+
+    <color name="button_unpress">#132051</color>
 </resources>

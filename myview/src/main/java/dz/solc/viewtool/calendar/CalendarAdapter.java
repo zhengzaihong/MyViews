@@ -3,6 +3,7 @@ package dz.solc.viewtool.calendar;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -37,12 +39,40 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
     private int inmonthnotday = R.color.red_200;
     private int layoutId;
 
+    private int chooseDayColor = R.color.green_200;
+
+    private DateQueue dateQueue = new DateQueue();
+
+    private LinkedList<T> wrapDate = new LinkedList<>();
+
+    private int chooseBg = R.drawable.dot_red;
+
+    private int unChooseBg = R.drawable.dot_white;
+
     public CalendarAdapter(Context context, List<Date> listdata, int layoutId) {
         this.mContext = context;
         this.listdata = listdata;
         this.layoutId = layoutId;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         nowdate = new Date();
+    }
+
+
+    public void setChooseBg(int chooseBg) {
+        this.chooseBg = chooseBg;
+    }
+
+    public void setUnChooseBg(int unChooseBg) {
+        this.unChooseBg = unChooseBg;
+    }
+
+    public void setMultiChoose(int size) {
+        dateQueue.setQueueSize(size);
+        notifyDataSetChanged();
+    }
+
+    public void setChooseTextColor(int chooseDayColor) {
+        this.chooseDayColor = chooseDayColor;
     }
 
 
@@ -94,6 +124,7 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        final Date date = listdata.get(position);
         if (layoutId == R.layout.calendar_cell_itme) {
             ViewHolder1 holder;
             if (null == convertView) {
@@ -103,23 +134,30 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
             } else {
                 holder = (ViewHolder1) convertView.getTag();
             }
-            Date date = listdata.get(position);
             holder.tv_date.setText(date.getDate() + "");
-            //判断时间是不是当天
-            if (nowdate.getDate() == date.getDate() && nowdate.getYear() == date.getYear() && nowdate.getMonth() == date.getMonth() && nowdate.getDay() == date.getDay()) {
-                holder.tv_date.setTextColor(currendaycolor);
+
+            if (dateQueue.contains(date)) {
+                holder.rlItem.setBackgroundResource(chooseBg);
+                holder.tv_date.setTextColor(chooseDayColor);
             } else {
-                holder.tv_date.setTextColor(inmonthnotday);
-            }
-            //如果签到包含则改变字体颜色
-            if (singdays.contains(date.getDate())) {
-                holder.tv_date.setTextColor(currendaycolor);
-            }
-            //把不是本月份的号数设置颜色
-            if (nowdate.getMonth() != date.getMonth()) {
-                holder.tv_date.setTextColor(otherdaycolor);
-                if (hideotherday) {
-                    holder.tv_date.setVisibility(View.INVISIBLE);
+                holder.rlItem.setBackgroundResource(unChooseBg);
+                //如果签到包含则改变字体颜色
+                if (singdays.contains(date.getDate())) {
+                    holder.tv_date.setTextColor(currendaycolor);
+                }
+                //判断时间是不是当天
+                if (nowdate.getDate() == date.getDate() && nowdate.getYear() == date.getYear()
+                        && nowdate.getMonth() == date.getMonth() && nowdate.getDay() == date.getDay()) {
+                    holder.tv_date.setTextColor(currendaycolor);
+                } else {
+                    holder.tv_date.setTextColor(inmonthnotday);
+                }
+                //把不是本月份的号数设置颜色
+                if (nowdate.getMonth() != date.getMonth()) {
+                    holder.tv_date.setTextColor(otherdaycolor);
+                    if (hideotherday) {
+                        holder.tv_date.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
 
@@ -132,14 +170,35 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
 
     }
 
+
+    public void changeData(Date date) {
+        if (null == dateQueue) {
+            return;
+        }
+        if (dateQueue.contains(date)) {
+            dateQueue.remove(date);
+        } else {
+            dateQueue.offer(date);
+        }
+        notifyDataSetChanged();
+    }
+
     private class ViewHolder1 {
         View view;
         TextView tv_date;
+        ViewGroup rlItem;
 
         public ViewHolder1(View view) {
             this.view = view;
             tv_date = view.findViewById(R.id.tv_date);
+            rlItem = view.findViewById(R.id.rlItem);
         }
+    }
+
+    public LinkedList<Date> getDate() {
+        wrapDate.clear();
+        wrapDate.addAll(dateQueue);
+        return (LinkedList<Date>) wrapDate;
     }
 
     /**
@@ -154,7 +213,7 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
 
         private ViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
             this.mPosition = position;
-            this.mViews = new SparseArray<View>();
+            this.mViews = new SparseArray<>();
             mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
             mConvertView.setTag(this);
         }
@@ -194,6 +253,12 @@ public abstract class CalendarAdapter<T> extends BaseAdapter {
         public ViewHolder setText(int viewId, String text) {
             TextView tv = getView(viewId);
             tv.setText(text);
+            return this;
+        }
+
+        public ViewHolder setTextColor(int viewId, int color) {
+            TextView tv = getView(viewId);
+            tv.setTextColor(color);
             return this;
         }
 

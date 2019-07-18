@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="horizontal">
+
+    <dz.solc.viewtool.view.textview.FilletView
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_50"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginRight="@dimen/len_10"
+        android:gravity="center"
+        android:text="时间控件"
+        app:f_cornerRadius="@dimen/len_10"
+        app:f_normalBgColor="@color/light_blue_200"
+        app:f_normalTextColor="@color/black_alpha_224"
+        app:f_pressedBgColor="@color/white_alpha_80"
+        app:f_pressedTextColor="@color/red"
+        app:f_radius_type="f_all_radius"
+        app:f_showAnimation="false"></dz.solc.viewtool.view.textview.FilletView>
+
+</LinearLayout>

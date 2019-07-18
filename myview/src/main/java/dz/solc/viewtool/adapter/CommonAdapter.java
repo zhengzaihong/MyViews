@@ -2,8 +2,8 @@ package dz.solc.viewtool.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +27,14 @@ import java.util.List;
 
 public abstract class CommonAdapter<T> extends BaseAdapter {
 
-    protected Context mContext;//要让子类可以访问，所以要用protected
-    protected List<T> mDatas = new ArrayList<>();
+    protected Context mContext;
+    protected List<T> datas = new ArrayList<>();
     protected LayoutInflater mInflater;
     protected int xmlId;
 
     public CommonAdapter(Context context, int xmlId, List datas) {
         this.mContext = context;
-        this.mDatas = datas;
+        this.datas = datas;
         this.mInflater = LayoutInflater.from(context);
         this.xmlId = xmlId;
     }
@@ -47,28 +47,28 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mDatas.size();
+        return datas.size();
     }
 
-    public List<T> getmDatas() {
-        return mDatas;
+    public List<T> getDatas() {
+        return datas;
     }
 
 
     public void setNewData(@Nullable List<T> data) {
-        this.mDatas = data == null ? new ArrayList<T>() : data;
+        this.datas = data == null ? new ArrayList<T>() : data;
         notifyDataSetChanged();
     }
 
     public void replaceData(@NonNull Collection<? extends T> data) {
-        mDatas.clear();
-        mDatas.addAll(data);
+        datas.clear();
+        datas.addAll(data);
         notifyDataSetChanged();
     }
 
 
     public void addData(@NonNull Collection<? extends T> data) {
-        mDatas.addAll(data);
+        datas.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -78,7 +78,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     @Override
     public T getItem(int position) {
-        return mDatas.get(position);
+        return datas.get(position);
     }
 
     @Override

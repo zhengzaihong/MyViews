@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:imagecontrol="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cadetblue"
+    android:orientation="vertical"
+    android:padding="@dimen/len_10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <dz.solc.viewtool.view.imageview.RotateImageView
+            android:id="@+id/riv_cycle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_marginRight="@dimen/len_10"
+            android:background="@mipmap/my_pic" />
+
+        <dz.solc.viewtool.view.imageview.RoundImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/bj" />
+
+        <dz.solc.viewtool.view.imageview.RoundImageView
+            android:id="@+id/rv_myhead"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/bj"
+            imagecontrol:border_inside_color="#d5e8ca"
+            imagecontrol:border_outside_color="#d5e8ca"
+            imagecontrol:border_thickness="1dp" />
+
+        <dz.solc.viewtool.view.imageview.RoundIconView
+            android:id="@+id/riv_round"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bj" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/len_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <dz.solc.viewtool.view.barview.ProgressWheel
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:barColor="@android:color/darker_gray"
+            app:barWidth="10dp"
+            app:circleColor="@android:color/holo_orange_dark"
+            app:circlebarLength="20dp"
+            app:delayMillis="20"
+            app:radius="15dp"
+            app:rimColor="@android:color/holo_red_dark"
+            app:rimWidth="10dp"
+            app:spinSpeed="10dp"
+            app:text="双圆环"
+            app:textSize="6sp"
+            app:textcolorprogress="@color/colorPrimary" />
+
+        <dz.solc.viewtool.view.barview.CircleProgressBar
+            android:id="@+id/circleProgressBar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:circleWidth="6dp"
+            app:firstColor="#ff9800"
+            app:progress="55"
+            app:secondColor="#fce4ec"
+            app:showText="false" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <dz.solc.viewtool.view.barview.CircleProgressView
+            android:id="@+id/circle_progress_fill_in"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:progress="0"
+            app:progressStyle="FillInner"
+            app:progressTextColor="@android:color/white"
+            app:radius="40dp"
+            />
+
+        <dz.solc.viewtool.view.barview.CircleProgressView
+            android:id="@+id/circle_progress_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+
+            android:layout_weight="1"
+            android:progress="0"
+            app:radius="40dp"
+            />
+
+        <dz.solc.viewtool.view.barview.CircleProgressView
+            android:id="@+id/circle_progress_fill_in_arc"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+
+            android:layout_weight="1"
+            android:progress="0"
+            app:innerPadding="1dp"
+            app:progressReachColor="@android:color/darker_gray"
+            app:progressStyle="FillInnerArc"
+            app:radius="40dp"
+            />
+    </LinearLayout>
+
+    <dz.solc.viewtool.view.barview.HorizontalProgressView
+        android:id="@+id/horizontal_progress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="16dp"
+        android:progress="0"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_progress"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_outer"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_inner"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="16dp"/>
+
+
+
+</LinearLayout>

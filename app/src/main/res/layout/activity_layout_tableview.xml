@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cadetblue"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <dz.solc.viewtool.view.tableview.TableView
+            android:id="@+id/tableView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/len_10"
+            android:scrollbars="none">
+
+
+        </dz.solc.viewtool.view.tableview.TableView>
+
+        <dz.solc.viewtool.view.tableview.TableView
+            android:id="@+id/tableView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/len_10"
+            android:scrollbars="none">
+
+
+        </dz.solc.viewtool.view.tableview.TableView>
+
+
+        <dz.solc.viewtool.view.tableview.TableView
+            android:id="@+id/tableView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/len_10"
+            android:scrollbars="none">
+
+        </dz.solc.viewtool.view.tableview.TableView>
+
+    </LinearLayout>
+
+
+</ScrollView>

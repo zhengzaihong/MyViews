@@ -2,7 +2,6 @@ package dz.solc.viewtool.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.StyleRes;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -120,7 +119,12 @@ public class OftenDialog {
         return this;
     }
 
-    //屏幕背景变暗度
+    /**
+     * 屏幕背景变暗度
+     *
+     * @param bg_dim 0-1之间 0无变化，1黑屏
+     * @return
+     */
     public OftenDialog setDialogDim(float bg_dim) {
         dialog.getWindow().setDimAmount(bg_dim);
         return this;
@@ -188,15 +192,25 @@ public class OftenDialog {
         return this;
     }
 
-    public OftenDialog setCancleButtonColor(int color) {
+    public OftenDialog setCancleTextColor(int color) {
         tv_cance.setTextColor(color);
         return this;
     }
 
-    public OftenDialog setSureButtonColor(int color) {
+    public OftenDialog setSureTextColor(int color) {
         tv_suer.setTextColor(color);
         return this;
     }
+    public OftenDialog setCancleBgColor(int color) {
+        tv_cance.setBackgroundColor(color);
+        return this;
+    }
+
+    public OftenDialog setSureBgColor(int color) {
+        tv_suer.setBackgroundColor(color);
+        return this;
+    }
+
 
     public OftenDialog setOutTouchside(boolean outTouchside) {
         dialog.setCanceledOnTouchOutside(outTouchside);

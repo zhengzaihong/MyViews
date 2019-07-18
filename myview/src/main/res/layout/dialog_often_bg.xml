@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="温馨提示"
+            android:text="这里是标题"
             android:textColor="@color/black_alpha_112"
             android:textSize="16sp" />
 
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            tools:text="确定退出当前应用?"
+            android:text="这里是内容"
             android:textSize="@dimen/font_14" />
 
 

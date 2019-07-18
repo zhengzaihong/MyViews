@@ -2,8 +2,10 @@ package dz.solc.viewtool.calendar;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +17,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 import dz.solc.viewtool.R;
+import dz.solc.viewtool.adapter.UtilAdapter;
 
 
 /**
@@ -200,6 +204,18 @@ public class CalendarView extends LinearLayout {
         //todo  如果需要参与页面滑动  动态计算下gridView 高度
     }
 
+    public void changeDate(Date date){
+        adapter.changeData(date);
+    }
+    public void notyDataChange() {
+        adapter.notifyDataSetChanged();
+    }
+
+    public CalendarView setMeasureHeight() {
+        UtilAdapter.setGridViewHeightBasedOnChildren(gridView);
+        return this;
+    }
+
     // 返回当前日历adapter
     public CalendarAdapter getCalendarAdapter() {
         return adapter;
@@ -229,5 +245,29 @@ public class CalendarView extends LinearLayout {
         return this;
     }
 
+    public CalendarView setChooseBg(int chooseBg) {
+        getCalendarAdapter().setChooseBg(chooseBg);
+        return this;
+    }
+
+    public CalendarView setUnChooseBg(int unChooseBg) {
+        getCalendarAdapter().setChooseBg(unChooseBg);
+        return this;
+    }
+
+
+    public CalendarView setMultiChoose(int size) {
+        getCalendarAdapter().setMultiChoose(size);
+        return this;
+    }
+
+    public CalendarView setChooseTextColor(int chooseDayColor) {
+        getCalendarAdapter().setChooseTextColor(chooseDayColor);
+        return this;
+    }
+
+    public LinkedList<Date> getDate() {
+        return getCalendarAdapter().getDate();
+    }
 
 }

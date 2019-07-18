@@ -19,6 +19,8 @@ import dz.solc.viewtool.R;
  * creat_time: 10:24
  * describe 修改头像的dialog
  **/
+
+@SuppressWarnings("all")
 public class PhotoDialog {
 
     //拍照按钮

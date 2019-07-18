@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cadetblue"
+    android:orientation="vertical"
+    android:padding="@dimen/len_10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_timego"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_conrners_login_input"
+            android:gravity="center"
+            android:minWidth="@dimen/len_60"
+            android:paddingLeft="@dimen/len_10"
+            android:paddingRight="@dimen/len_10"
+            android:text="获取验证码"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/timestop"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center"
+            android:text="停止" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_10"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_timego1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_conrners_login_input"
+            android:gravity="center"
+            android:minWidth="@dimen/len_60"
+            android:paddingLeft="@dimen/len_10"
+            android:paddingRight="@dimen/len_10"
+            android:text="每隔2秒刷新"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/timestop1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center"
+            android:text="停止" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_timego2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/len_10"
+        android:background="@drawable/bg_conrners_login_input"
+        android:gravity="center"
+        android:minWidth="@dimen/len_60"
+        android:paddingLeft="@dimen/len_10"
+        android:paddingRight="@dimen/len_10"
+        android:text="倒计时加速一倍"
+        android:textColor="@color/white" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_10"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_timego3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_conrners_login_input"
+            android:gravity="center"
+            android:minWidth="@dimen/len_60"
+            android:paddingLeft="@dimen/len_10"
+            android:paddingRight="@dimen/len_10"
+            android:text="获取验证码"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/timestop3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center"
+            android:text="停止" />
+
+
+    </LinearLayout>
+
+
+    <dz.solc.viewtool.view.timeview.CountdownTextView
+        android:id="@+id/countdowntextview"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="@dimen/len_10" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_10"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_task"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_conrners_login_input"
+            android:gravity="center"
+            android:minWidth="@dimen/len_60"
+            android:paddingLeft="@dimen/len_10"
+            android:paddingRight="@dimen/len_10"
+            android:text="任务："
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/taskStop"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/len_10"
+            android:gravity="center"
+            android:text="开始" />
+
+    </LinearLayout>
+
+</LinearLayout>

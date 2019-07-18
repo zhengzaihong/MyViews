@@ -100,6 +100,30 @@
     </declare-styleable>
 
 
+    <declare-styleable name="mySwitchButton">
+        <!-- 圆角矩形的边颜色-->
+        <attr name="strokeLineColor" format="color" />
+        <!--圆角矩形的填充颜色-->
+        <attr name="strokeSolidColor" format="color" />
+        <!--内部小圆被选中的颜色-->
+        <attr name="circleCheckedColor" format="color" />
+        <!--内部小圆未被选中的颜色-->
+        <attr name="circleNoCheckedColor" format="color" />
+        <!--圆外边颜色-->
+        <attr name="circleStrokeColor" format="color" />
+        <!--滑动圆选择状态下的填充颜色-->
+        <attr name="strokeNoCheckedSolidColor" format="color" />
+        <!--椭圆的边框宽度-->
+        <attr name="strokeLineWidth" format="dimension" />
+        <!--圆的边框宽度-->
+        <attr name="circleStrokeWidth" format="dimension" />
+        <!--是否显示大圆-->
+        <attr name="isBigCircle" format="boolean" />
+        <!--是否选中状态-->
+        <attr name="isChecked" format="boolean" />
+    </declare-styleable>
+
+
     <style name="mOftenDialog">
         <item name="android:windowFrame">@null</item>
         <!-- Dialog的windowFrame框为无 -->
@@ -114,9 +138,141 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 屏幕背景是否变暗 -->
         <item name="android:backgroundDimAmount">0.5</item>
-
-        <!--   <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
-           <item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
     </style>
 
+    <style name="loading_style">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+
+    <!-- 有边框和背景的菜单View -->
+    <declare-styleable name="MultiFunctionView">
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="strokeColor" format="color|reference" />
+        <attr name="normalBgColor" format="color|reference" />
+        <attr name="pressedBgColor" format="color|reference" />
+        <attr name="followTextColor" format="boolean" />
+        <attr name="normalTextColor" format="color|reference" />
+        <attr name="pressedTextColor" format="color|reference" />
+
+        <attr name="showAnimation" format="boolean" />
+
+
+        <attr name="radius_type">
+            <enum name="left_top_bottom_radius" value="0" />
+            <enum name="right_top_bootom_radius" value="1" />
+
+            <enum name="left_top_radius" value="2" />
+            <enum name="left_bottom_radius" value="3" />
+            <enum name="right_top_radius" value="4" />
+
+            <enum name="right_bootom_radius" value="5" />
+            <enum name="all_radius" value="6" />
+            <enum name="none_radius" value="7" />
+        </attr>
+
+    </declare-styleable>
+
+
+    <!-- 有边框和背景的View -->
+    <declare-styleable name="FilletView">
+        <attr name="f_strokeWidth" format="dimension" />
+        <attr name="f_cornerRadius" format="dimension" />
+        <attr name="f_strokeColor" format="color|reference" />
+        <attr name="f_normalBgColor" format="color|reference" />
+        <attr name="f_pressedBgColor" format="color|reference" />
+        <attr name="f_followTextColor" format="boolean" />
+        <attr name="f_normalTextColor" format="color|reference" />
+        <attr name="f_pressedTextColor" format="color|reference" />
+        <attr name="f_showAnimation" format="boolean" />
+
+
+        <attr name="f_radius_type">
+            <enum name="f_left_top_bottom_radius" value="0" />
+            <enum name="f_right_top_bootom_radius" value="1" />
+
+            <enum name="f_left_top_radius" value="2" />
+            <enum name="f_left_bottom_radius" value="3" />
+            <enum name="f_right_top_radius" value="4" />
+
+            <enum name="f_right_bootom_radius" value="5" />
+            <enum name="f_all_radius" value="6" />
+            <enum name="f_none_radius" value="7" />
+        </attr>
+    </declare-styleable>
+
+
+    <attr name="progressTextSize" format="dimension" />
+    <attr name="progressTextColor" format="color" />
+    <attr name="progressTextOffset" format="dimension" />
+    <attr name="progressNormalColor" format="color" />
+    <attr name="progressReachColor" format="color" />
+    <attr name="progressNormalSize" format="dimension" />
+    <attr name="progressReachSize" format="dimension" />
+    <attr name="progressReachWidth" format="dimension" />
+    <attr name="progressNormalWidth" format="dimension" />
+    <attr name="progressTextVisible" format="boolean" />
+    <attr name="progressTextSkewX" format="dimension" />
+    <attr name="progressTextPrefix" format="string" />
+    <attr name="progressTextSuffix" format="string" />
+    <attr name="innerBackgroundColor" format="color" />
+
+    <declare-styleable name="HorizontalProgressView">
+        <attr name="progressNormalColor" />
+        <attr name="progressReachColor" />
+        <attr name="progressTextColor" />
+        <attr name="progressTextSize" />
+        <attr name="progressTextOffset" />
+        <attr name="progressNormalSize" />
+        <attr name="progressReachSize" />
+        <attr name="progressTextPosition" format="enum">
+            <enum name="TOP" value="1" />
+            <enum name="BOTTOM" value="-1" />
+            <enum name="CENTER" value="0" />
+        </attr>
+        <attr name="progressTextVisible" />
+        <attr name="progressTextSkewX" />
+        <attr name="progressTextPrefix" />
+        <attr name="progressTextSuffix" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="progressNormalColor" />
+        <attr name="progressReachColor" />
+        <attr name="progressTextColor" />
+        <attr name="progressTextSize" />
+        <attr name="progressTextOffset" />
+        <attr name="progressNormalSize" />
+        <attr name="progressReachSize" />
+        <attr name="progressRadius" format="dimension" />
+        <attr name="progressTextVisible" />
+        <attr name="progressStartArc" format="integer" />
+        <attr name="progressTextSkewX" />
+        <attr name="progressTextPrefix" />
+        <attr name="progressTextSuffix" />
+        <attr name="innerBackgroundColor" />
+        <attr name="progressStyle" format="enum">
+            <enum name="Normal" value="0" />
+            <enum name="FillInner" value="1" />
+            <enum name="FillInnerArc" value="2" />
+        </attr>
+        <attr name="innerProgressColor" format="color" />
+        <attr name="innerPadding" format="dimension" />
+        <attr name="outerColor" format="color" />
+        <attr name="outerSize" format="dimension" />
+        <attr name="reachCapRound" format="boolean" />
+    </declare-styleable>
 </resources>
