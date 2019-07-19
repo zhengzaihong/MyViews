@@ -4,7 +4,6 @@
     <dimen name="airPanelMaxHeight">300dp</dimen>
 
 
-
     <!-- 下面为边距size -->
     <dimen name="len_0">0dp</dimen>
     <dimen name="len_1">1dp</dimen>
@@ -810,4 +809,6 @@
     <dimen name="font_298">298sp</dimen>
     <dimen name="font_299">299sp</dimen>
     <dimen name="font_300">300sp</dimen>
+
+
 </resources>

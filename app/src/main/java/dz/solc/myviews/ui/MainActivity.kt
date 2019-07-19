@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     var menues = arrayListOf("时间控件", "跑马灯控件", "菜单控件",
-            "常用提示框", "常用图片View和进度View等","表格控件", "简易日历控件")
+            "常用提示框", "常用图片View和进度View等","表格控件", "简易日历控件","其他控件")
 
     var myMenueAdapter: MyMenueAdapter? = null
 
@@ -45,6 +45,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 6 -> {
                     intent.setClass(this@MainActivity, CalendarViewActivity::class.java)
+                }
+                7 -> {
+                    intent.setClass(this@MainActivity, MayViewActivity::class.java)
                 }
             }
 
