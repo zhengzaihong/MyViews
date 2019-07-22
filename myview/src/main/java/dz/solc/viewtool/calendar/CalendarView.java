@@ -67,13 +67,6 @@ public class CalendarView extends LinearLayout {
         initview();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public CalendarView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.mContext = context;
-        initview();
-    }
-
     private void initview() {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.calendar_view_nav, this);
