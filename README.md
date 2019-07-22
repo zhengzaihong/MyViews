@@ -5,7 +5,7 @@
 ![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic1.png) 
 ![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic2.png) 
 ![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic3.jpg) 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.jpg)
+![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png)
 ![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5jpg)
 
 
