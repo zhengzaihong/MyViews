@@ -1,17 +1,12 @@
 
 样列图，更多请下载apk查看或者查看源码
 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif) 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic1.png) 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic2.png) 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic3.jpg) 
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png)
-![](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5jpg)
-
-
-
-
-
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic1.png" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic2.png" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic3.jpg" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png" width="400" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5jpg" width="300" height="400" />
 
 
 
