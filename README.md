@@ -53,5 +53,5 @@
 
 19.NoScrollViewPager(支持是否可以滑动的ViewPager)
 
-20.UnderLineTextView(支持下滑还的TexTView)
+20.UnderLineTextView(支持下划线的TexTView)
 
