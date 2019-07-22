@@ -1,4 +1,14 @@
 
+项目依赖：
+
+
+``` implementation 'com.zzh.viewtools:xxx(版本号)'  ```//最新查看version_xxx.txt信息
+
+
+*注意：本库使用到Androidx库  *
+
+
+
 样列图，更多请下载apk查看或者查看源码
 
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif" width="300" height="400" />
@@ -8,17 +18,6 @@
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png" width="300" height="400" />
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5.jpg" width="300" height="400" />
 
-
-
-
-
-项目依赖：
-
-
-``` implementation 'com.zzh.viewtools:xxx(版本号)'  ```//最新查看version_xxx.txt信息
-
-
-*注意：本库使用到Androidx库  *
 
 ##更新日志 2019-7-22
 
