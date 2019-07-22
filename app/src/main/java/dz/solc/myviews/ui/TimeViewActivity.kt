@@ -135,12 +135,12 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
 
         var taskLink = LinkTask<String>()
 
-        taskLink.add("sssss")
-        taskLink.add("bbbbb")
-        taskLink.add("ccccc")
-        taskLink.add("ddddd")
-        taskLink.add("eeeee")
-        taskLink.add("fffff")
+        taskLink.add("cmd1")
+        taskLink.add("cmd2")
+        taskLink.add("cmd3")
+        taskLink.add("cmd4")
+        taskLink.add("cmd5")
+        taskLink.add("cmd6")
 
         taskStop.setOnClickListener {
 

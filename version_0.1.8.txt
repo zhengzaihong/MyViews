@@ -1,5 +1,5 @@
 
-更新日志
+更新日志 2019-7-22
 
 1.时间类控件（验证码倒计时，定时任务,任务队列等）
 2.秒杀类控件
@@ -16,7 +16,10 @@
 13.圆环进度view
 14.表格控件
 15.简易日历
-16 ObservableScrollView( 支持测量滑动距离的和状态的ScrollView)
-17 FilletView(支持任意边圆角的View,保留TextView全部特性，减少开发中大量的写xml配置文件来改变背景色文字颜色等，)
+16. ObservableScrollView( 支持测量滑动距离的和状态的ScrollView)
+17. FilletView(支持任意边圆角的View,保留TextView全部特性，减少开发中大量的写xml配置文件来改变背景色文字颜色等)
+18. MyTouchViewPager(支持界面中可以横向滑动切换导致ViewPager的滑动失效问题)
+19. NoScrollViewPager(支持是否可以滑动的ViewPager)
+20. UnderLineTextView(支持下滑还的TexTView)
 
 

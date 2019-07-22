@@ -9,14 +9,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig;
-import dz.solc.viewtool.view.textview.config.FilletConfig;
 
 import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.ALL_RADIUS;
 import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.LEFT_BOTTOM_RADIUS;

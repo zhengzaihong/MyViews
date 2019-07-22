@@ -282,7 +282,7 @@ public class TableView<E> extends HorizontalScrollView {
          * @param holder
          * @param position   当前item的行
          * @param obj        当前item 对象
-         * @param islastItem 是否是最后一条数据
+         * @param islastItem 是否是最后一行数据
          */
 
         void getView(CommonAdapter.ViewHolder holder, int position, Object obj, boolean islastItem);
@@ -290,7 +290,7 @@ public class TableView<E> extends HorizontalScrollView {
         /**
          * @param obj         当前单元格数据对象
          * @param rowPosition 当前行数
-         * @param isLastCell  是否是最后一条数据
+         * @param isLastCell  是否是最后一个单元格
          * @return
          */
 
