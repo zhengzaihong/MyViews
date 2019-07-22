@@ -1,4 +1,15 @@
-更新日志 2019-7-22
+
+
+项目依赖：
+
+implementation 'com.zzh.viewtools:xxx(版本号)' //最新查看version_xxx.txt信息
+
+
+注意：本库使用到Androidx库.
+
+
+
+  ##更新日志 2019-7-22
 
 1.时间类控件（验证码倒计时，定时任务,任务队列等）
 
