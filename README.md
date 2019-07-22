@@ -5,8 +5,8 @@
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic1.png" width="300" height="400" />
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic2.png" width="300" height="400" />
 <img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic3.jpg" width="300" height="400" />
-<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png" width="400" height="400" />
-<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5jpg" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic4.png" width="300" height="400" />
+<img src ="https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/pic5.jpg" width="300" height="400" />
 
 
 
