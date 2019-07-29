@@ -1,11 +1,16 @@
 
 项目依赖：
 
+使用AndroidX包的请添加如下依赖：
+
+``` implementation 'com.zzh.viewtoolsX:xxx(版本号)' ``` 
+
+使用support包的请添加如下依赖
 
 ``` implementation 'com.zzh.viewtools:xxx(版本号)'  ```//最新查看version_xxx.txt信息
 
 
-*注意：本库使用到Androidx库  *
+*注意：本库使用到Androidx库 和SDK 28以下的区别，请分别正确引入 *
 
 
 
