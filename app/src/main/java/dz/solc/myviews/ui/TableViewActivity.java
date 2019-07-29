@@ -324,6 +324,7 @@ public class TableViewActivity extends AppCompatActivity {
             head.add(content.get(i).get("name").toString());
         }
         tableView.setData(head, content);
+
     }
 
 
