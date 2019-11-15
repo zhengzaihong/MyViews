@@ -13,6 +13,18 @@
 
 ![image](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif)
 
+
+##更新日志 2019-11-15
+
+新增 表格控件 Api,替换数据
+
+新增 EditextView 限制数据过滤器 EditInputFilter 和 ValueFilter
+
+新增 ListView 5种动画显示效果  具体看 UtilAdapter
+
+新增 CommonAdapter Api 支持图片和 文本颜色链式调用
+
+
 ##更新日志 2019-7-22
 
 1.时间类控件（验证码倒计时，定时任务,任务队列等）

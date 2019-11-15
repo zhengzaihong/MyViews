@@ -1,15 +1,10 @@
 package dz.solc.myviews.ui
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
-import androidx.annotation.ColorInt
-import androidx.appcompat.app.AppCompatActivity
 import dz.solc.myviews.R
-import dz.solc.viewtool.dialog.LoadingDialog
-import dz.solc.viewtool.dialog.OftenDialog
-import dz.solc.viewtool.dialog.PhotoDialog
 import kotlinx.android.synthetic.main.activity_layout_image_view.*
-import kotlinx.android.synthetic.main.activity_layout_tips_dialog.*
 
 class ImageViewActivity : AppCompatActivity() {
 

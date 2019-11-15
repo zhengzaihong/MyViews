@@ -18,7 +18,7 @@
         app:f_normalBgColor="@color/light_blue_200"
         app:f_normalTextColor="@color/black_alpha_224"
         app:f_pressedBgColor="@color/white_alpha_80"
-        app:f_pressedTextColor="@color/red"
+        app:f_pressedTextColor="@color/white"
         app:f_radius_type="f_all_radius"
         app:f_showAnimation="false"></dz.solc.viewtool.view.textview.FilletView>
 

@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Layout;
 import android.util.AttributeSet;
 
@@ -18,7 +19,7 @@ import dz.solc.viewtool.R;
  * creat_time: 13:41
  * describe: 下划线TextView
  **/
-public class UnderLineTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class UnderLineTextView extends AppCompatTextView {
 
     private Rect mRect;
     private Paint mPaint;

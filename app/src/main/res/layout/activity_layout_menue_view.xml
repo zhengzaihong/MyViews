@@ -8,13 +8,13 @@
     android:padding="@dimen/len_10">
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rivChangeRPoint4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
 
     <LinearLayout
@@ -68,38 +68,38 @@
             app:strokeWidth="@dimen/len_1" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/len_10">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/len_10">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/len_10">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/len_10">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </RelativeLayout>

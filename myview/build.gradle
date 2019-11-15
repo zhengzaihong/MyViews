@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.novoda.bintray-release'//添加
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -37,9 +37,10 @@ configurations.all {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation files('libs/library-listviewanimations.jar')
+    implementation files('libs/nineoldandroids-2.4.0.jar')
 }
 //添加
 publish {
@@ -47,8 +48,8 @@ publish {
     userOrg = 'zhengzaihong'
     groupId = 'com.zzh'
     uploadName = "viewtool"
-    publishVersion = '0.1.8'
-    desc = 'this quick tools make your app has kinds of viewtools'
+    publishVersion = '0.1.91'
+    desc = 'this quick tools make your app has kinds of view tools'
     website = 'https://github.com/zhengzaihong/MyViews.git'
 }
 

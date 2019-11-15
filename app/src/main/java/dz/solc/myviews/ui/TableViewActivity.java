@@ -1,11 +1,11 @@
 package dz.solc.myviews.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -324,6 +324,7 @@ public class TableViewActivity extends AppCompatActivity {
             head.add(content.get(i).get("name").toString());
         }
         tableView.setData(head, content);
+
     }
 
 

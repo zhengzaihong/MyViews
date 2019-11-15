@@ -10,12 +10,12 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
-import androidx.appcompat.widget.AppCompatTextView;
 
 import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.textview.config.FilletConfig;

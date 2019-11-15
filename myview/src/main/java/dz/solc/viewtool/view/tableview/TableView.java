@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -193,10 +193,11 @@ public class TableView<E> extends HorizontalScrollView {
         //添加头
         setHead(headList);
 
-        //填充数据
         if (null == data || data.size() == 0) {
             return;
         }
+
+        //填充数据
         if (null != contentListener) {
             for (int i = 0; i < data.size(); i++) {
                 datas.add((E) new ItemCell(data.get(i)));
@@ -220,8 +221,22 @@ public class TableView<E> extends HorizontalScrollView {
         }
     }
 
+
     /**
-     * 清楚表格数据
+     * 替换数据
+     *
+     * @param data
+     */
+    public void replaceData(List<E> data) {
+
+        if(null!= customeTableViewAdapter){
+            customeTableViewAdapter.setNewData(data);
+        }
+
+    }
+
+    /**
+     * 清除表格数据
      */
     public void clearData() {
         if (null != customeTableViewAdapter) {
@@ -254,17 +269,25 @@ public class TableView<E> extends HorizontalScrollView {
      */
 
     public List<E> getAdapterData() {
-        return customeTableViewAdapter.getDatas();
+
+        if (null != customeTableViewAdapter) {
+            return customeTableViewAdapter.getDatas();
+        }
+        return null;
     }
 
 
     private FillContentListener contentListener;
 
 
+    /**
+     * 必须设置该回调监听，否则不填充数据
+     *
+     * @param fillContentListener
+     */
     public void setFillContentListener(FillContentListener fillContentListener) {
         this.contentListener = fillContentListener;
     }
-
 
     public interface FillContentListener {
 

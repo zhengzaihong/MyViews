@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import androidx.appcompat.widget.AppCompatTextView;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;

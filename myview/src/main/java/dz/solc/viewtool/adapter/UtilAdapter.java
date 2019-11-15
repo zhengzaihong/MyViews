@@ -2,10 +2,17 @@ package dz.solc.viewtool.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.haarman.listviewanimations.swinginadapters.prepared.AlphaInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingLeftInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
 
 import java.lang.reflect.Field;
 
@@ -17,6 +24,8 @@ import java.lang.reflect.Field;
 * describe 为listview,gridView,为ExpandableListView设置高度
 **/
 public class UtilAdapter {
+
+
 	// 为listview设置高度
 	public static void setListViewHeightBasedOnChildren(ListView listView) {
 		// 获取ListView对应的Adapter
@@ -105,6 +114,69 @@ public class UtilAdapter {
 				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 		listView.requestLayout();
+	}
+
+
+	/**
+	 * 设置 listView 显示动画从左渐进
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setSwingLeftInAnimationAdapter(ListView listView,BaseAdapter adapter){
+		SwingLeftInAnimationAdapter animationAdapter =	new SwingLeftInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+
+	}
+
+	/**
+	 * 设置 listView 显示动画从右渐进
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setSwingRightInAnimationAdapter(ListView listView,BaseAdapter adapter){
+		SwingRightInAnimationAdapter animationAdapter =	new SwingRightInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+
+	}
+
+
+	/**
+	 * 设置 listView 显示动画淡入
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setAlphaInAnimationAdapter(ListView listView,BaseAdapter adapter){
+		AlphaInAnimationAdapter animationAdapter =	new AlphaInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+
+	}
+
+
+	/**
+	 * 设置 listView 显示动画缩放式进入
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setScaleInAnimationAdapter(ListView listView,BaseAdapter adapter){
+		ScaleInAnimationAdapter animationAdapter =	new ScaleInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+	}
+
+
+	/**
+	 * 设置 listView 显示动画 底部渐进
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setSwingBottomInAnimationAdapter(ListView listView,BaseAdapter adapter){
+		SwingBottomInAnimationAdapter animationAdapter =	new SwingBottomInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+
 	}
 
 }

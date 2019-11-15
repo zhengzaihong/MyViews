@@ -2,8 +2,8 @@ package dz.solc.viewtool.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +107,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
         private ViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
             this.mPosition = position;
-            this.mViews = new SparseArray<View>();
+            this.mViews = new SparseArray<>();
             mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
             mConvertView.setTag(this);
         }
@@ -150,6 +150,19 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             return this;
         }
 
+        public ViewHolder setTextColor(int viewId, int color) {
+            TextView tv = getView(viewId);
+            tv.setTextColor(color);
+            return this;
+        }
+
+
+        public ViewHolder setBackgroundResource(int viewId, int resId) {
+            ImageView view = getView(viewId);
+            view.setBackgroundResource(resId);
+            return this;
+        }
+
 
         public ViewHolder setImageResource(int viewId, int resId) {
             ImageView view = getView(viewId);
@@ -162,7 +175,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             view.setImageBitmap(bitMap);
             return this;
         }
-
 
     }
 

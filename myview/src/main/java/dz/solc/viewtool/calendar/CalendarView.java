@@ -3,9 +3,8 @@ package dz.solc.viewtool.calendar;
 import android.content.Context;
 import android.os.Build;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;

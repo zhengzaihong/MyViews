@@ -12,6 +12,7 @@ import android.os.Bundle;
  * describe 监听注册后进入当前activit的生命周期
  **/
 public class RegisetActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
+
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 

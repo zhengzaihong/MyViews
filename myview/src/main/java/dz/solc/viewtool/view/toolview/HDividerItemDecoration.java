@@ -3,10 +3,10 @@ package dz.solc.viewtool.view.toolview;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * creat_user: zhengzaihong

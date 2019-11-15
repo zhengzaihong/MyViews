@@ -112,7 +112,7 @@
     </LinearLayout>
 
 
-    <dz.solc.viewtool.view.timeview.CountdownTextView
+    <dz.solc.viewtool.view.textview.CountdownTextView
         android:id="@+id/countdowntextview"
         android:layout_width="wrap_content"
         android:layout_height="20dp"

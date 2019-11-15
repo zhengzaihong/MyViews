@@ -2,11 +2,12 @@ package dz.solc.myviews.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
-import androidx.appcompat.app.AppCompatActivity
 import dz.solc.myviews.R
 import dz.solc.viewtool.adapter.CommonAdapter
+import dz.solc.viewtool.adapter.UtilAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         myMenueAdapter = MyMenueAdapter()
-        listMenues.adapter = myMenueAdapter
+        UtilAdapter.setSwingLeftInAnimationAdapter(listMenues,myMenueAdapter)
         myMenueAdapter?.replaceData(menues)
 
 

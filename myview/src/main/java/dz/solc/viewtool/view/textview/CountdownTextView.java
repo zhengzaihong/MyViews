@@ -1,4 +1,4 @@
-package dz.solc.viewtool.view.timeview;
+package dz.solc.viewtool.view.textview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
