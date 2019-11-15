@@ -1,33 +1,5 @@
 
-项目依赖：
 
-使用AndroidX包的请添加如下依赖：
-
-``` implementation 'com.zzh.viewtoolsX:xxx(版本号)' ``` 
-
-使用support包的请添加如下依赖
-
-``` implementation 'com.zzh.viewtools:xxx(版本号)'  ```//最新查看version_xxx.txt信息
-
-
-*注意：本库使用到Androidx库 和SDK 28以下的区别，请分别正确引入 *
-
-
-
-样列图，更多请下载apk或者查看源码
-
-![image](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif)
-
-
-##更新日志 2019-11-15
-
-新增 表格控件 Api,替换数据
-
-新增 EditextView 限制数据过滤器 EditInputFilter 和 ValueFilter
-
-新增 ListView 5种动画显示效果  具体看 UtilAdapter
-
-新增 CommonAdapter Api 支持图片和 文本颜色链式调用
 
 
 ##更新日志 2019-7-22
@@ -71,4 +43,3 @@
 19.NoScrollViewPager(支持是否可以滑动的ViewPager)
 
 20.UnderLineTextView(支持下划线的TexTView)
-
