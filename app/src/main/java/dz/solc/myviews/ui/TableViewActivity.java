@@ -247,6 +247,7 @@ public class TableViewActivity extends AppCompatActivity {
         tableView.setOnCellItemClickListener(new TableView.OnCellItemClickListener() {
             @Override
             public void onClick(View v, int row, ItemCell itemCell) {
+
                 ToastTool.INSTANCE.show(itemCell.getCellValue().toString());
             }
         });

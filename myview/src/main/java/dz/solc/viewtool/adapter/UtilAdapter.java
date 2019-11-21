@@ -114,6 +114,7 @@ public class UtilAdapter {
 				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 		listView.requestLayout();
+
 	}
 
 
@@ -176,6 +177,73 @@ public class UtilAdapter {
 		SwingBottomInAnimationAdapter animationAdapter =	new SwingBottomInAnimationAdapter(adapter);
 		animationAdapter.setAbsListView(listView);
 		listView.setAdapter(animationAdapter);
+
+	}
+
+
+
+
+
+
+	/**
+	 * 设置 listView 显示动画从左渐进
+	 * @param listView
+	 * @param adapter
+	 */
+	public static void setSwingLeftInAnimationAdapter(GridView listView,BaseAdapter adapter){
+		SwingLeftInAnimationAdapter animationAdapter =	new SwingLeftInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(listView);
+		listView.setAdapter(animationAdapter);
+
+	}
+
+	/**
+	 * 设置 listView 显示动画从右渐进
+	 * @param gridView
+	 * @param adapter
+	 */
+	public static void setSwingRightInAnimationAdapter(GridView gridView,BaseAdapter adapter){
+		SwingRightInAnimationAdapter animationAdapter =	new SwingRightInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(gridView);
+		gridView.setAdapter(animationAdapter);
+
+	}
+
+
+	/**
+	 * 设置 listView 显示动画淡入
+	 * @param gridView
+	 * @param adapter
+	 */
+	public static void setAlphaInAnimationAdapter(GridView gridView,BaseAdapter adapter){
+		AlphaInAnimationAdapter animationAdapter =	new AlphaInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(gridView);
+		gridView.setAdapter(animationAdapter);
+
+	}
+
+
+	/**
+	 * 设置 gridView 显示动画缩放式进入
+	 * @param gridView
+	 * @param adapter
+	 */
+	public static void setScaleInAnimationAdapter(GridView gridView,BaseAdapter adapter){
+		ScaleInAnimationAdapter animationAdapter =	new ScaleInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(gridView);
+		gridView.setAdapter(animationAdapter);
+	}
+
+
+	/**
+	 * 设置 GridView 显示动画 底部渐进
+	 * @param gridView
+	 * @param adapter
+	 */
+	public static void setSwingBottomInAnimationAdapter(GridView gridView,BaseAdapter adapter){
+		SwingBottomInAnimationAdapter animationAdapter =	new SwingBottomInAnimationAdapter(adapter);
+		animationAdapter.setAbsListView(gridView);
+		gridView.setAdapter(animationAdapter);
 
 	}
 
