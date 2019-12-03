@@ -3,7 +3,7 @@ package dz.solc.viewtool.view.tableview;
 import android.content.Context;
 import android.graphics.Color;
 
-import dz.solc.viewtool.view.utils.Utils;
+import dz.solc.viewtool.view.tableview.listener.OnCellItemClickListener;
 
 /**
  * creat_user: zhengzaihong
@@ -12,6 +12,8 @@ import dz.solc.viewtool.view.utils.Utils;
  * creat_time: 11:35
  * describe 表格控件的配置文件
  **/
+
+@SuppressWarnings("all")
 public class TableViewConfig {
 
     /**
@@ -21,7 +23,7 @@ public class TableViewConfig {
     /**
      * 表格的分割线高
      */
-    private int dividerHight = 1;
+    private int dividerHeight = 1;
 
     /**
      * 分割线颜色
@@ -46,22 +48,54 @@ public class TableViewConfig {
     /**
      * 单元格高
      */
-    private int cellHight = 40;
+    private int cellHeight = 40;
 
     /**
      * 是否形成闭环分割
      */
     private boolean closeCycle = false;
 
+    /**
+     * 显不显示头信息
+     */
+    private boolean showHead = true;
+
+
+    /**
+     * 是否自适应高度
+     *
+     * 该值为true  cellHight 和 headViewHeight 将失效
+     */
+    private boolean autoWrapHeight = false;
+
 
     private Context mContext;
 
 
-    private TableView.OnCellItemClickListener onCellItemClickListener;
+    private OnCellItemClickListener onCellItemClickListener;
+
+
+    public boolean isShowHead() {
+        return showHead;
+    }
+
+    public TableViewConfig setShowHead(boolean showHead) {
+        this.showHead = showHead;
+        return this;
+    }
 
     public TableViewConfig(Context mContext) {
         this.mContext = mContext;
 
+    }
+
+    public boolean isAutoWrapHeight() {
+        return autoWrapHeight;
+    }
+
+    public TableViewConfig setAutoWrapHeight(boolean autoWrapHeight) {
+        this.autoWrapHeight = autoWrapHeight;
+        return this;
     }
 
     public TableViewConfig setCellsWidth(int cellsWidth) {
@@ -71,9 +105,9 @@ public class TableViewConfig {
     }
 
 
-    public TableViewConfig setCellsHight(int cellsHight) {
-        setHeadViewHeight(cellsHight);
-        setCellHight(cellsHight);
+    public TableViewConfig setCellsHeight(int cellsHeight) {
+        setHeadViewHeight(cellsHeight);
+        setCellHeight(cellsHeight);
         return this;
     }
 
@@ -83,21 +117,21 @@ public class TableViewConfig {
 
     public TableViewConfig setDivider(int divider) {
         setDividerWidth(divider);
-        setDividerHight(divider);
+        setDividerHeight(divider);
         return this;
     }
 
     public TableViewConfig setDividerWidth(int dividerWidth) {
-        this.dividerWidth = Utils.dp2px(mContext, dividerWidth);
+        this.dividerWidth = dividerWidth;
         return this;
     }
 
-    public int getDividerHight() {
-        return dividerHight;
+    public int getDividerHeight() {
+        return dividerHeight;
     }
 
-    public TableViewConfig setDividerHight(int dividerHight) {
-        this.dividerHight = Utils.dp2px(mContext, dividerHight);
+    public TableViewConfig setDividerHeight(int dividerHeight) {
+        this.dividerHeight = dividerHeight;
         return this;
     }
 
@@ -115,7 +149,7 @@ public class TableViewConfig {
     }
 
     public TableViewConfig setHeadViewWidth(int headViewWidth) {
-        this.headViewWidth = Utils.dp2px(mContext, headViewWidth);
+        this.headViewWidth = headViewWidth;
         return this;
     }
 
@@ -124,7 +158,7 @@ public class TableViewConfig {
     }
 
     public TableViewConfig setHeadViewHeight(int headViewHeight) {
-        this.headViewHeight = Utils.dp2px(mContext, headViewHeight);
+        this.headViewHeight = headViewHeight;
         return this;
     }
 
@@ -133,24 +167,24 @@ public class TableViewConfig {
     }
 
     public TableViewConfig setCellWidth(int cellWidth) {
-        this.cellWidth = Utils.dp2px(mContext, cellWidth);
+        this.cellWidth = cellWidth;
         return this;
     }
 
-    public int getCellHight() {
-        return cellHight;
+    public int getCellHeight() {
+        return cellHeight;
     }
 
-    public TableViewConfig setCellHight(int cellHight) {
-        this.cellHight = Utils.dp2px(mContext, cellHight);
+    public TableViewConfig setCellHeight(int cellHeight) {
+        this.cellHeight = cellHeight;
         return this;
     }
 
-    public TableView.OnCellItemClickListener getOnCellItemClickListener() {
+    public OnCellItemClickListener getOnCellItemClickListener() {
         return onCellItemClickListener;
     }
 
-    public void setOnCellItemClickListener(TableView.OnCellItemClickListener onCellItemClickListener) {
+    public void setOnCellItemClickListener(OnCellItemClickListener onCellItemClickListener) {
         this.onCellItemClickListener = onCellItemClickListener;
     }
 

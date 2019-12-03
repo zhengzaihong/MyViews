@@ -3,15 +3,10 @@ package dz.solc.myviews.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.dz.utlis.JavaUtils
 import com.dz.utlis.JavaUtils.*
+import com.dz.utlis.ToastTool
 import dz.solc.myviews.R
-import dz.solc.myviews.uitls.ToastTool
-import dz.solc.viewtool.dialog.LoadingDialog
-import dz.solc.viewtool.dialog.OftenDialog
-import dz.solc.viewtool.dialog.PhotoDialog
 import kotlinx.android.synthetic.main.activity_layout_calendar_view.*
-import kotlinx.android.synthetic.main.activity_layout_tips_dialog.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,12 +34,12 @@ class CalendarViewActivity : AppCompatActivity() {
                 .setPading(30, 30, 30, 30)
                 .setOnItmeClickListener { parent, view, position, id ->
 
-                    ToastTool.show("当前时间${stampstoTime((parent.adapter.getItem(position) as Date).time.toString(),
+                    ToastTool.get().show("当前时间${stampstoTime((parent.adapter.getItem(position) as Date).time.toString(),
                             "yyyy-MM-dd")}  "
                             + (parent.adapter.getItem(position) as Date).date)
                     calendarview.changeDate(parent.adapter.getItem(position) as Date)
 
-                    outRedPrint("----------->" + calendarview.date.toString())
+                 //   outRedPrint("----------->" + calendarview.date.toString())
 
                 }
 
@@ -60,7 +55,7 @@ class CalendarViewActivity : AppCompatActivity() {
                 .setPading(30, 30, 30, 30)
                 .setOnItmeClickListener { parent, view, position, id ->
 
-                    ToastTool.show("当前时间${stampstoTime((parent.adapter.getItem(position) as Date).time.toString(),
+                    ToastTool.get().show("当前时间${stampstoTime((parent.adapter.getItem(position) as Date).time.toString(),
                             "yyyy-MM-dd")}")
 
                     calendarview1.notyDataChange()

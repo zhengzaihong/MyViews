@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
+import android.widget.TextView
+import com.dz.utlis.AndroidUtils
 import dz.solc.myviews.R
 import dz.solc.viewtool.adapter.CommonAdapter
 import dz.solc.viewtool.adapter.UtilAdapter

@@ -100,6 +100,35 @@
     </declare-styleable>
 
 
+    <!-- 表格的基础样式配置-->
+    <declare-styleable name="TabaleViewStyle">
+
+        <!--表格头的宽高-->
+        <attr name="table_head_cell_width" format="dimension"></attr>
+        <attr name="table_head_cell_height" format="dimension"></attr>
+
+        <!--表格内容的宽高-->
+        <attr name="table_content_cell_width" format="dimension"></attr>
+        <attr name="table_content_cell_height" format="dimension"></attr>
+
+        <!--单独配置 表头和 表内容的宽高 优先级最高-->
+        <attr name="table_cells_width" format="dimension"></attr>
+        <attr name="table_cells_height" format="dimension"></attr>
+
+        <!--表格的分割线高度-->
+        <attr name="table_devider_height" format="dimension"></attr>
+        <!--表格的分割线颜色-->
+        <attr name="table_devider_color" format="color"></attr>
+        <!--是否自适应内容高度-->
+        <attr name="table_auto_wrap_height" format="boolean"></attr>
+        <!--是否显示表格头-->
+        <attr name="table_visible_head" format="boolean"></attr>
+        <!--是否形成闭环演示-->
+        <attr name="table_close_cycle" format="boolean"></attr>
+
+    </declare-styleable>
+
+
     <declare-styleable name="mySwitchButton">
         <!-- 圆角矩形的边颜色-->
         <attr name="strokeLineColor" format="color" />
@@ -124,6 +153,7 @@
     </declare-styleable>
 
 
+    <!--   常用dialog 的属性-->
     <style name="mOftenDialog">
         <item name="android:windowFrame">@null</item>
         <!-- Dialog的windowFrame框为无 -->
@@ -277,30 +307,52 @@
     </declare-styleable>
 
 
-
-
     <!--自定义耗电排行电池View的自定义属性-->
     <declare-styleable name="PowerBatteryView">
         <!-- 手表低电时候的电池颜色 -->
-        <attr name="batteryLowerPowerColor" format="color"/>
+        <attr name="batteryLowerPowerColor" format="color" />
         <!-- 手表在线时候的电池颜色 -->
-        <attr name="batteryOnlineColor" format="color"/>
+        <attr name="batteryOnlineColor" format="color" />
         <!-- 手表离线时候的电池颜色 -->
-        <attr name="batteryOfflineColor" format="color"/>
+        <attr name="batteryOfflineColor" format="color" />
         <!--  电池最大高度 -->
-        <attr name="batteryLevelMaxHeight" format="integer"/>
+        <attr name="batteryLevelMaxHeight" format="integer" />
         <!--  电池宽度 -->
-        <attr name="batteryLevelWidth" format="integer"/>
+        <attr name="batteryLevelWidth" format="integer" />
         <!--  外壳的相关信息 -->
-        <attr name="batteryShellCornerRadius" format="dimension"/>
-        <attr name="batteryShellWidth" format="dimension"/>
-        <attr name="batteryShellHeight" format="dimension"/>
-        <attr name="batteryShellStrokeWidth" format="dimension"/>
+        <attr name="batteryShellCornerRadius" format="dimension" />
+        <attr name="batteryShellWidth" format="dimension" />
+        <attr name="batteryShellHeight" format="dimension" />
+        <attr name="batteryShellStrokeWidth" format="dimension" />
         <!--  电池头的相关信息 -->
-        <attr name="batteryShellHeadCornerRadius" format="dimension"/>
-        <attr name="batteryShellHeadWidth" format="dimension"/>
-        <attr name="batteryShellHeadHeight" format="dimension"/>
+        <attr name="batteryShellHeadCornerRadius" format="dimension" />
+        <attr name="batteryShellHeadWidth" format="dimension" />
+        <attr name="batteryShellHeadHeight" format="dimension" />
         <!-- 电池外壳和电池等级直接的间距 -->
-        <attr name="batteryGap" format="dimension"/>
+        <attr name="batteryGap" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="Gif_ImageView">
+        <!--gif文件引用-->
+        <attr name="gif_src" format="reference" />
+        <!--是否加载完自动播放-->
+        <attr name="auth_play" format="boolean" />
+        <!--播放次放，默认永远播放-->
+        <attr name="play_count" format="integer" />
+        <!--播放完成后是否停留在最后一帧，默认false-->
+        <attr name="end_last_frame" format="boolean" />
+    </declare-styleable>
+
+
+    <!--注意这里的name要和自定义View的名称一致，不然在xml布局中无法引用-->
+    <declare-styleable name="CircleBarView">
+        <attr name="progress_color" format="color"></attr>
+        <attr name="bg_color" format="color"></attr>
+
+        <attr name="bar_width" format="dimension"></attr>
+
+        <attr name="start_angle" format="float"></attr>
+        <attr name="sweep_angle" format="float"></attr>
+    </declare-styleable>
+
 </resources>

@@ -1,9 +1,11 @@
 package dz.solc.myviews.ui
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import dz.solc.myviews.R
+import dz.solc.viewtool.view.barview.CircleBarView
 import kotlinx.android.synthetic.main.activity_layout_image_view.*
 
 class ImageViewActivity : AppCompatActivity() {
@@ -13,6 +15,24 @@ class ImageViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_layout_image_view)
+
+
+        riv_cycle.rotate()
+
+
+        cbView.setMaxNum(100f)
+        cbView.setProgressNum(30f, 3000)
+
+        cbView.setOnAnimationListener(object : CircleBarView.OnAnimationListener {
+
+            override fun changeProgressColor(paint: Paint?, interpolatedTime: Float, updateNum: Float, maxNum: Float) {
+
+                tvContent.text = "${(updateNum*100).toInt()}%"
+            }
+
+        })
+
+
 
 
         seek_bar_progress.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

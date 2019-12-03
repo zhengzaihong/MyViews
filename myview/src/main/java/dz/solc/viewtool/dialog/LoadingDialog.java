@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -23,18 +24,30 @@ import dz.solc.viewtool.view.imageview.RotateImageView;
  * creat_time: 9:07
  * describe: 简易加载dialog
  **/
-
+@SuppressWarnings("all")
 public class LoadingDialog {
 
     private Dialog dialog;
     private View view;
 
-    private RotateImageView rivLoadingBg;
+    /**
+     * 支持转动和 gif 的ImageView
+     */
+    private RotateImageView rotateImageView;
 
-    //提示内容
+    /**
+     * 提示内容
+     */
     private TextView tvTips;
 
-    //设置显示的最长时间 单位秒
+    /**
+     * 转动图片
+     */
+    private boolean rotateIcon = true;
+
+    /**
+     * 设置显示的最长时间 单位秒
+     */
     private int showMaxTime = 10;
 
     /**
@@ -47,7 +60,7 @@ public class LoadingDialog {
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER);
         view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
-        rivLoadingBg = view.findViewById(R.id.rivLoadingBg);
+        rotateImageView = view.findViewById(R.id.rotateImageView);
         tvTips = view.findViewById(R.id.tvTips);
         dialog.setContentView(view);
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -85,34 +98,83 @@ public class LoadingDialog {
 
 
     /**
-     * 默认样式的图片
+     * 设置 加载icon 的宽高
+     *
+     * @param width  单位px,图片的宽
+     * @param height 单位px,图片的高
+     * @return
+     */
+    public LoadingDialog setLoadingIconWidthHeight(int width, int height) {
+
+        ViewGroup.LayoutParams layoutParams = rotateImageView.getLayoutParams();
+        layoutParams.height = height;
+        layoutParams.width = width;
+        rotateImageView.setLayoutParams(layoutParams);
+        return this;
+    }
+
+    /**
+     * 样式的图片
      *
      * @param resid 图片id
      * @return
      */
     public LoadingDialog setLoadingIcon(int resid) {
-        if (null != rivLoadingBg) {
-            rivLoadingBg.setBackgroundResource(resid);
+        rotateImageView.setBackgroundResource(resid);
+        return this;
+    }
+    /**
+     * 样式的图片
+     *
+     * @param resid 图片id
+     * @param isGif 是否是gif 图
+     * @return
+     */
+    public LoadingDialog setLoadingIcon(int resid,boolean isGif) {
+        if(isGif){
+            rotateImageView.setGifResource(resid);
+        }else {
+            rotateImageView.setBackgroundResource(resid);
         }
         return this;
     }
 
+    /**
+     * 是否转动图片配置
+     *
+     * @param rotate false 可传入一张静态完整效果图
+     * @return
+     */
+    public LoadingDialog setRotateIcon(boolean rotate) {
+        rotateIcon = rotate;
+        return this;
+    }
+
+
+    /**
+     * 设置加载提示框的文本提示
+     * @param text
+     * @return
+     */
     public LoadingDialog setLoadingTips(String text) {
         if (tvTips.getVisibility() == View.GONE) {
             tvTips.setVisibility(View.VISIBLE);
         }
-
         tvTips.setText(text);
         return this;
     }
-
+    /**
+     * 设置加载提示框的文本颜色
+     * @param color
+     * @return
+     */
     public LoadingDialog setLoadingTipsColor(int color) {
         tvTips.setTextColor(color);
         return this;
     }
 
     /**
-     * 设置dialog 样式
+     * 设置dialog 样式动画
      *
      * @param style
      * @return
@@ -133,24 +195,43 @@ public class LoadingDialog {
         return this;
     }
 
+    /**
+     * 设置dialog 的宽
+     * @param width
+     * @return
+     */
     public LoadingDialog setDialogWidth(int width) {
         Window window = dialog.getWindow();
         window.getAttributes().width = width;
         return this;
     }
-
+    /**
+     * 设置dialog 的高
+     * @param height
+     * @return
+     */
     public LoadingDialog setDialogHeight(int height) {
         Window window = dialog.getWindow();
         window.getAttributes().height = height;
         return this;
     }
 
+    /**
+     * 触碰非dialog区域是否取消显示
+     * @param outTouchside
+     * @return
+     */
     public LoadingDialog setOutTouchside(boolean outTouchside) {
         dialog.setCanceledOnTouchOutside(outTouchside);
         return this;
     }
 
 
+    /**
+     * 设置提示框的最大显示时间
+     * @param maxTime
+     * @return
+     */
     public LoadingDialog setShowMaxTime(int maxTime) {
         this.showMaxTime = maxTime;
         return this;
@@ -159,12 +240,15 @@ public class LoadingDialog {
 
     public void showDialog() {
         if (null != dialog && !dialog.isShowing()) {
-            rivLoadingBg.rotate();
+            if (rotateIcon) {
+                rotateImageView.rotate();
+            } else {
+                rotateImageView.stopRotate();
+            }
             dialog.show();
             handler.sendEmptyMessageDelayed(1, 1000);
         }
     }
-
 
     public boolean isShowing() {
         if (null != dialog && dialog.isShowing()) {
@@ -189,8 +273,8 @@ public class LoadingDialog {
             if (currentTime < showMaxTime) {
                 currentTime++;
                 handler.sendEmptyMessageDelayed(1, 1000);
-            }else {
-                if(isShowing()){
+            } else {
+                if (isShowing()) {
                     dismiss();
                 }
             }

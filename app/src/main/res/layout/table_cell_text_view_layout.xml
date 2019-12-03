@@ -4,8 +4,13 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
-    <TextView
+    <EditText
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/tvCell"
+        android:enabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

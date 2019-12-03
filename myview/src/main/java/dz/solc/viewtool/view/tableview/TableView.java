@@ -1,9 +1,10 @@
 package dz.solc.viewtool.view.tableview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -13,12 +14,17 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import dz.solc.viewtool.adapter.CommonAdapter;
+import dz.solc.viewtool.R;
+import dz.solc.viewtool.view.tableview.listener.FillContentListener;
+import dz.solc.viewtool.view.tableview.listener.OnCellItemClickListener;
+
+import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChildren;
+
 
 /**
  * creat_user: zhengzaihong
@@ -53,12 +59,35 @@ public class TableView<E> extends HorizontalScrollView {
         super(context, attrs, defStyleAttr);
 
         mContext = this.getContext();
-
         viewConfig = new TableViewConfig(mContext);
 
+        // 读取属性值
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TabaleViewStyle);
+
+
+        //单独配置 表头和 表内容的宽高 优先级最高
+        viewConfig.setHeadViewHeight(ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_head_cell_height,
+                ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_cells_height, 40)));
+
+        viewConfig.setHeadViewWidth(ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_head_cell_width,
+                ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_cells_width, 80)));
+
+        viewConfig.setCellHeight(ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_content_cell_height,
+                ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_cells_height, 40)));
+
+        viewConfig.setCellWidth(ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_content_cell_width,
+                ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_cells_width, 80)));
+
+
+        viewConfig.setDivider(ta.getDimensionPixelSize(R.styleable.TabaleViewStyle_table_devider_height, 0));
+        viewConfig.setDividerColor(ta.getColor(R.styleable.TabaleViewStyle_table_devider_color, Color.TRANSPARENT));
+        viewConfig.setAutoWrapHeight(ta.getBoolean(R.styleable.TabaleViewStyle_table_auto_wrap_height, false));
+        viewConfig.setShowHead(ta.getBoolean(R.styleable.TabaleViewStyle_table_visible_head, true));
+        viewConfig.setCloseCycle(ta.getBoolean(R.styleable.TabaleViewStyle_table_close_cycle, true));
 
         initView();
     }
+
 
     private void initView() {
 
@@ -67,10 +96,13 @@ public class TableView<E> extends HorizontalScrollView {
         wrapView.setOrientation(LinearLayout.VERTICAL);
         wrapView.setLayoutParams(wrapViewParms);
 
-        headLayout = new LinearLayout(mContext);
-        ViewGroup.LayoutParams headLayoutParms = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        headLayout.setLayoutParams(headLayoutParms);
-        headLayout.setOrientation(LinearLayout.HORIZONTAL);
+        if (viewConfig.isShowHead()) {
+            headLayout = new LinearLayout(mContext);
+            ViewGroup.LayoutParams headLayoutParms = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            headLayout.setLayoutParams(headLayoutParms);
+            headLayout.setOrientation(LinearLayout.HORIZONTAL);
+            wrapView.addView(headLayout);
+        }
 
 
         LinearLayout lineBg = new LinearLayout(mContext);
@@ -78,22 +110,47 @@ public class TableView<E> extends HorizontalScrollView {
         lineBg.setBackgroundColor(viewConfig.getDividerColor());
 
 
+        //表格列表
         listView = new ListView(mContext);
-        LinearLayout.LayoutParams listViewParms = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        disableOverScrollMode(listView);
+
+        ListView.LayoutParams listViewParms = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         listView.setLayoutParams(listViewParms);
         listView.setCacheColorHint(Color.parseColor("#00000000"));
         listView.setVerticalScrollBarEnabled(false);
         listView.setDividerHeight(0);
         listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
-
-        wrapView.addView(headLayout);
+        listView.setNestedScrollingEnabled(false);
+        listView.setOverScrollMode(OVER_SCROLL_NEVER);
+        listView.setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
         wrapView.addView(listView);
+
 
         this.addView(wrapView);
 
 
     }
 
+
+    //去掉拉动效果
+    private void disableOverScrollMode(View view) {
+        if (Build.VERSION.SDK_INT < 9) {
+            return;
+        }
+        try {
+            Method m = View.class.getMethod("setOverScrollMode", int.class);
+            m.setAccessible(true);
+            m.invoke(view, 2);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置配置文件
+     *
+     * @param viewConfig
+     */
 
     public void setViewConfig(TableViewConfig viewConfig) {
         this.viewConfig = viewConfig;
@@ -109,77 +166,111 @@ public class TableView<E> extends HorizontalScrollView {
     /**
      * 添加头部信息
      */
-    private void setHead(List headData) {
+    public void setHead(List headData) {
 
-        if (null == headData || headData.size() == 0) {
+        //新增加头部显不显示控制
+        if (null == headData || headData.size() == 0 || !viewConfig.isShowHead()) {
             return;
         }
 
+        int headViewWidth = viewConfig.getHeadViewWidth();
+        int dividerWidth = viewConfig.getDividerWidth();
+        int dividerHeight = viewConfig.getDividerHeight();
+
+        boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
+        int headViewHeight = autoWrapHeight ? ViewGroup.LayoutParams.WRAP_CONTENT : viewConfig.getHeadViewHeight();
+
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
         HashMap headMap = new HashMap();
+
         for (int i = 0; i < headData.size(); i++) {
-            //TODO 头宽待处理
-            HeadItemCell itemCell = new HeadItemCell(headData.get(i), 100);
+            HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
             headMap.put(headMap.size() + "", itemCell);
         }
+
         if (null != contentListener) {
+
             boolean isCloseCysle = viewConfig.isCloseCycle();
+            int dividerColor = viewConfig.getDividerColor();
+
             for (int i = 0; i < headMap.size(); i++) {
                 if (isCloseCysle) {
 
                     LinearLayout wrapHeadLayout = new LinearLayout(mContext);
-                    wrapHeadLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    wrapHeadLayout.setLayoutParams(params);
                     wrapHeadLayout.setOrientation(LinearLayout.VERTICAL);
 
                     LinearLayout topLine = new LinearLayout(mContext);
                     if (i == headMap.size() - 1) {
-                        topLine.setLayoutParams(new ViewGroup.LayoutParams(viewConfig.getHeadViewWidth() + 2 * viewConfig.getDividerWidth(), viewConfig.getDividerHight()));
+                        topLine.setLayoutParams(new ViewGroup.LayoutParams(headViewWidth + 2 * dividerWidth, dividerHeight));
                     } else {
-                        topLine.setLayoutParams(new ViewGroup.LayoutParams(viewConfig.getHeadViewWidth() + viewConfig.getDividerWidth(), viewConfig.getDividerHight()));
+                        topLine.setLayoutParams(new ViewGroup.LayoutParams(headViewWidth + dividerWidth, dividerHeight));
                     }
 
-                    topLine.setBackgroundColor(viewConfig.getDividerColor());
+                    topLine.setBackgroundColor(dividerColor);
 
                     wrapHeadLayout.addView(topLine);
 
                     LinearLayout wrapHeadLayoutContent = new LinearLayout(mContext);
-                    wrapHeadLayoutContent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    wrapHeadLayoutContent.setLayoutParams(params);
                     wrapHeadLayoutContent.setGravity(Gravity.CENTER_VERTICAL);
                     wrapHeadLayoutContent.setOrientation(LinearLayout.HORIZONTAL);
 
                     wrapHeadLayout.addView(wrapHeadLayoutContent);
 
                     LinearLayout v_line = new LinearLayout(mContext);
-                    v_line.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+                    v_line.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                     v_line.setOrientation(LinearLayout.VERTICAL);
-                    v_line.setBackgroundColor(viewConfig.getDividerColor());
+                    v_line.setBackgroundColor(dividerColor);
 
                     wrapHeadLayoutContent.addView(v_line);
 
 
                     View view = contentListener.addHead(headData.get(i));
-                    view.setLayoutParams(new ViewGroup.LayoutParams(viewConfig.getHeadViewWidth(), viewConfig.getHeadViewHeight()));
+                    view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     wrapHeadLayoutContent.addView(view);
 
                     if (i == headMap.size() - 1) {
                         LinearLayout rowlastLine = new LinearLayout(mContext);
-                        rowlastLine.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
-                        rowlastLine.setBackgroundColor(viewConfig.getDividerColor());
+                        rowlastLine.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
+                        rowlastLine.setBackgroundColor(dividerColor);
                         wrapHeadLayoutContent.addView(rowlastLine);
                     }
 
                     headLayout.addView(wrapHeadLayout);
                 } else {
                     View view = contentListener.addHead(headData.get(i));
-                    view.setLayoutParams(new ViewGroup.LayoutParams(viewConfig.getHeadViewWidth(), viewConfig.getHeadViewHeight()));
+                    view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     headLayout.addView(view);
+
                     if (i != headMap.size() - 1) {
                         LinearLayout v_line = new LinearLayout(mContext);
-                        v_line.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
-                        v_line.setBackgroundColor(viewConfig.getDividerColor());
+                        v_line.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
+                        v_line.setBackgroundColor(dividerColor);
                         headLayout.addView(v_line);
                     }
                 }
+            }
 
+            //如果是自适应，则重新配置个子元素高度
+            if (autoWrapHeight) {
+                headLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int viewCount = headLayout.getChildCount();
+                        for (int i = 0; i < viewCount; i++) {
+                            View view = headLayout.getChildAt(i);
+                            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                            if (layoutParams.height != LinearLayout.LayoutParams.MATCH_PARENT) {
+                                layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                                view.setLayoutParams(layoutParams);
+                            }
+                        }
+                    }
+                });
             }
         }
     }
@@ -188,15 +279,11 @@ public class TableView<E> extends HorizontalScrollView {
      * 设置内容数据
      */
 
-    public void setData(List headList, List<E> data) {
-
-        //添加头
-        setHead(headList);
+    public void setData(List<E> data) {
 
         if (null == data || data.size() == 0) {
             return;
         }
-
         //填充数据
         if (null != contentListener) {
             for (int i = 0; i < data.size(); i++) {
@@ -204,10 +291,22 @@ public class TableView<E> extends HorizontalScrollView {
             }
         }
 
-        customeTableViewAdapter = new TableViewAdapter(mContext, contentListener);
+        customeTableViewAdapter = new TableViewAdapter(this, contentListener);
         listView.setAdapter(customeTableViewAdapter);
         customeTableViewAdapter.setNewData(datas);
+        //TODO 解决 ScrollView 中的测量问题
+        setListViewHeightBasedOnChildren(listView);
     }
+
+    /**
+     * @param headData 表头信息
+     * @param data     表格数据
+     */
+    public void setHeadAndData(List headData, List<E> data) {
+        setHead(headData);
+        setData(data);
+    }
+
 
     /**
      * 添加数据
@@ -215,7 +314,6 @@ public class TableView<E> extends HorizontalScrollView {
      * @param data
      */
     public void addData(List<E> data) {
-
         if (null != customeTableViewAdapter && null != data) {
             customeTableViewAdapter.addData(data);
         }
@@ -229,14 +327,13 @@ public class TableView<E> extends HorizontalScrollView {
      */
     public void replaceData(List<E> data) {
 
-        if(null!= customeTableViewAdapter){
+        if (null != customeTableViewAdapter) {
             customeTableViewAdapter.setNewData(data);
         }
-
     }
 
     /**
-     * 清除表格数据
+     * 删除表格数据
      */
     public void clearData() {
         if (null != customeTableViewAdapter) {
@@ -254,6 +351,7 @@ public class TableView<E> extends HorizontalScrollView {
 
     /**
      * 返回当前列表 如有需要可实现点击等操作
+     * 点击事件建议使用提供的 OnCellItemClickListener
      *
      * @return
      */
@@ -277,62 +375,23 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
-    private FillContentListener contentListener;
-
-
     /**
      * 必须设置该回调监听，否则不填充数据
      *
      * @param fillContentListener
      */
+    private FillContentListener contentListener;
+
     public void setFillContentListener(FillContentListener fillContentListener) {
         this.contentListener = fillContentListener;
     }
 
-    public interface FillContentListener {
 
-        /**
-         * 表格头view
-         *
-         * @param obj 包装每个头的信息
-         * @return 外部返回该view, 把更多配置交个用户
-         */
-        View addHead(Object obj);
-
-        /**
-         * 每显示一行会触发一次 这个和listView 的adapter 一直
-         *
-         * @param holder
-         * @param position   当前item的行
-         * @param obj        当前item 对象
-         * @param islastItem 是否是最后一行数据
-         */
-
-        void getView(CommonAdapter.ViewHolder holder, int position, Object obj, boolean islastItem);
-
-        /**
-         * @param obj         当前单元格数据对象
-         * @param rowPosition 当前行数
-         * @param isLastCell  是否是最后一个单元格
-         * @return
-         */
-
-        View cellItem(ItemCell obj, int rowPosition, boolean isLastCell);
-
-        /**
-         * @return 每个item 的部件文件id
-         */
-        int itemLayout();
-
-        /**
-         * 绑定当前的TableView
-         *
-         * @return
-         */
-        TableView bindTableView();
-
-    }
-
+    /**
+     * 设置单击每个单元格的点击事件
+     *
+     * @param onCellItemClickListener
+     */
 
     private OnCellItemClickListener onCellItemClickListener;
 
@@ -342,13 +401,5 @@ public class TableView<E> extends HorizontalScrollView {
 
     }
 
-    public interface OnCellItemClickListener {
-        /**
-         * @param v           当前cell view
-         * @param rowPosition 当前所在行
-         * @param itemCell    点击的所在行中cell
-         */
-        void onClick(View v, int rowPosition, ItemCell itemCell);
-    }
 
 }

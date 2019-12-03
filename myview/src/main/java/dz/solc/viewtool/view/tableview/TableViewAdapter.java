@@ -1,8 +1,8 @@
 package dz.solc.viewtool.view.tableview;
 
-import android.content.Context;
 
 import dz.solc.viewtool.adapter.CommonAdapter;
+import dz.solc.viewtool.view.tableview.listener.FillContentListener;
 
 
 /**
@@ -14,16 +14,22 @@ import dz.solc.viewtool.adapter.CommonAdapter;
  **/
 public class TableViewAdapter extends CommonAdapter {
 
-    private TableView.FillContentListener contentListener;
+    private FillContentListener contentListener;
+    private TableView tableView;
 
-    public TableViewAdapter(Context context, TableView.FillContentListener listener) {
-        super(context, listener.itemLayout());
+    public TableViewAdapter(TableView tableView, FillContentListener listener) {
+        super(tableView.getContext(), listener.itemLayout());
+        this.tableView = tableView;
         this.contentListener = listener;
     }
 
     @Override
     public void convert(ViewHolder holder, int position, Object entity) {
-        contentListener.getView(holder, position, entity, position == datas.size() - 1);
+
+        boolean isLastItem = position == datas.size() - 1;
+        contentListener.getView(holder, position, entity,isLastItem);
+
+
     }
 
 }

@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.dz.utlis.ScreenUtils
+import com.dz.utlis.ToastTool
 import com.dz.utlis.UiCompat
 import dz.solc.myviews.R
-import dz.solc.myviews.uitls.ToastTool.show
 import dz.solc.viewtool.view.toolview.HDividerItemDecoration
 import dz.solc.viewtool.view.menueview.MultiFunctionView
 import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig
@@ -257,7 +257,7 @@ class MenueViewActivity : AppCompatActivity() {
                 functionView?.setTextColor(resources.getColor(R.color.white))
 
                 holder?.itemView?.setOnClickListener {
-                    show("点击了$item")
+                    ToastTool.get().show("点击了$item")
                 }
             }
         }

@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import dz.solc.viewtool.view.tableview.listener.FillContentListener;
+
 /**
  * creat_user: zhengzaihong
  * Email:1096877329@qq.com
@@ -20,39 +22,47 @@ import java.util.ArrayList;
  **/
 public class TableItem extends LinearLayout {
 
-    private TableView.FillContentListener listener;
+    private FillContentListener listener;
     private LinearLayout headBottomLine;
 
     public TableItem(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public TableItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public TableItem(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
     }
 
-    public void buildItem(TableView.FillContentListener listener, final int rowPosition, boolean isLastItem, ArrayList<ItemCell> itemCells) {
+    public void buildItem(FillContentListener listener, final int rowPosition, final boolean isLastItem, final ArrayList<ItemCell> itemCells) {
 
         this.setOrientation(LinearLayout.VERTICAL);
         this.listener = listener;
 
         this.removeAllViews();
-        LinearLayout secondLayout = new LinearLayout(getContext());
+        final LinearLayout secondLayout = new LinearLayout(getContext());
         secondLayout.setOrientation(LinearLayout.HORIZONTAL);
         secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-        final TableViewConfig viewConfig = listener.bindTableView().getViewConfig();
+        final TableView tableView = listener.bindTableView();
+
+        final TableViewConfig viewConfig = tableView.getViewConfig();
 
         final boolean isCloseCycle = viewConfig.isCloseCycle();
 
+        final int dividerHeight = viewConfig.getDividerHeight();
+        final int dividerWidth = viewConfig.getDividerWidth();
+        final int cellWidth = viewConfig.getCellWidth();
+        final int cellHeight = viewConfig.getCellHeight();
+
+        boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
+
         if (rowPosition == 0) {
             headBottomLine = new LinearLayout(getContext());
-            ViewGroup.LayoutParams headBottomLineParms = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, viewConfig.getDividerHight());
+            ViewGroup.LayoutParams headBottomLineParms = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight);
             headBottomLine.setLayoutParams(headBottomLineParms);
             headBottomLine.setOrientation(LinearLayout.HORIZONTAL);
             headBottomLine.setBackground(new ColorDrawable(viewConfig.getDividerColor()));
@@ -61,49 +71,62 @@ public class TableItem extends LinearLayout {
 
         this.addView(secondLayout);
 
+
         for (int i = 0; i < itemCells.size(); i++) {
             final ItemCell itemCell = itemCells.get(i);
 
             //TODO 外部提供单元格信息
-            View view = listener.cellItem(itemCell, rowPosition, i == itemCells.size() - 1);
-            ViewGroup.LayoutParams viewGroupParm = new ViewGroup.LayoutParams(viewConfig.getCellWidth(), viewConfig.getCellHight());
-            view.setLayoutParams(viewGroupParm);
+            View view = listener.cellItem(itemCell, rowPosition, i, itemCells);
 
+            LayoutParams cellParms = new LayoutParams(cellWidth,cellHeight);
+            if(autoWrapHeight){
+                cellParms.width = cellWidth;
+                cellParms.height = LayoutParams.MATCH_PARENT;
+                //todo 增加一个像素的边距，防止内容过长后导致 分割线不显示的问题
+                cellParms.bottomMargin = 1;
+
+            }else {
+                cellParms =  new LayoutParams(cellWidth, cellHeight);
+            }
+            view.setLayoutParams(cellParms);
+            view.setMinimumHeight(cellHeight);
 
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //回调给用户点击的cell
+                    //新增返回一整行数据
                     if (null != viewConfig.getOnCellItemClickListener()) {
-                        viewConfig.getOnCellItemClickListener().onClick(v, rowPosition, itemCell);
+                        viewConfig.getOnCellItemClickListener().onClick(v, rowPosition, itemCell, itemCells);
                     }
                 }
             });
+
             if (isCloseCycle) {
                 if (i == 0) {
                     LinearLayout rowStartLine = new LinearLayout(getContext());
-                    rowStartLine.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+                    rowStartLine.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                     rowStartLine.setBackgroundColor(viewConfig.getDividerColor());
                     secondLayout.addView(rowStartLine);
                     secondLayout.addView(view);
                 } else if (i == itemCells.size() - 1) {
 
                     LinearLayout lastPrelineBg = new LinearLayout(getContext());
-                    lastPrelineBg.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+                    lastPrelineBg.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                     lastPrelineBg.setBackgroundColor(viewConfig.getDividerColor());
                     secondLayout.addView(lastPrelineBg);
 
                     secondLayout.addView(view);
 
                     LinearLayout lastlineBg = new LinearLayout(getContext());
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT);
                     lastlineBg.setLayoutParams(layoutParams);
                     lastlineBg.setBackgroundColor(viewConfig.getDividerColor());
 
                     secondLayout.addView(lastlineBg);
                 } else {
                     RelativeLayout lineBg = new RelativeLayout(getContext());
-                    lineBg.setLayoutParams(new RelativeLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+                    lineBg.setLayoutParams(new RelativeLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                     lineBg.setBackgroundColor(viewConfig.getDividerColor());
                     secondLayout.addView(lineBg);
                     secondLayout.addView(view);
@@ -113,7 +136,7 @@ public class TableItem extends LinearLayout {
                 secondLayout.addView(view);
                 if (i != itemCells.size() - 1) {
                     RelativeLayout lineBg = new RelativeLayout(getContext());
-                    lineBg.setLayoutParams(new RelativeLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+                    lineBg.setLayoutParams(new RelativeLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                     lineBg.setBackgroundColor(viewConfig.getDividerColor());
                     secondLayout.addView(lineBg);
                 }
@@ -122,7 +145,7 @@ public class TableItem extends LinearLayout {
 
         //添加listView item 分割线
         RelativeLayout lineDivider = new RelativeLayout(getContext());
-        lineDivider.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, viewConfig.getDividerHight()));
+        lineDivider.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, dividerHeight));
         lineDivider.setBackgroundColor(viewConfig.getDividerColor());
 
         if (isLastItem) {

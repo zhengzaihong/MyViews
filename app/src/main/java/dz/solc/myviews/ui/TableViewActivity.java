@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dz.utlis.AndroidUtils;
 import com.dz.utlis.JavaUtils;
 import com.dz.utlis.TimeUtil;
+import com.dz.utlis.ToastTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,15 @@ import java.util.Map;
 import dz.solc.myviews.R;
 import dz.solc.myviews.bean.PersonInfoBean;
 import dz.solc.myviews.uitls.Constans;
-import dz.solc.myviews.uitls.ToastTool;
 import dz.solc.viewtool.adapter.CommonAdapter;
 import dz.solc.viewtool.adapter.UtilAdapter;
 import dz.solc.viewtool.view.tableview.ItemCell;
 import dz.solc.viewtool.view.tableview.TableItem;
 import dz.solc.viewtool.view.tableview.TableView;
 import dz.solc.viewtool.view.tableview.TableViewConfig;
+import dz.solc.viewtool.view.tableview.listener.FillContentListener;
+import dz.solc.viewtool.view.tableview.listener.OnCellItemClickListener;
+import dz.solc.viewtool.view.utils.Utils;
 
 import static com.dz.utlis.JavaUtils.getMap4Json;
 import static com.dz.utlis.JavaUtils.outRedPrint;
@@ -55,44 +57,114 @@ public class TableViewActivity extends AppCompatActivity {
         tableView2 = findViewById(R.id.tableView2);
 
 
-        //单位均为dp
+
         TableViewConfig config1 = new TableViewConfig(this)
-                .setCellsWidth(80)   // 设置单元格的宽度
-                .setCellsHight(40)   //设置单元格的高度
+                .setCellsWidth(Utils.dp2px(this,80))   // 设置单元格的宽度
+                .setCellsHeight(Utils.dp2px(this,40))   //设置单元格的高度
+                .setAutoWrapHeight(true)  //自适应高度
+                .setShowHead(true)        //是否显表头信息
                 .setDivider(0)          //设置分割线高
-                .setDividerColor(getResources().getColor(R.color.trans))  //设置分割线颜色
+                .setDividerColor(getResources().getColor(R.color.red))  //设置分割线颜色
                 .setCloseCycle(false);   //是否形成分割闭环样式
 
-        //单位均为dp
         TableViewConfig config2 = new TableViewConfig(this)
-                .setCellsWidth(80)   // 设置单元格的宽度
-                .setCellsHight(40)   //设置单元格的高度
-                .setDivider(1)          //设置分割线高
+                .setCellsWidth(Utils.dp2px(this,80))   // 设置单元格的宽度
+                .setCellsHeight(Utils.dp2px(this,40))   //设置单元格的高度
+                .setDivider(Utils.dp2px(this,1))          //设置分割线高
                 .setDividerColor(getResources().getColor(R.color.sandybrown))  //设置分割线颜色
                 .setCloseCycle(false);   //是否形成分割闭环样式
 
 
-        //单位均为dp
-        TableViewConfig config = new TableViewConfig(this)
-                .setHeadViewWidth(80)   //设置每个头的宽度
-                .setHeadViewHeight(40)  //设置每个头的高度
-                .setCellWidth(80)       //设置单元格的宽度
-                .setCellHight(40)       //设置单元格的高度
-                .setDivider(1)          //设置分割线高
-                .setDividerColor(getResources().getColor(R.color.sandybrown))  //设置分割线颜色
-                .setCloseCycle(true);   //是否形成分割闭环样式
-
+        test();
 
         test1(config1);
 
         test2(config2);
 
-        test(config);
 
-        //如果是在ScrollView 中需要测量下listView 高度,一般不会需要这步
-        UtilAdapter.setListViewHeightBasedOnChildren(tableView.getListView());
-        UtilAdapter.setListViewHeightBasedOnChildren(tableView1.getListView());
-        UtilAdapter.setListViewHeightBasedOnChildren(tableView2.getListView());
+    }
+    private void test() {
+
+
+        tableView.setOnCellItemClickListener(new OnCellItemClickListener() {
+            @Override
+            public void onClick(View view, int rowPosition, ItemCell itemCell, ArrayList<ItemCell> itemCells) {
+
+                TextView textView = view.findViewById(R.id.tvCell);
+                textView.setText("点击");
+                ToastTool.get().show(itemCell.getCellValue().toString());
+
+                for (int i = 0; i < itemCells.size(); i++) {
+                    JavaUtils.outRedPrint("---->:"+itemCells.get(i).getCellValue().toString());
+                }
+
+                JavaUtils.outRedPrint("---->:"+itemCell.getCellValue().toString());
+
+            }
+
+        });
+
+        tableView.setFillContentListener(new FillContentListener() {
+            @Override
+            public View addHead(Object o) {
+                TextView view = (TextView) AndroidUtils.getView(TableViewActivity.this, R.layout.table_view_head_text_view_layout);
+                view.setText(o.toString());
+                return view;
+
+            }
+
+            @Override
+            public void getView(CommonAdapter.ViewHolder holder, int position, Object obj, boolean isLastItem) {
+
+                Map<String, Object> map = (Map<String, Object>) ((ItemCell) obj).getCellValue();
+
+                ArrayList<ItemCell> itemCells = new ArrayList();
+                ItemCell itemCell  = new ItemCell(map.get("id").toString());
+                ItemCell itemCell1 = new ItemCell(TimeUtil.stampstoTime(map.get("createdTime").toString(), "yyyy-MM-dd HH:mm:ss"));
+                ItemCell itemCell2 = new ItemCell(map.get("createdBy").toString());
+                ItemCell itemCell3 = new ItemCell(map.get("ls").toString());
+
+                itemCells.add(itemCell);
+                itemCells.add(itemCell1);
+
+                itemCells.add(itemCell2);
+                itemCells.add(itemCell3);
+
+                TableItem item = (TableItem) holder.getConvertView();
+                item.buildItem(this, position, isLastItem, itemCells);
+
+              //  outRedPrint("------>" + map.toString());
+
+            }
+
+            @Override
+            public View cellItem(ItemCell obj, int rowPosition, int index,ArrayList<ItemCell> itemCells) {
+                View view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout);
+                TextView textView = view.findViewById(R.id.tvCell);
+                textView.setText(obj.getCellValue().toString());
+
+                if (rowPosition % 2 == 0) {
+                    view.setBackgroundColor(getResources().getColor(R.color.amber_50));
+                } else {
+                    view.setBackgroundColor(getResources().getColor(R.color.wheat));
+                }
+
+                return view;
+            }
+
+            @Override
+            public int itemLayout() {
+                return R.layout.table_view_row_item_layout;
+            }
+
+            @Override
+            public TableView bindTableView() {
+                return tableView;
+            }
+
+        });
+
+        addData();
 
     }
 
@@ -100,11 +172,20 @@ public class TableViewActivity extends AppCompatActivity {
     private void test1(final TableViewConfig config) {
 
         tableView1.setViewConfig(config);
-        tableView1.setFillContentListener(new TableView.FillContentListener() {
+        tableView1.setFillContentListener(new FillContentListener() {
             @Override
-            public View addHead(Object obj) {
+            public View addHead(final Object obj) {
                 TextView view = (TextView) AndroidUtils.getView(TableViewActivity.this, R.layout.table_view_head_text_view_layout1);
                 view.setText(obj.toString());
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        ToastTool.get().show(obj.toString());
+                    }
+                });
+
                 return view;
             }
 
@@ -127,11 +208,16 @@ public class TableViewActivity extends AppCompatActivity {
                 TableItem item = (TableItem) holder.getConvertView();
                 item.buildItem(this, position, islastItem, itemCells);
 
+
+
             }
 
             @Override
-            public View cellItem(ItemCell obj, int rowPosition, boolean isLastCell) {
+            public View cellItem(ItemCell obj, int rowPosition, int index, ArrayList<ItemCell> itemCells) {
+
+                //这里可做更多View 替换。
                 View view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout1);
+
                 TextView textView = view.findViewById(R.id.tvCell);
                 textView.setText(obj.getCellValue().toString());
                 if (rowPosition % 2 == 0) {
@@ -157,19 +243,20 @@ public class TableViewActivity extends AppCompatActivity {
         PersonInfoBean personInfoBean = JSON.toJavaObject(JSON.parseObject(Constans.testJson1), PersonInfoBean.class);
 
         List<String> head = new ArrayList<>();
-        head.add("姓名");
-        head.add("职位");
+        head.add("姓名阿三发生达大厦大");
+        head.add("职位11111111111");
         head.add("时间");
         head.add("待遇");
 
-        tableView1.setData(head, personInfoBean.getData());
+        tableView1.setHead(head);
+        tableView1.setData(personInfoBean.getData());
 
     }
 
     private void test2(TableViewConfig config) {
 
         tableView2.setViewConfig(config);
-        tableView2.setFillContentListener(new TableView.FillContentListener() {
+        tableView2.setFillContentListener(new FillContentListener() {
             @Override
             public View addHead(Object obj) {
                 TextView view = (TextView) AndroidUtils.getView(TableViewActivity.this, R.layout.table_view_head_text_view_layout1);
@@ -183,7 +270,7 @@ public class TableViewActivity extends AppCompatActivity {
                 PersonInfoBean.DataBean dataBean = (PersonInfoBean.DataBean) ((ItemCell) obj).getCellValue();
 
                 ArrayList<ItemCell> itemCells = new ArrayList();
-                ItemCell itemCell = new ItemCell(dataBean.getName());
+                ItemCell itemCell  = new ItemCell(dataBean.getName());
                 ItemCell itemCell1 = new ItemCell(dataBean.getJob());
                 ItemCell itemCell2 = new ItemCell(dataBean.getCreatedTime());
                 ItemCell itemCell3 = new ItemCell(dataBean.getMoney());
@@ -199,7 +286,8 @@ public class TableViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public View cellItem(ItemCell obj, int rowPosition, boolean isLastCell) {
+            public View cellItem(ItemCell obj, int rowPosition, int index,ArrayList<ItemCell> itemCells) {
+
                 View view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout1);
 
                 TextView textView = view.findViewById(R.id.tvCell);
@@ -235,86 +323,12 @@ public class TableViewActivity extends AppCompatActivity {
         head.add("时间");
         head.add("待遇");
 
-        tableView2.setData(head, personInfoBean.getData());
+        tableView2.setHead(head);
+        tableView2.setData(personInfoBean.getData());
 
     }
 
 
-    private void test(TableViewConfig config) {
-
-        tableView.setViewConfig(config);
-
-        tableView.setOnCellItemClickListener(new TableView.OnCellItemClickListener() {
-            @Override
-            public void onClick(View v, int row, ItemCell itemCell) {
-
-                ToastTool.INSTANCE.show(itemCell.getCellValue().toString());
-            }
-        });
-
-        tableView.setFillContentListener(new TableView.FillContentListener() {
-            @Override
-            public View addHead(Object o) {
-                TextView view = (TextView) AndroidUtils.getView(TableViewActivity.this, R.layout.table_view_head_text_view_layout);
-                view.setText(o.toString());
-                return view;
-
-            }
-
-            @Override
-            public void getView(CommonAdapter.ViewHolder holder, int position, Object obj, boolean isLastItem) {
-
-                Map<String, Object> map = (Map<String, Object>) ((ItemCell) obj).getCellValue();
-
-                ArrayList<ItemCell> itemCells = new ArrayList();
-                ItemCell itemCell = new ItemCell(map.get("id").toString());
-                ItemCell itemCell1 = new ItemCell(TimeUtil.stampstoTime(map.get("createdTime").toString(), "yyyy-MM-dd HH:mm:ss"));
-                ItemCell itemCell2 = new ItemCell(map.get("createdBy").toString());
-                ItemCell itemCell3 = new ItemCell(map.get("ls").toString());
-
-                itemCells.add(itemCell);
-                itemCells.add(itemCell1);
-
-                itemCells.add(itemCell2);
-                itemCells.add(itemCell3);
-
-                TableItem item = (TableItem) holder.getConvertView();
-                item.buildItem(this, position, isLastItem, itemCells);
-
-                outRedPrint("------>" + map.toString());
-
-            }
-
-            @Override
-            public View cellItem(ItemCell obj, int rowPosition, boolean isLastCell) {
-                View view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout);
-                TextView textView = view.findViewById(R.id.tvCell);
-                textView.setText(obj.getCellValue().toString());
-
-                if (rowPosition % 2 == 0) {
-                    view.setBackgroundColor(getResources().getColor(R.color.amber_50));
-                } else {
-                    view.setBackgroundColor(getResources().getColor(R.color.wheat));
-                }
-
-                return view;
-            }
-
-            @Override
-            public int itemLayout() {
-                return R.layout.table_view_row_item_layout;
-            }
-
-            @Override
-            public TableView bindTableView() {
-                return tableView;
-            }
-
-        });
-
-        addData();
-
-    }
 
 
     private void addData() {
@@ -324,8 +338,8 @@ public class TableViewActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             head.add(content.get(i).get("name").toString());
         }
-        tableView.setData(head, content);
-
+        tableView.setHead(head);
+        tableView.setData(content);
     }
 
 
@@ -338,7 +352,7 @@ public class TableViewActivity extends AppCompatActivity {
             datas.add(getMap4Json(jsonArray.get(i).toString()));
         }
 
-        outRedPrint(Constans.testJson);
+       // outRedPrint(Constans.testJson);
         return datas;
     }
 

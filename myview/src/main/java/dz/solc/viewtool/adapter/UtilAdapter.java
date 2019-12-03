@@ -21,17 +21,19 @@ import java.lang.reflect.Field;
 * Email:1096877329@qq.com
 * creat_date: 2017/12/6
 * creat_time: 10:30
-* describe 为listview,gridView,为ExpandableListView设置高度
+* describe 适配器的一些常用方法
 **/
 public class UtilAdapter {
 
-
-	// 为listview设置高度
-	public static void setListViewHeightBasedOnChildren(ListView listView) {
+	/**
+	 * 为listview设置高度
+	 * @param listView
+	 */
+	public static int setListViewHeightBasedOnChildren(ListView listView) {
 		// 获取ListView对应的Adapter
 		ListAdapter listAdapter = listView.getAdapter();
 		if (listAdapter == null) {
-			return;
+			return 0;
 		}
 
 		int totalHeight = 0;
@@ -49,17 +51,19 @@ public class UtilAdapter {
 		// listView.getDividerHeight()获取子项间分隔符占用的高度
 		// params.height最后得到整个ListView完整显示需要的高度
 		listView.setLayoutParams(params);
+
+		return params.height;
 	}
 
 	/**
 	 　　* 计算gridview高度
 	 　　* @param gridView
 	 　　*/
-	public static void setGridViewHeightBasedOnChildren(GridView gridView) {
+	public static int setGridViewHeightBasedOnChildren(GridView gridView) {
       // 获取GridView对应的Adapter
 		ListAdapter listAdapter = gridView.getAdapter();
 		if (listAdapter == null) {
-			return;
+			return 0;
 		}
 		int rows;
 		int columns = 0;
@@ -95,11 +99,15 @@ public class UtilAdapter {
 		ViewGroup.LayoutParams params = gridView.getLayoutParams();
 		params.height = totalHeight + horizontalBorderHeight * (rows - 1);// 最后加上分割线总高度
 		gridView.setLayoutParams(params);
+		return params.height;
 	}
 
 
-	// 为ExpandableListView设置高度
-	public static void setExpandListViewHeightBasedOnChildren(ExpandableListView listView) {
+	/**
+	 * 为ExpandableListView设置高度
+	 * @param listView
+	 */
+	public static int setExpandListViewHeightBasedOnChildren(ExpandableListView listView) {
 		ListAdapter listAdapter = listView.getAdapter();
 		int totalHeight = 0;
 		int count = listAdapter.getCount();
@@ -114,6 +122,8 @@ public class UtilAdapter {
 				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 		listView.requestLayout();
+
+		return  params.height;
 
 	}
 

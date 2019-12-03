@@ -89,6 +89,32 @@
             app:showText="false" />
 
 
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <dz.solc.viewtool.view.barview.CircleBarView
+                android:id="@+id/cbView"
+                android:layout_marginLeft="@dimen/len_10"
+                app:progress_color="@color/amber_100"
+                app:bar_width="@dimen/len_10"
+                app:start_angle="40"
+                app:bg_color="@color/colorAccent"
+                android:layout_width="@dimen/len_100"
+                android:layout_height="@dimen/len_100">
+            </dz.solc.viewtool.view.barview.CircleBarView>
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_centerInParent="true"
+                android:text="sdsd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 

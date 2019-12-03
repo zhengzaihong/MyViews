@@ -2,10 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/cadetblue"
     android:orientation="vertical">
 
     <LinearLayout
+        android:descendantFocusability="blocksDescendants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -13,9 +15,12 @@
 
         <dz.solc.viewtool.view.tableview.TableView
             android:id="@+id/tableView1"
+            android:focusableInTouchMode="false"
+            android:requiresFadingEdge="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fillViewport="true"
             android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_10"
             android:scrollbars="none">
 
@@ -25,8 +30,8 @@
         <dz.solc.viewtool.view.tableview.TableView
             android:id="@+id/tableView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_10"
             android:scrollbars="none">
 
@@ -34,16 +39,45 @@
         </dz.solc.viewtool.view.tableview.TableView>
 
 
+        <!--
+
+                    建议使用 xml 配置文件方式，代码配置优先级最高
+
+                    app:table_cells_width="@dimen/len_200"
+                    app:table_cells_height="@dimen/len_80"
+
+                    //单独设置的宽高将覆盖 统一设置的
+                    app:table_head_cell_width="@dimen/len_80"
+                    app:table_head_cell_height="@dimen/len_40"
+                    app:table_content_cell_width="@dimen/len_80"
+                    app:table_content_cell_height="@dimen/len_40"
+
+        -->
+
         <dz.solc.viewtool.view.tableview.TableView
             android:id="@+id/tableView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+
+            app:table_cells_width="@dimen/len_200"
+            app:table_cells_height="@dimen/len_80"
+
+            app:table_head_cell_width="@dimen/len_80"
+            app:table_head_cell_height="@dimen/len_40"
+            app:table_content_cell_width="@dimen/len_80"
+            app:table_content_cell_height="@dimen/len_40"
+
+            app:table_devider_height="@dimen/len_1"
+            app:table_devider_color="@color/light_blue_200"
+            app:table_auto_wrap_height="false"
+            app:table_visible_head="true"
+            app:table_close_cycle="false"
+
             android:padding="@dimen/len_10"
             android:scrollbars="none">
 
         </dz.solc.viewtool.view.tableview.TableView>
-
     </LinearLayout>
 
 

@@ -26,6 +26,26 @@ android {
         }
     }
 
+    //处理所有报META-INF/*'的错误
+    packagingOptions {
+        pickFirst 'META-INF/atomicfu.kotlin_module'
+
+        doNotStrip '*/mips/*.so'
+        doNotStrip '*/mips64/*.so'
+    }
+
+}
+
+//统一版本号
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '27.1.1'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -36,7 +56,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    implementation 'com.zzh:rjtools:1.0.7'
+    implementation 'com.zzh:rjtools:1.0.81'
     implementation project(':myview')
     implementation 'com.alibaba:fastjson:1.2.44'
 }

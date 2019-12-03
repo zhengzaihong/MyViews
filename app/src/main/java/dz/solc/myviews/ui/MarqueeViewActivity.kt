@@ -3,8 +3,8 @@ package dz.solc.myviews.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.dz.utlis.ScreenUtils
+import com.dz.utlis.ToastTool
 import dz.solc.myviews.R
-import dz.solc.myviews.uitls.ToastTool.show
 import dz.solc.myviews.bean.MarqueeBean
 import dz.solc.viewtool.view.marqueeview.AutoScrollView
 import kotlinx.android.synthetic.main.activity_layout_markview.*
@@ -33,7 +33,7 @@ class MarqueeViewActivity : AppCompatActivity() {
         }
 
         marqueeview.setOnItemClickListener { _, textView ->
-            show("${textView.text}")
+            ToastTool.get().show("${textView.text}")
         }
 
 

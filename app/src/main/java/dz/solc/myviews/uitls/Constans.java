@@ -16,17 +16,17 @@ public class Constans {
             "\t\t\"job\": \"测试人员\",\n" +
             "\t\t\"createdTime\": \"2018-6-11\",\n" +
             "\t\t\"name\": \"李四\",\n" +
-            "\t\t\"money\": \"7k\"\n" +
+            "\t\t\"money\": \"7kianisnfiasnfjasnfjansfnanfajnfansfasnfjansjfnasjfnjasnfjnubfuasbfuasbfausbfa\"\n" +
             "\t}, {\n" +
             "\t\t\"job\": \"产品经理\",\n" +
             "\t\t\"createdTime\": \"2018-6-12\",\n" +
             "\t\t\"name\": \"王五\",\n" +
-            "\t\t\"money\": \"10k\"\n" +
+            "\t\t\"money\": \"15k\"\n" +
             "\t}, {\n" +
             "\t\t\"job\": \"市场营销\",\n" +
             "\t\t\"createdTime\": \"2018-6-6\",\n" +
             "\t\t\"name\": \"王二腻\",\n" +
-            "\t\t\"money\": \"8k\"\n" +
+            "\t\t\"money\": \"8kasdadasdasdsadsadasd515151515112312sd5151515151123123sd5151515151123123sd5151515151123123sd515151515112312332351.\"\n" +
             "\t}]\n" +
             "\n" +
             "}";
@@ -34,7 +34,7 @@ public class Constans {
     public static final String testJson = "[{\n" +
             "\t\"id\": 28169,\n" +
             "\t\"createdTime\": 1557476551,\n" +
-            "\t\"createdBy\": \"张三\",\n" +
+            "\t\"createdBy\": \"张三asadasgasgfadfasfasfasfasfasfasfafafaf\",\n" +
             "\t\"name\": \"ID\",\n" +
             "\t\"ls\": 6\n" +
             "}, {\n" +

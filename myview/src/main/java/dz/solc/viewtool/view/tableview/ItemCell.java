@@ -16,58 +16,75 @@ public class ItemCell<T> {
      */
     private T cellValue;
     /**
-     * 单元格跨列--暂无此功能
-     */
-    private int cellSpan = 1;
-    /**
      * 单元格列号
      */
-    private int colNum = 0;
-    private int cellTextColor = Color.WHITE;
+    private int colnum = 0;
+
+    /**
+     * 单元格颜色
+     */
+    private int cellTextColor;
+
+    /**
+     * 携带附加数据
+     */
+    private Object obj;
 
 
     public ItemCell(T cellValue) {
-        this(cellValue, 1);
+        this(cellValue, Color.WHITE);
     }
 
-    public ItemCell(T cellValue, int cellSpan) {
-        this.cellValue = cellValue;
-        this.cellSpan = cellSpan;
+    public ItemCell(T cellValue, int cellTextColor) {
+        this(cellValue, cellTextColor, null);
     }
 
-    public ItemCell(T cellValue, int cellSpan, int cellTextColor) {
+    public ItemCell(T cellValue, Object obj) {
+        this(cellValue, Color.WHITE, obj);
+    }
+
+    public ItemCell(T cellValue, int cellTextColor, Object obj) {
         this.cellValue = cellValue;
-        this.cellSpan = cellSpan;
         this.cellTextColor = cellTextColor;
+        this.obj = obj;
     }
 
+
+    public Object getObject() {
+        return obj;
+    }
+
+    public ItemCell setObject(Object object) {
+        this.obj = object;
+        return this;
+    }
 
     public int getCellTextColor() {
         return cellTextColor;
     }
 
-    public void setCellTextColor(int cellTextColor) {
+    public ItemCell setCellTextColor(int cellTextColor) {
         this.cellTextColor = cellTextColor;
+        return this;
     }
 
-    public void setColNum(int colNum) {
-        this.colNum = colNum;
+    public int getColnum() {
+        return colnum;
     }
 
-    public int getColNum() {
-        return this.colNum;
+    public ItemCell setColnum(int colnum) {
+        this.colnum = colnum;
+        return this;
     }
 
     public T getCellValue() {
         return cellValue;
     }
 
-    public void setCellValue(T value) {
+    public ItemCell setCellValue(T value) {
         this.cellValue = value;
+        return this;
     }
 
-    public int getCellSpan() {
-        return cellSpan;
-    }
 
 }

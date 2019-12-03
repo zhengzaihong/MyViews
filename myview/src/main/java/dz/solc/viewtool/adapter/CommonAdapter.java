@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     }
 
     public void setArrayData(T... data) {
+
         setNewData((Arrays.asList(data)));
     }
 
@@ -101,6 +103,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     public abstract void convert(ViewHolder holder, int position, T entity);
 
     public static class ViewHolder {
+
         private int mPosition;
         private View mConvertView;
         private SparseArray<View> mViews;
@@ -144,15 +147,41 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
          * @param text
          * @return
          */
-        public ViewHolder setText(int viewId, String text) {
+        public ViewHolder setText(int viewId, CharSequence text) {
             TextView tv = getView(viewId);
-            tv.setText(text);
+            tv.setText(null == text?"":text);
             return this;
         }
 
         public ViewHolder setTextColor(int viewId, int color) {
             TextView tv = getView(viewId);
             tv.setTextColor(color);
+            return this;
+        }
+
+        public ViewHolder setTextAndColor(int viewId, CharSequence text,int color) {
+            TextView tv = getView(viewId);
+            tv.setText(null == text?"":text);
+            tv.setTextColor(color);
+            return this;
+        }
+
+
+        public ViewHolder setTextEmptyGone(int viewId, CharSequence text,int color) {
+            TextView tv = getView(viewId);
+            if(TextUtils.isEmpty(text)){
+                tv.setVisibility(View.GONE);
+            }
+            tv.setText(null == text?"":text);
+            tv.setTextColor(color);
+            return this;
+        }
+        public ViewHolder setTextEmptyGone(int viewId, CharSequence text) {
+            TextView tv = getView(viewId);
+            if(TextUtils.isEmpty(text)){
+                tv.setVisibility(View.GONE);
+            }
+            tv.setText(null == text?"":text);
             return this;
         }
 

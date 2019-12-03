@@ -2,20 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/transparent">
 
     <dz.solc.viewtool.view.imageview.RotateImageView
-        android:id="@+id/rivLoadingBg"
+        android:id="@+id/rotateImageView"
         android:layout_width="@dimen/len_40"
         android:layout_height="@dimen/len_40"
         android:layout_centerInParent="true"
-        android:background="@drawable/loading_light" />
+        tools:background="@drawable/loading_light" />
 
     <TextView
         android:textColor="@color/gray"
         android:layout_marginTop="@dimen/len_35"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/rivLoadingBg"
+        android:layout_below="@id/rotateImageView"
         android:visibility="gone"
         android:id="@+id/tvTips"
         android:layout_width="wrap_content"

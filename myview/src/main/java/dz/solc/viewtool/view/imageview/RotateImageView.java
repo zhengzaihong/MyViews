@@ -1,11 +1,11 @@
 package dz.solc.viewtool.view.imageview;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
+
+import dz.solc.viewtool.view.mayview.GifImageView;
 
 /**
  * creat_user: zhengzaihong
@@ -14,8 +14,8 @@ import android.widget.ImageView;
  * creat_time: 10:28
  * describe 让图片转起来的view
  **/
-@SuppressLint("AppCompatCustomView")
-public class RotateImageView extends ImageView {
+public class RotateImageView extends GifImageView {
+
     private RotateAnimation rotateAnimation;
 
     public RotateImageView(Context paramContext) {
@@ -24,9 +24,12 @@ public class RotateImageView extends ImageView {
 
     public RotateImageView(Context paramContext, AttributeSet paramAttributeSet) {
         super(paramContext, paramAttributeSet);
-        rotate();
+//        rotate();
     }
 
+    /**
+     * 开启转动
+     */
     public void rotate() {
         this.rotateAnimation = new RotateAnimation(0.0F, 360000.0F, 1, 0.5F, 1, 0.5F);
         this.rotateAnimation.setDuration(1000000L);
@@ -35,6 +38,9 @@ public class RotateImageView extends ImageView {
         startAnimation(this.rotateAnimation);
     }
 
+    /**
+     * 停止转动
+     */
     public void stopRotate() {
         clearAnimation();
     }

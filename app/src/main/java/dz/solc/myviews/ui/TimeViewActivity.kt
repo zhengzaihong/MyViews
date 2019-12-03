@@ -3,15 +3,14 @@ package dz.solc.myviews.ui
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.os.Looper
 import android.support.v7.app.AppCompatActivity
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import com.dz.utlis.JavaUtils
+import com.dz.utlis.ToastTool
 import dz.solc.myviews.R
-import dz.solc.myviews.uitls.ToastTool
 import dz.solc.viewtool.view.timeview.LinkTask
 import dz.solc.viewtool.view.timeview.TimerView
 import dz.solc.viewtool.view.timeview.TimerViewUpgrade
@@ -29,7 +28,7 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
 //      一般用法1
         tv_timego.setOnClickListener {
             if (timerView.isWait) {
-                ToastTool.show("请${timerView.time}秒后再试")
+                ToastTool.get().show("请${timerView.time}秒后再试")
             } else {
                 timerView.start(object : TimerView.OnAlarmClockListener {
                     override fun startfresh(currentime: Int) {
@@ -96,7 +95,7 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
 //        timeViewUp.period = 100
         tv_timego3.setOnClickListener {
             if (timeViewUp.isWait) {
-                ToastTool.show("请${timeViewUp.time}秒后再试")
+                ToastTool.get().show("请${timeViewUp.time}秒后再试")
             } else {
                 timeViewUp.start(object : TimerViewUpgrade.OnAlarmClockListener {
                     override fun startfresh(currentime: Int) {

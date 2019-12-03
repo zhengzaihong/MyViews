@@ -39,7 +39,10 @@ class TipDialogActivity : AppCompatActivity() {
                     .setDialogDim(0.3f)
                     .setOutTouchside(true)
                     .setShowMaxTime(10)
-                    .setLoadingIcon(R.drawable.loading_light)
+//                  .setLoadingIconWidthHeight(400,400)
+                    .setLoadingIcon(R.drawable.icon_loading_pic1,false)
+                    .setLoadingTips("加载中...")
+                    .setRotateIcon(true)
                     .showDialog()
         }
 
