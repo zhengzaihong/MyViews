@@ -166,7 +166,7 @@ public class TableView<E> extends HorizontalScrollView {
     /**
      * 添加头部信息
      */
-    public void setHead(List headData) {
+    public void setHead(List<?> headData) {
 
         //新增加头部显不显示控制
         if (null == headData || headData.size() == 0 || !viewConfig.isShowHead()) {
@@ -255,7 +255,7 @@ public class TableView<E> extends HorizontalScrollView {
                 }
             }
 
-            //如果是自适应，则重新配置个子元素高度
+            //如果是自适应，则重新配置子元素高度
             if (autoWrapHeight) {
                 headLayout.post(new Runnable() {
                     @Override
@@ -284,6 +284,7 @@ public class TableView<E> extends HorizontalScrollView {
         if (null == data || data.size() == 0) {
             return;
         }
+
         //填充数据
         if (null != contentListener) {
             for (int i = 0; i < data.size(); i++) {
@@ -302,7 +303,7 @@ public class TableView<E> extends HorizontalScrollView {
      * @param headData 表头信息
      * @param data     表格数据
      */
-    public void setHeadAndData(List headData, List<E> data) {
+    public void setHeadAndData(List<?> headData, List<E> data) {
         setHead(headData);
         setData(data);
     }

@@ -19,6 +19,17 @@
 ![image](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif)
 
 
+##更新日志 2019-12-4
+
+新增 表格控件 支持自适应内容高度，性能优化。支持布局文件配置
+
+新增 支持gif的控件
+
+新增 加载动画新增API 
+
+其他优化
+
+
 ##更新日志 2019-11-15
 
 新增 表格控件 Api,替换数据
