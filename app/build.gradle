@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    implementation 'com.zzh:rjtools:1.0.81'
+    implementation 'com.zzh:rjtools:1.0.82'
     implementation project(':myview')
     implementation 'com.alibaba:fastjson:1.2.44'
 }

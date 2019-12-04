@@ -20,6 +20,6 @@
         app:f_pressedBgColor="@color/white_alpha_80"
         app:f_pressedTextColor="@color/white"
         app:f_radius_type="f_all_radius"
-        app:f_showAnimation="false"></dz.solc.viewtool.view.textview.FilletView>
+        app:f_showAnimation="false"/>
 
 </LinearLayout>

@@ -131,6 +131,7 @@ public class LoadingDialog {
      * @return
      */
     public LoadingDialog setLoadingIcon(int resid,boolean isGif) {
+        rotateImageView.setBackground(null);
         if(isGif){
             rotateImageView.setGifResource(resid);
         }else {
