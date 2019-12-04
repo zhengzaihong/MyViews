@@ -5,6 +5,8 @@ import android.view.View;
 import java.util.ArrayList;
 
 import dz.solc.viewtool.view.tableview.ItemCell;
+import dz.solc.viewtool.view.tableview.RowItem;
+
 /**
  * creat_user: zhengzaihong
  * Email:1096877329@qq.com
@@ -15,10 +17,9 @@ import dz.solc.viewtool.view.tableview.ItemCell;
 public interface OnCellItemClickListener {
 
     /**
-     * @param v           当前cell view
-     * @param rowPosition 当前所在行
-     * @param itemCell    点击的所在行中某个cell
-     * @param itemCells   返回当前一整行的数据
+     * @param v        当前cell view
+     * @param itemCell 点击的所在行中某个cell
+     * @param rowItem  当前一整行的信息
      */
-    void onClick(View v, int rowPosition, ItemCell itemCell, ArrayList<ItemCell> itemCells);
+    void onClick(View v, ItemCell itemCell, RowItem rowItem);
 }

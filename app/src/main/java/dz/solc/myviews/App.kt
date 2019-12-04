@@ -3,7 +3,7 @@ package dz.solc.myviews
 import android.app.Application
 import android.graphics.Color
 import com.dz.utlis.JavaUtils.isdebug
-import com.dz.utlis.ScreenUtils
+import com.dz.utlis.ScreenUtils.*
 import com.dz.utlis.ToastTool
 import com.dz.utlis.UiCompat
 import com.dz.utlis.view.ToastConfig
@@ -19,11 +19,11 @@ class App : Application() {
         // Toast 配置
         val config = ToastConfig()
                 .setInterval(2000)
-                .setRadiusBg(ScreenUtils.dip2px(this, 30f).toInt())
+                .setRadiusBg(dip2px(this, 30f).toInt())
                 .setToastTextColor(Color.WHITE)
                 .setToastViewGroupBgColor(UiCompat.getColor(resources,R.color.light_blue_200))
                 .setToastTextSize(16)
-                .setBgPadding(ScreenUtils.dip2px(this, 15f).toInt())
+                .setBgPadding(dip2px(this, 15f).toInt())
                 .setShortToast(false)
                 .setStrokeWidth(0)
                 .setRadiusType(ToastConfig.RadiusType.ALL_RADIUS)

@@ -7,6 +7,8 @@
 
     <TextView
         android:id="@+id/tvCell"
+        android:paddingRight="@dimen/len_3"
+        android:paddingLeft="@dimen/len_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

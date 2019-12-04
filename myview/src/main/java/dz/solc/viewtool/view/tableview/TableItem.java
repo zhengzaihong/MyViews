@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dz.solc.viewtool.view.tableview.listener.FillContentListener;
 
@@ -22,9 +23,6 @@ import dz.solc.viewtool.view.tableview.listener.FillContentListener;
  **/
 public class TableItem extends LinearLayout {
 
-    private FillContentListener listener;
-    private LinearLayout headBottomLine;
-
     public TableItem(Context context) {
         this(context, null);
     }
@@ -35,18 +33,25 @@ public class TableItem extends LinearLayout {
 
     public TableItem(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
     }
 
-    public void buildItem(FillContentListener listener, final int rowPosition, final boolean isLastItem, final ArrayList<ItemCell> itemCells) {
+    public void buildItem(FillContentListener listener, final RowItem rowItem) {
+
+
+        final int rowPosition = rowItem.getPosition();
+        final List<ItemCell> itemCells = rowItem.getCells();
+        final boolean isLastItem = rowItem.isLastItem();
+
+        //先移除全部旧数据显示
+        this.removeAllViews();
 
         this.setOrientation(LinearLayout.VERTICAL);
-        this.listener = listener;
-
-        this.removeAllViews();
         final LinearLayout secondLayout = new LinearLayout(getContext());
         secondLayout.setOrientation(LinearLayout.HORIZONTAL);
         secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
+        //获取绑定的 TableView
         final TableView tableView = listener.bindTableView();
 
         final TableViewConfig viewConfig = tableView.getViewConfig();
@@ -59,6 +64,8 @@ public class TableItem extends LinearLayout {
         final int cellHeight = viewConfig.getCellHeight();
 
         boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
+
+        LinearLayout headBottomLine;
 
         if (rowPosition == 0) {
             headBottomLine = new LinearLayout(getContext());
@@ -76,17 +83,18 @@ public class TableItem extends LinearLayout {
             final ItemCell itemCell = itemCells.get(i);
 
             //TODO 外部提供单元格信息
-            View view = listener.cellItem(itemCell, rowPosition, i, itemCells);
+            View view = listener.cellItem(itemCell, i, rowItem);
 
-            LayoutParams cellParms = new LayoutParams(cellWidth,cellHeight);
-            if(autoWrapHeight){
+            LayoutParams cellParms = new LayoutParams(cellWidth, cellHeight);
+            if (autoWrapHeight) {
                 cellParms.width = cellWidth;
                 cellParms.height = LayoutParams.MATCH_PARENT;
-                //todo 增加一个像素的边距，防止内容过长后导致 分割线不显示的问题
-                cellParms.bottomMargin = 1;
-
-            }else {
-                cellParms =  new LayoutParams(cellWidth, cellHeight);
+                //TODO 增加一个像素的边距，防止内容过长后导致 分割线不显示的问题
+                if(!isLastItem){
+                    cellParms.bottomMargin = 1;
+                }
+            } else {
+                cellParms = new LayoutParams(cellWidth, cellHeight);
             }
             view.setLayoutParams(cellParms);
             view.setMinimumHeight(cellHeight);
@@ -97,7 +105,7 @@ public class TableItem extends LinearLayout {
                     //回调给用户点击的cell
                     //新增返回一整行数据
                     if (null != viewConfig.getOnCellItemClickListener()) {
-                        viewConfig.getOnCellItemClickListener().onClick(v, rowPosition, itemCell, itemCells);
+                        viewConfig.getOnCellItemClickListener().onClick(v, itemCell, rowItem);
                     }
                 }
             });

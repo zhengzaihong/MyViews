@@ -9,10 +9,12 @@ import android.graphics.Color;
  * creat_time: 13:24
  * describe 单元格
  **/
+
+@SuppressWarnings("all")
 public class ItemCell<T> {
 
     /**
-     * 单元格的对象
+     * 单元格的数据
      */
     private T cellValue;
     /**
@@ -86,5 +88,13 @@ public class ItemCell<T> {
         return this;
     }
 
-
+    @Override
+    public String toString() {
+        return "ItemCell{" +
+                "cellValue=" + cellValue +
+                ", colnum=" + colnum +
+                ", cellTextColor=" + cellTextColor +
+                ", obj=" + obj +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dz.solc.viewtool.adapter.CommonAdapter;
 import dz.solc.viewtool.view.tableview.ItemCell;
+import dz.solc.viewtool.view.tableview.RowItem;
 import dz.solc.viewtool.view.tableview.TableView;
 
 
@@ -30,22 +31,19 @@ public interface FillContentListener {
      * 每显示一行会触发一次 这个和listView 的adapter 一直
      *
      * @param holder
-     * @param position   当前item的行
-     * @param obj        当前item 对象
-     * @param islastItem 是否是最后一行数据
+     * @param rowItem  表格每行的信息
      */
 
-    void getView(CommonAdapter.ViewHolder holder, int position, Object obj, boolean islastItem);
+    void getView(CommonAdapter.ViewHolder holder,  RowItem rowItem);
 
     /**
      * @param obj         当前单元格数据
-     * @param rowPosition 当前行数
-     * @param index       当前行数的每个单元格下标
-     * @param itemCells   当前行的数据
+     * @param cellIndex   当前行数的每个单元格下标
+     * @param rowItem     当前行信息
      * @return
      */
 
-    View cellItem(ItemCell obj, int rowPosition, int index, ArrayList<ItemCell> itemCells);
+    View cellItem(ItemCell obj, int cellIndex, RowItem rowItem);
 
     /**
      * @return 每个item 的部件文件id

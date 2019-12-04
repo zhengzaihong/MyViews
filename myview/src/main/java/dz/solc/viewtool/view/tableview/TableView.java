@@ -288,7 +288,7 @@ public class TableView<E> extends HorizontalScrollView {
         //填充数据
         if (null != contentListener) {
             for (int i = 0; i < data.size(); i++) {
-                datas.add((E) new ItemCell(data.get(i)));
+                datas.add((E) new RowItem(data.get(i)));
             }
         }
 

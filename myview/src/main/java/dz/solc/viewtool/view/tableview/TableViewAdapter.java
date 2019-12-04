@@ -15,21 +15,21 @@ import dz.solc.viewtool.view.tableview.listener.FillContentListener;
 public class TableViewAdapter extends CommonAdapter {
 
     private FillContentListener contentListener;
-    private TableView tableView;
 
     public TableViewAdapter(TableView tableView, FillContentListener listener) {
         super(tableView.getContext(), listener.itemLayout());
-        this.tableView = tableView;
         this.contentListener = listener;
     }
 
     @Override
     public void convert(ViewHolder holder, int position, Object entity) {
 
-        boolean isLastItem = position == datas.size() - 1;
-        contentListener.getView(holder, position, entity,isLastItem);
+        // 构建一行数据
+        RowItem rowItem = (RowItem) entity;
+        rowItem.setPosition(position)
+                .setLastItem(position == datas.size() - 1);
 
-
+        contentListener.getView(holder, rowItem);
     }
 
 }

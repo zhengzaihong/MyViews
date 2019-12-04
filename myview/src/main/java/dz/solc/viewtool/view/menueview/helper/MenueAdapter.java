@@ -34,7 +34,6 @@ import java.util.List;
  * describe: 此adaper 参考开源BaseQuickAdapter
  **/
 
-
 @SuppressWarnings("all")
 public abstract class MenueAdapter<T, K extends MenueViewHolder> extends RecyclerView.Adapter<K> {
 
