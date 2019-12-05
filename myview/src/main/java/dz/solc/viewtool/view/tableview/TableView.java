@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChild
 @SuppressWarnings("all")
 public class TableView<E> extends HorizontalScrollView {
 
+    private static final String TAG = TableView.class.getSimpleName();
+
     private Context mContext;
     private LinearLayout headLayout;
     private ListView listView;
@@ -59,7 +62,7 @@ public class TableView<E> extends HorizontalScrollView {
         super(context, attrs, defStyleAttr);
 
         mContext = this.getContext();
-        viewConfig = new TableViewConfig(mContext);
+        viewConfig = new TableViewConfig();
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TabaleViewStyle);
@@ -116,13 +119,11 @@ public class TableView<E> extends HorizontalScrollView {
 
         ListView.LayoutParams listViewParms = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         listView.setLayoutParams(listViewParms);
-        listView.setCacheColorHint(Color.parseColor("#00000000"));
+        listView.setCacheColorHint(Color.TRANSPARENT);
         listView.setVerticalScrollBarEnabled(false);
         listView.setDividerHeight(0);
         listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
         listView.setNestedScrollingEnabled(false);
-        listView.setOverScrollMode(OVER_SCROLL_NEVER);
-        listView.setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
         wrapView.addView(listView);
 
 
@@ -132,7 +133,9 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
-    //去掉拉动效果
+    /**
+     * 去掉拉动效果
+     */
     private void disableOverScrollMode(View view) {
         if (Build.VERSION.SDK_INT < 9) {
             return;
@@ -151,7 +154,6 @@ public class TableView<E> extends HorizontalScrollView {
      *
      * @param viewConfig
      */
-
     public void setViewConfig(TableViewConfig viewConfig) {
         this.viewConfig = viewConfig;
         this.removeAllViews();
@@ -168,28 +170,28 @@ public class TableView<E> extends HorizontalScrollView {
      */
     public void setHead(List<?> headData) {
 
-        //新增加头部显不显示控制
-        if (null == headData || headData.size() == 0 || !viewConfig.isShowHead()) {
-            return;
-        }
-
-        int headViewWidth = viewConfig.getHeadViewWidth();
-        int dividerWidth = viewConfig.getDividerWidth();
-        int dividerHeight = viewConfig.getDividerHeight();
-
-        boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
-        int headViewHeight = autoWrapHeight ? ViewGroup.LayoutParams.WRAP_CONTENT : viewConfig.getHeadViewHeight();
-
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-        HashMap headMap = new HashMap();
-
-        for (int i = 0; i < headData.size(); i++) {
-            HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
-            headMap.put(headMap.size() + "", itemCell);
-        }
-
         if (null != contentListener) {
+            //新增加头部显不显示控制
+            if (null == headData || headData.size() == 0 || !viewConfig.isShowHead()) {
+                return;
+            }
+
+            int headViewWidth = viewConfig.getHeadViewWidth();
+
+            int dividerWidth  =viewConfig.getDividerWidth();
+            int dividerHeight =viewConfig.getDividerHeight();
+
+            boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
+            int headViewHeight = autoWrapHeight ? ViewGroup.LayoutParams.WRAP_CONTENT : viewConfig.getHeadViewHeight();
+
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+            HashMap headMap = new HashMap();
+
+            for (int i = 0; i < headData.size(); i++) {
+                HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
+                headMap.put(headMap.size() + "", itemCell);
+            }
 
             boolean isCloseCysle = viewConfig.isCloseCycle();
             int dividerColor = viewConfig.getDividerColor();
@@ -272,6 +274,8 @@ public class TableView<E> extends HorizontalScrollView {
                     }
                 });
             }
+        } else {
+            Log.e(TAG, "please bind FillContentListener setHead before!!");
         }
     }
 
@@ -281,21 +285,29 @@ public class TableView<E> extends HorizontalScrollView {
 
     public void setData(List<E> data) {
 
-        if (null == data || data.size() == 0) {
-            return;
-        }
-
-        //填充数据
         if (null != contentListener) {
+            if (null == data || data.size() == 0) {
+                return;
+            }
+            //填充数据
             for (int i = 0; i < data.size(); i++) {
                 datas.add((E) new RowItem(data.get(i)));
+                Log.e(TAG, new RowItem(data.get(i)).toString());
             }
-        }
 
-        customeTableViewAdapter = new TableViewAdapter(this, contentListener);
-        listView.setAdapter(customeTableViewAdapter);
-        customeTableViewAdapter.setNewData(datas);
-        //TODO 解决 ScrollView 中的测量问题
+            customeTableViewAdapter = new TableViewAdapter(this, contentListener);
+            listView.setAdapter(customeTableViewAdapter);
+            customeTableViewAdapter.setNewData(datas);
+
+        } else {
+            Log.e(TAG, "please bind FillContentListener setData before!!");
+        }
+    }
+
+    /**
+     * 如果是在类似 ScrollView 中则需要测量
+     */
+    public void measureHeight() {
         setListViewHeightBasedOnChildren(listView);
     }
 

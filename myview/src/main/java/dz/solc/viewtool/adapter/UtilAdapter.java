@@ -23,6 +23,8 @@ import java.lang.reflect.Field;
  * creat_time: 10:30
  * describe 适配器的一些常用方法
  **/
+
+@SuppressWarnings("all")
 public class UtilAdapter {
 
     /**

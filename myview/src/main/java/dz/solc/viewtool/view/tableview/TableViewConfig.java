@@ -1,6 +1,5 @@
 package dz.solc.viewtool.view.tableview;
 
-import android.content.Context;
 import android.graphics.Color;
 
 import dz.solc.viewtool.view.tableview.listener.OnCellItemClickListener;
@@ -60,18 +59,21 @@ public class TableViewConfig {
      */
     private boolean showHead = true;
 
-
     /**
      * 是否自适应高度
      *
-     * 该值为true  cellHight 和 headViewHeight 将失效
+     * 该值为true  cellHight 和 headViewHeight 将失效i
      */
     private boolean autoWrapHeight = false;
 
+    /**
+     * 设置分割的外边距(慎用)
+     */
+    private int dividerMargin = 0;
 
-    private Context mContext;
-
-
+    /**
+     * 单元格的单击事件监听
+     */
     private OnCellItemClickListener onCellItemClickListener;
 
 
@@ -82,11 +84,6 @@ public class TableViewConfig {
     public TableViewConfig setShowHead(boolean showHead) {
         this.showHead = showHead;
         return this;
-    }
-
-    public TableViewConfig(Context mContext) {
-        this.mContext = mContext;
-
     }
 
     public boolean isAutoWrapHeight() {
@@ -194,6 +191,15 @@ public class TableViewConfig {
 
     public TableViewConfig setCloseCycle(boolean closeCycle) {
         this.closeCycle = closeCycle;
+        return this;
+    }
+
+    public int getDividerMargin() {
+        return dividerMargin;
+    }
+
+    public TableViewConfig setDividerMargin(int dividerMargin) {
+        this.dividerMargin = dividerMargin;
         return this;
     }
 }

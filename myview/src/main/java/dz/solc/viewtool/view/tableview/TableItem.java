@@ -89,9 +89,9 @@ public class TableItem extends LinearLayout {
             if (autoWrapHeight) {
                 cellParms.width = cellWidth;
                 cellParms.height = LayoutParams.MATCH_PARENT;
-                //TODO 增加一个像素的边距，防止内容过长后导致 分割线不显示的问题
-                if(!isLastItem){
-                    cellParms.bottomMargin = 1;
+                //TODO 增加一个可控制分割的边距
+                if (!isLastItem) {
+                    cellParms.bottomMargin = viewConfig.getDividerMargin();
                 }
             } else {
                 cellParms = new LayoutParams(cellWidth, cellHeight);

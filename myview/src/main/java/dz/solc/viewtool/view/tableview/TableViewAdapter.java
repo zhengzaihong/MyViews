@@ -24,9 +24,12 @@ public class TableViewAdapter extends CommonAdapter {
     @Override
     public void convert(ViewHolder holder, int position, Object entity) {
 
-        // 构建一行数据
+        //构建一行数据
         RowItem rowItem = (RowItem) entity;
-        rowItem.setPosition(position)
+
+        //清除掉可能 缓存的数据
+        rowItem.clearCells()
+                .setPosition(position)
                 .setLastItem(position == datas.size() - 1);
 
         contentListener.getView(holder, rowItem);

@@ -34,7 +34,7 @@ public class Constans {
     public static final String testJson = "[{\n" +
             "\t\"id\": 28169,\n" +
             "\t\"createdTime\": 1557476551,\n" +
-            "\t\"createdBy\": \"张三asadasgasgfadfasfasfasfasfasfasfafafaf\",\n" +
+            "\t\"createdBy\": \"张三asadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafafsadasgasgfadfasfasfasfasfasfasfafafaf\",\n" +
             "\t\"name\": \"ID\",\n" +
             "\t\"ls\": 6\n" +
             "}, {\n" +
@@ -405,4 +405,130 @@ public class Constans {
             "\t\"ls\": 9\n" +
             "}\n" +
             "]";
+
+
+    public static final String testData = " [{\n" +
+            "\t\t\"id\": 121,\n" +
+            "\t\t\"createdTime\": 1572969900,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"modifiedTime\": 1573004324,\n" +
+            "\t\t\"modifiedBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 0.3100,\n" +
+            "\t\t\"dipY\": -0.2300,\n" +
+            "\t\t\"dipXRate\": -118.4300,\n" +
+            "\t\t\"dipYRate\": -23.4900,\n" +
+            "\t\t\"dipXChange\": 0.0000,\n" +
+            "\t\t\"dipYChange\": 0.0000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1572883200\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 137,\n" +
+            "\t\t\"createdTime\": 1573056300,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"modifiedTime\": 1573121868,\n" +
+            "\t\t\"modifiedBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 0.3100,\n" +
+            "\t\t\"dipY\": -0.2300,\n" +
+            "\t\t\"dipXRate\": 0.0000,\n" +
+            "\t\t\"dipYRate\": 0.0000,\n" +
+            "\t\t\"dipXChange\": 0.0000,\n" +
+            "\t\t\"dipYChange\": 0.0000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1572969600\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 200,\n" +
+            "\t\t\"createdTime\": 1573142700,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 0.3300,\n" +
+            "\t\t\"dipY\": -0.2400,\n" +
+            "\t\t\"dipXRate\": 0.0200,\n" +
+            "\t\t\"dipYRate\": -0.0100,\n" +
+            "\t\t\"dipXChange\": 0.0200,\n" +
+            "\t\t\"dipYChange\": -0.0100,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1573056000\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 241,\n" +
+            "\t\t\"createdTime\": 1573315500,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 0.3300,\n" +
+            "\t\t\"dipY\": -0.2400,\n" +
+            "\t\t\"dipXRate\": 0.0000,\n" +
+            "\t\t\"dipYRate\": 0.0000,\n" +
+            "\t\t\"dipXChange\": 0.0000,\n" +
+            "\t\t\"dipYChange\": 0.0000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1573228800\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 364,\n" +
+            "\t\t\"createdTime\": 1573833900,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 17.5900,\n" +
+            "\t\t\"dipY\": 21.1020,\n" +
+            "\t\t\"dipXRate\": 17.5900,\n" +
+            "\t\t\"dipYRate\": 21.1020,\n" +
+            "\t\t\"dipXChange\": 0.0000,\n" +
+            "\t\t\"dipYChange\": 0.0000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1573747200\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 422,\n" +
+            "\t\t\"createdTime\": 1574093100,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 18.5000,\n" +
+            "\t\t\"dipY\": 22.3020,\n" +
+            "\t\t\"dipXRate\": 0.9100,\n" +
+            "\t\t\"dipYRate\": 1.2000,\n" +
+            "\t\t\"dipXChange\": 0.9100,\n" +
+            "\t\t\"dipYChange\": 1.2000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1574006400\n" +
+            "\t}, {\n" +
+            "\t\t\"id\": 442,\n" +
+            "\t\t\"createdTime\": 1574179500,\n" +
+            "\t\t\"createdBy\": 1,\n" +
+            "\t\t\"flag\": 1,\n" +
+            "\t\t\"device\": {\n" +
+            "\t\t\t\"code\": \"QJ20190903001\",\n" +
+            "\t\t\t\"name\": \"倾角传感器\"\n" +
+            "\t\t},\n" +
+            "\t\t\"dipX\": 18.5000,\n" +
+            "\t\t\"dipY\": 22.3020,\n" +
+            "\t\t\"dipXRate\": 0.0000,\n" +
+            "\t\t\"dipYRate\": 0.0000,\n" +
+            "\t\t\"dipXChange\": 0.0000,\n" +
+            "\t\t\"dipYChange\": 0.0000,\n" +
+            "\t\t\"state\": \"3,3\",\n" +
+            "\t\t\"dataTime\": 1574092800\n" +
+            "\t}]";
 }

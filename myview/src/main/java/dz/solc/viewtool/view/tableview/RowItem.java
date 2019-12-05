@@ -1,6 +1,4 @@
 package dz.solc.viewtool.view.tableview;
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
