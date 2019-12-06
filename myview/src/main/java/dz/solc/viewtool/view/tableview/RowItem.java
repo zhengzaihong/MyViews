@@ -40,6 +40,7 @@ public class RowItem<T> {
      */
     private Object obj;
 
+
     public RowItem(T rowData) {
         this.rowData = rowData;
     }
