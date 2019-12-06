@@ -114,6 +114,9 @@ public class TableView<E> extends HorizontalScrollView {
         viewConfig.setShowHead(ta.getBoolean(R.styleable.TabaleViewStyle_table_visible_head, true));
         viewConfig.setCloseCycle(ta.getBoolean(R.styleable.TabaleViewStyle_table_close_cycle, true));
 
+        //回收资源
+        ta.recycle();
+
         initView();
     }
 
