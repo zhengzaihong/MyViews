@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import dz.solc.viewtool.R;
@@ -39,15 +41,39 @@ public class TableView<E> extends HorizontalScrollView {
 
     private static final String TAG = TableView.class.getSimpleName();
 
+    /**
+     * 上下文
+     */
     private Context mContext;
+    /**
+     * 表头
+     */
     private LinearLayout headLayout;
+    /**
+     * 数据内容列表
+     * 利用 listView 的复用机制，减少性能的开销
+     */
     private ListView listView;
 
+    /**
+     * 数据源
+     */
     private List<E> datas = new ArrayList<>();
 
+    /**
+     * 列表适配器
+     */
     private TableViewAdapter customeTableViewAdapter;
 
+    /**
+     * TableView 的配置文件
+     */
     private TableViewConfig viewConfig;
+
+    /**
+     * 记录所有的视图
+     */
+    private SparseArray<LinkedHashSet<View>> itemsView = new SparseArray<LinkedHashSet<View>>();
 
 
     public TableView(Context context) {
@@ -125,7 +151,6 @@ public class TableView<E> extends HorizontalScrollView {
         listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
         listView.setNestedScrollingEnabled(false);
         wrapView.addView(listView);
-
 
         this.addView(wrapView);
 
@@ -333,6 +358,9 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
+
+
+
     /**
      * 替换数据
      *
@@ -387,6 +415,25 @@ public class TableView<E> extends HorizontalScrollView {
         return null;
     }
 
+    /**
+     * 添加数据 Cell 视图
+     * @param index 集合的 下标
+     * @param view 具体的每行 cell
+     */
+    protected void addDataView(int index, LinkedHashSet<View> view){
+        itemsView.put(index,view);
+    }
+
+
+    /**
+     * 获取整个表格数据 使用
+     * @return
+     */
+    public SparseArray<LinkedHashSet<View>> getDataView(){
+        return itemsView;
+    }
+
+
 
     /**
      * 必须设置该回调监听，否则不填充数据
@@ -413,6 +460,5 @@ public class TableView<E> extends HorizontalScrollView {
         viewConfig.setOnCellItemClickListener(onCellItemClickListener);
 
     }
-
 
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import dz.solc.viewtool.view.tableview.listener.FillContentListener;
@@ -23,6 +23,9 @@ import dz.solc.viewtool.view.tableview.listener.FillContentListener;
  **/
 public class TableItem extends LinearLayout {
 
+    //TODO 记录所有Views 方便后续做 表修改获取数据功能
+    private LinkedHashSet<View> mViews = new LinkedHashSet<>();
+
     public TableItem(Context context) {
         this(context, null);
     }
@@ -34,19 +37,21 @@ public class TableItem extends LinearLayout {
     public TableItem(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
+        this.setOrientation(LinearLayout.VERTICAL);
+
     }
 
     public void buildItem(FillContentListener listener, final RowItem rowItem) {
+
+        //先移除全部旧数据显示
+        this.removeAllViews();
+        this.mViews.clear();
 
 
         final int rowPosition = rowItem.getPosition();
         final List<ItemCell> itemCells = rowItem.getCells();
         final boolean isLastItem = rowItem.isLastItem();
 
-        //先移除全部旧数据显示
-        this.removeAllViews();
-
-        this.setOrientation(LinearLayout.VERTICAL);
         final LinearLayout secondLayout = new LinearLayout(getContext());
         secondLayout.setOrientation(LinearLayout.HORIZONTAL);
         secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -81,10 +86,8 @@ public class TableItem extends LinearLayout {
 
         for (int i = 0; i < itemCells.size(); i++) {
             final ItemCell itemCell = itemCells.get(i);
-
             //TODO 外部提供单元格信息
             View view = listener.cellItem(itemCell, i, rowItem);
-
             LayoutParams cellParms = new LayoutParams(cellWidth, cellHeight);
             if (autoWrapHeight) {
                 cellParms.width = cellWidth;
@@ -149,7 +152,12 @@ public class TableItem extends LinearLayout {
                     secondLayout.addView(lineBg);
                 }
             }
+            //添加到记录中mViews
+            mViews.add(view);
         }
+
+        //添加每行数据到视图记录
+        tableView.addDataView(rowPosition, mViews);
 
         //添加listView item 分割线
         RelativeLayout lineDivider = new RelativeLayout(getContext());
