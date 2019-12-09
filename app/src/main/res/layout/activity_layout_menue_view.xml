@@ -68,6 +68,16 @@
             app:strokeWidth="@dimen/len_1" />
 
 
+        <dz.solc.viewtool.view.textview.GradientTextView
+            android:id="@+id/gtTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            android:textSize="@dimen/len_30"
+            android:textStyle="bold"
+            app:gradient_orientation="vertical"
+            app:gradient_drawable="@drawable/gradient_shape" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint"
             android:layout_width="wrap_content"

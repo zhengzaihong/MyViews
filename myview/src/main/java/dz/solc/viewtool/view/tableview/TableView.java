@@ -160,7 +160,6 @@ public class TableView<E> extends HorizontalScrollView {
 
         this.addView(wrapView);
 
-
     }
 
 

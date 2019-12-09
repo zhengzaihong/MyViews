@@ -130,6 +130,18 @@
 
     </declare-styleable>
 
+    <declare-styleable name="DrawableTextView">
+
+        <!--渐变drawable-->
+        <attr name="gradient_drawable" format="reference" />
+
+        <!--设置文字的渐变方向-->
+        <attr name="gradient_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
 
     <declare-styleable name="mySwitchButton">
         <!-- 圆角矩形的边颜色-->
