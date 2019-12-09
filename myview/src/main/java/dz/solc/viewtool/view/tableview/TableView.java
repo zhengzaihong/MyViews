@@ -36,7 +36,6 @@ import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChild
  * creat_date: 2019/7/11
  * creat_time: 13:42
  * describe  支持横向和纵向滑动的表格控件，目前不支持 单元格合并
- *
  **/
 @SuppressWarnings("all")
 public class TableView<E> extends HorizontalScrollView {
@@ -327,8 +326,10 @@ public class TableView<E> extends HorizontalScrollView {
 
             addEmptyData(datas);
 
-            customeTableViewAdapter = new TableViewAdapter(this, contentListener);
-            listView.setAdapter(customeTableViewAdapter);
+            if (null == customeTableViewAdapter) {
+                customeTableViewAdapter = new TableViewAdapter(this, contentListener);
+                listView.setAdapter(customeTableViewAdapter);
+            }
             customeTableViewAdapter.setNewData(datas);
 
         } else {
@@ -385,10 +386,9 @@ public class TableView<E> extends HorizontalScrollView {
      * @param data
      */
     public void replaceData(List<E> data) {
-
         if (null != customeTableViewAdapter) {
-            addEmptyData(data);
-            customeTableViewAdapter.setNewData(data);
+            datas.clear();
+            setData(data);
         }
     }
 

@@ -72,8 +72,9 @@
             app:table_devider_height="@dimen/len_1"
             app:table_devider_color="@color/light_blue_200"
             app:table_auto_wrap_height="true"
-            app:table_visible_head="true"
             app:table_close_cycle="true"
+
+            app:table_visible_head="true"
             app:table_need_edit="true"
 
             android:padding="@dimen/len_10"
