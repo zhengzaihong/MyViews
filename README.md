@@ -66,6 +66,8 @@ setShowHead(true)
 
 新增 加载动画新增API 
 
+新增 支持渐变文字方向的 GradientTextView
+
 其他优化
 
 
