@@ -35,7 +35,8 @@ import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChild
  * Email:1096877329@qq.com
  * creat_date: 2019/7/11
  * creat_time: 13:42
- * describe 表格控件
+ * describe  支持横向和纵向滑动的表格控件，目前不支持 单元格合并
+ *
  **/
 @SuppressWarnings("all")
 public class TableView<E> extends HorizontalScrollView {
