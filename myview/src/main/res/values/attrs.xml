@@ -125,6 +125,8 @@
         <attr name="table_visible_head" format="boolean"></attr>
         <!--是否形成闭环演示-->
         <attr name="table_close_cycle" format="boolean"></attr>
+        <!--表格是否需要编辑-->
+        <attr name="table_need_edit" format="boolean"></attr>
 
     </declare-styleable>
 

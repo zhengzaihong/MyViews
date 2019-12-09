@@ -47,28 +47,27 @@ public class TableItem extends LinearLayout {
         this.removeAllViews();
         this.mViews.clear();
 
-
         final int rowPosition = rowItem.getPosition();
         final List<ItemCell> itemCells = rowItem.getCells();
         final boolean isLastItem = rowItem.isLastItem();
-
-        final LinearLayout secondLayout = new LinearLayout(getContext());
-        secondLayout.setOrientation(LinearLayout.HORIZONTAL);
-        secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         //获取绑定的 TableView
         final TableView tableView = listener.bindTableView();
 
         final TableViewConfig viewConfig = tableView.getViewConfig();
-
         final boolean isCloseCycle = viewConfig.isCloseCycle();
-
         final int dividerHeight = viewConfig.getDividerHeight();
         final int dividerWidth = viewConfig.getDividerWidth();
         final int cellWidth = viewConfig.getCellWidth();
         final int cellHeight = viewConfig.getCellHeight();
 
         boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
+
+
+        final LinearLayout secondLayout = new LinearLayout(getContext());
+        secondLayout.setOrientation(LinearLayout.HORIZONTAL);
+        secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
 
         LinearLayout headBottomLine;
 
@@ -82,7 +81,6 @@ public class TableItem extends LinearLayout {
         }
 
         this.addView(secondLayout);
-
 
         for (int i = 0; i < itemCells.size(); i++) {
             final ItemCell itemCell = itemCells.get(i);

@@ -171,6 +171,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             TextView tv = getView(viewId);
             if(TextUtils.isEmpty(text)){
                 tv.setVisibility(View.GONE);
+                return this;
             }
             tv.setText(null == text?"":text);
             tv.setTextColor(color);
@@ -180,6 +181,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             TextView tv = getView(viewId);
             if(TextUtils.isEmpty(text)){
                 tv.setVisibility(View.GONE);
+                return this;
             }
             tv.setText(null == text?"":text);
             return this;

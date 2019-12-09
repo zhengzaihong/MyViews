@@ -19,6 +19,7 @@ import android.widget.ListView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -113,6 +114,7 @@ public class TableView<E> extends HorizontalScrollView {
         viewConfig.setAutoWrapHeight(ta.getBoolean(R.styleable.TabaleViewStyle_table_auto_wrap_height, false));
         viewConfig.setShowHead(ta.getBoolean(R.styleable.TabaleViewStyle_table_visible_head, true));
         viewConfig.setCloseCycle(ta.getBoolean(R.styleable.TabaleViewStyle_table_close_cycle, true));
+        viewConfig.setEditTable(ta.getBoolean(R.styleable.TabaleViewStyle_table_need_edit, false));
 
         //回收资源
         ta.recycle();
@@ -206,15 +208,15 @@ public class TableView<E> extends HorizontalScrollView {
 
             int headViewWidth = viewConfig.getHeadViewWidth();
 
-            int dividerWidth  =viewConfig.getDividerWidth();
-            int dividerHeight =viewConfig.getDividerHeight();
+            int dividerWidth = viewConfig.getDividerWidth();
+            int dividerHeight = viewConfig.getDividerHeight();
 
             boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
             int headViewHeight = autoWrapHeight ? ViewGroup.LayoutParams.WRAP_CONTENT : viewConfig.getHeadViewHeight();
 
             LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-            HashMap headMap = new HashMap();
+            HashMap headMap = new LinkedHashMap();
 
             for (int i = 0; i < headData.size(); i++) {
                 HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
@@ -323,6 +325,8 @@ public class TableView<E> extends HorizontalScrollView {
                 Log.e(TAG, new RowItem(data.get(i)).toString());
             }
 
+            addEmptyData(datas);
+
             customeTableViewAdapter = new TableViewAdapter(this, contentListener);
             listView.setAdapter(customeTableViewAdapter);
             customeTableViewAdapter.setNewData(datas);
@@ -361,7 +365,18 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
+    /**
+     * 添加一行空数据，内部使用
+     */
+    private void addEmptyData(List<E> data) {
 
+        //如果是可编辑的 TableView 则在第一行添加一行过滤行
+        if (viewConfig.isEditTable() && viewConfig.isShowHead()) {
+            if (null != data && data.size() > 0) {
+                datas.add(0, null);
+            }
+        }
+    }
 
 
     /**
@@ -372,6 +387,7 @@ public class TableView<E> extends HorizontalScrollView {
     public void replaceData(List<E> data) {
 
         if (null != customeTableViewAdapter) {
+            addEmptyData(data);
             customeTableViewAdapter.setNewData(data);
         }
     }
@@ -420,22 +436,23 @@ public class TableView<E> extends HorizontalScrollView {
 
     /**
      * 添加数据 Cell 视图
+     *
      * @param index 集合的 下标
-     * @param view 具体的每行 cell
+     * @param view  具体的每行 cell
      */
-    protected void addDataView(int index, LinkedHashSet<View> view){
-        itemsView.put(index,view);
+    protected synchronized void addDataView(int index, LinkedHashSet<View> view) {
+        itemsView.put(index, view);
     }
 
 
     /**
      * 获取整个表格数据 使用
+     *
      * @return
      */
-    public SparseArray<LinkedHashSet<View>> getDataView(){
+    public SparseArray<LinkedHashSet<View>> getDataView() {
         return itemsView;
     }
-
 
 
     /**

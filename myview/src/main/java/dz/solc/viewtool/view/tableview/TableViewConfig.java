@@ -66,6 +66,13 @@ public class TableViewConfig {
      */
     private boolean autoWrapHeight = false;
 
+
+    /**
+     * 是否需要编辑表格，如果需要则配置该属性为真
+     */
+    private boolean isEditTable = false;
+
+
     /**
      * 设置分割的外边距(慎用)
      */
@@ -76,6 +83,14 @@ public class TableViewConfig {
      */
     private OnCellItemClickListener onCellItemClickListener;
 
+
+    public OnCellItemClickListener getOnCellItemClickListener() {
+        return onCellItemClickListener;
+    }
+
+    public void setOnCellItemClickListener(OnCellItemClickListener onCellItemClickListener) {
+        this.onCellItemClickListener = onCellItemClickListener;
+    }
 
     public boolean isShowHead() {
         return showHead;
@@ -177,13 +192,15 @@ public class TableViewConfig {
         return this;
     }
 
-    public OnCellItemClickListener getOnCellItemClickListener() {
-        return onCellItemClickListener;
+    public boolean isEditTable() {
+        return isEditTable;
     }
 
-    public void setOnCellItemClickListener(OnCellItemClickListener onCellItemClickListener) {
-        this.onCellItemClickListener = onCellItemClickListener;
+    public TableViewConfig setEditTable(boolean editTable) {
+        isEditTable = editTable;
+        return this;
     }
+
 
     public boolean isCloseCycle() {
         return closeCycle;

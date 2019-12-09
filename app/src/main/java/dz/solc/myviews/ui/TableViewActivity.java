@@ -1,6 +1,5 @@
 package dz.solc.myviews.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +12,8 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dz.utlis.AndroidUtils;
-import com.dz.utlis.JavaUtils;
-import com.dz.utlis.ScreenUtils;
 import com.dz.utlis.TimeUtil;
 import com.dz.utlis.ToastTool;
-import com.dz.utlis.UiCompat;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -75,7 +71,7 @@ public class TableViewActivity extends AppCompatActivity {
 
                 SparseArray<LinkedHashSet<View>> dataViews = tableView.getDataView();
 
-                for (int i = 1; i < dataViews.size(); i++) {
+                for (int i = 0; i < dataViews.size(); i++) {
                     LinkedHashSet<View> views = dataViews.get(i);
                     if (null != views) {
                         StringBuffer buffer = new StringBuffer("--------");
@@ -85,7 +81,6 @@ public class TableViewActivity extends AppCompatActivity {
                             buffer.append(editText.getText().toString()).append("--");
                         }
                         outRedPrint("一行信息：" + buffer.toString());
-
                     }
                 }
             }
@@ -98,6 +93,7 @@ public class TableViewActivity extends AppCompatActivity {
                 .setAutoWrapHeight(true)  //自适应高度
                 .setShowHead(true)        //是否显表头信息
                 .setDivider(1)          //设置分割线高
+                .setEditTable(false)    //是否表格中需要编辑
                 .setDividerColor(getResources().getColor(R.color.light_blue_200))  //设置分割线颜色
                 .setCloseCycle(false);   //是否形成分割闭环样式
 
@@ -111,9 +107,7 @@ public class TableViewActivity extends AppCompatActivity {
 
 
         test();
-//
         test1(config1);
-//
         test2(config2);
 
 
@@ -122,28 +116,18 @@ public class TableViewActivity extends AppCompatActivity {
         tableView2.measureHeight();
     }
 
-    private List<String> cellTitle = new ArrayList<>();
-
     private void test() {
-        cellTitle.add("ID");
-        cellTitle.add("时间");
-        cellTitle.add("姓名");
-
-        cellTitle.add("查看");
-
 
         tableView.setOnCellItemClickListener(new OnCellItemClickListener() {
             @Override
             public void onClick(View view, ItemCell itemCell, RowItem rowItem) {
 
-                if(rowItem.getPosition()==0){
-                    return;
-                }
                 TextView textView = view.findViewById(R.id.tvCell);
                 ToastTool.get().show(itemCell.getCellValue().toString());
 
                 outRedPrint("当前单元格信息:" + itemCell.toString());
                 outRedPrint("当前行数据:" + rowItem.toString());
+                outRedPrint("当前行数据:" + itemCell.getTag());
             }
 
         });
@@ -190,34 +174,25 @@ public class TableViewActivity extends AppCompatActivity {
             @Override
             public View cellItem(ItemCell obj, int cellIndex, RowItem rowItem) {
                 View view = null;
-                if (rowItem.getPosition() == 0) {
 
+                //处理不需要编辑的 单元格
+                if (cellIndex == 3) {
                     view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout);
                     TextView textView = view.findViewById(R.id.tvCell);
-                    textView.setText(cellTitle.get(cellIndex));
-                    textView.setTextColor(Color.WHITE);
+                    textView.setText("操作");
+                    obj.setTag(rowItem.getPosition());
 
-                    view.setBackgroundColor(UiCompat.getColor(getResources(), R.color.light_blue_200));
                 } else {
+                    view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_edit_view_layout);
+                    EditText editText = view.findViewById(R.id.tvCell);
+                    //将填充单元格数据取出 注意和 getView 中的对应关系
+                    editText.setText(obj.getCellValue().toString());
+                }
 
-                    //处理不需要编辑的 单元格
-                    if (cellIndex == 3) {
-                        view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout);
-                        TextView textView = view.findViewById(R.id.tvCell);
-                        textView.setText("操作");
-
-                    } else {
-                        view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_edit_view_layout);
-                        EditText editText = view.findViewById(R.id.tvCell);
-                        //将填充单元格数据取出 注意和 getView 中的对应关系
-                        editText.setText(obj.getCellValue().toString());
-                    }
-
-                    if (rowItem.getPosition() % 2 == 0) {
-                        view.setBackgroundColor(getResources().getColor(R.color.amber_50));
-                    } else {
-                        view.setBackgroundColor(getResources().getColor(R.color.wheat));
-                    }
+                if (rowItem.getPosition() % 2 == 0) {
+                    view.setBackgroundColor(getResources().getColor(R.color.amber_50));
+                } else {
+                    view.setBackgroundColor(getResources().getColor(R.color.wheat));
                 }
 
                 return view;
@@ -243,11 +218,6 @@ public class TableViewActivity extends AppCompatActivity {
         }
 
         tableView.setHead(head);
-
-        //TODO 如果是需要编辑的表格，则表格第一行数据需要特殊处理下,否则不显示第一行
-        // 该问题具体原因还没定位
-        content.add(0,content.get(0));
-
         tableView.setData(content);
 
     }
@@ -312,9 +282,6 @@ public class TableViewActivity extends AppCompatActivity {
                 return tableView1;
             }
         });
-
-
-
 
 
         PersonInfoBean personInfoBean = JSON.toJavaObject(JSON.parseObject(Constans.testJson1), PersonInfoBean.class);

@@ -23,6 +23,45 @@
 
 新特性 表格控件 支持自适应内容高度，性能优化。支持布局文件配置,使用更简洁
 
+如果TableView 是需要编辑的且需要编辑后值，则TableView 的 如下两个属性必须为true,否则第一行数据将丢失
+
+app:table_visible_head="true"
+app:table_need_edit="true"
+
+或者代码配置
+
+setEditTable(true)
+setShowHead(true)
+
+
+获取值的需要特殊处理下，因为TableView 为了灵活性并没限制每个单元格使用什么View,即可以是任何View,因此内部不能帮你采集出编辑后的值，
+所以需要你自己手动处理下，如下：
+
+  
+    btGetData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SparseArray<LinkedHashSet<View>> dataViews = tableView.getDataView();
+
+                for (int i = 0; i < dataViews.size(); i++) {
+                    LinkedHashSet<View> views = dataViews.get(i);
+                    if (null != views) {
+                        StringBuffer buffer = new StringBuffer("--------");
+                        Iterator<View> iterator = views.iterator();
+                        while (iterator.hasNext()) {
+                            TextView editText = iterator.next().findViewById(R.id.tvCell);
+                            buffer.append(editText.getText().toString()).append("--");
+                        }
+                        outRedPrint("一行信息：" + buffer.toString());
+                    }
+                }
+            }
+        });
+
+
+                                                  
+
 新增 支持gif的控件
 
 新增 加载动画新增API 

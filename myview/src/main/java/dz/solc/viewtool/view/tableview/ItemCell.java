@@ -30,7 +30,7 @@ public class ItemCell<T> {
     /**
      * 携带附加数据
      */
-    private Object obj;
+    private Object tag;
 
 
     public ItemCell(T cellValue) {
@@ -41,23 +41,22 @@ public class ItemCell<T> {
         this(cellValue, cellTextColor, null);
     }
 
-    public ItemCell(T cellValue, Object obj) {
-        this(cellValue, Color.WHITE, obj);
+    public ItemCell(T cellValue, Object tag) {
+        this(cellValue, Color.WHITE, tag);
     }
 
-    public ItemCell(T cellValue, int cellTextColor, Object obj) {
+    public ItemCell(T cellValue, int cellTextColor, Object tag) {
         this.cellValue = cellValue;
         this.cellTextColor = cellTextColor;
-        this.obj = obj;
+        this.tag = tag;
     }
 
-
-    public Object getObject() {
-        return obj;
+    public Object getTag() {
+        return tag;
     }
 
-    public ItemCell setObject(Object object) {
-        this.obj = object;
+    public ItemCell setTag(Object tag) {
+        this.tag = tag;
         return this;
     }
 
@@ -94,7 +93,7 @@ public class ItemCell<T> {
                 "cellValue=" + cellValue +
                 ", colnum=" + colnum +
                 ", cellTextColor=" + cellTextColor +
-                ", obj=" + obj +
+                ", tag=" + tag +
                 '}';
     }
 }
