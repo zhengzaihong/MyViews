@@ -16,11 +16,11 @@ import dz.solc.viewtool.R;
 
 
 /**
- *creat_user: zhengzaihong
- *email:1096877329@qq.com
- *creat_date: 2019/3/29 0029
- *creat_time: 11:32
- *describe: 自定义圆环
+ * creat_user: zhengzaihong
+ * email:1096877329@qq.com
+ * creat_date: 2019/3/29 0029
+ * creat_time: 11:32
+ * describe: 自定义圆环
  **/
 
 public class CircleBarView extends View {
@@ -48,22 +48,22 @@ public class CircleBarView extends View {
 
     public CircleBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context,attrs);
+        init(context, attrs);
     }
 
-    private void init(Context context,AttributeSet attrs){
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.CircleBarView);
+    private void init(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleBarView);
 
-        progressColor = typedArray.getColor(R.styleable.CircleBarView_progress_color,Color.GREEN);
-        bgColor = typedArray.getColor(R.styleable.CircleBarView_bg_color,Color.GRAY);
-        startAngle = typedArray.getFloat(R.styleable.CircleBarView_start_angle,0);
-        sweepAngle = typedArray.getFloat(R.styleable.CircleBarView_sweep_angle,360);
-        barWidth = typedArray.getDimension(R.styleable.CircleBarView_bar_width, dip2px(context,10));
+        progressColor = typedArray.getColor(R.styleable.CircleBarView_progress_color, Color.GREEN);
+        bgColor = typedArray.getColor(R.styleable.CircleBarView_bg_color, Color.GRAY);
+        startAngle = typedArray.getFloat(R.styleable.CircleBarView_start_angle, 0);
+        sweepAngle = typedArray.getFloat(R.styleable.CircleBarView_sweep_angle, 360);
+        barWidth = typedArray.getDimension(R.styleable.CircleBarView_bar_width, dip2px(context, 10));
         typedArray.recycle();
 
         progressNum = 0;
         maxNum = 100;
-        defaultSize = (int) dip2px(context,100);
+        defaultSize = (int) dip2px(context, 100);
         mRectF = new RectF();
 
         progressPaint = new Paint();
@@ -92,8 +92,8 @@ public class CircleBarView extends View {
         int min = Math.min(width, height);// 获取View最短边的长度
         setMeasuredDimension(min, min);// 强制改View为以最短边为长度的正方形
 
-        if(min >= barWidth*2){
-            mRectF.set(barWidth/2,barWidth/2,min-barWidth/2,min-barWidth/2);
+        if (min >= barWidth * 2) {
+            mRectF.set(barWidth / 2, barWidth / 2, min - barWidth / 2, min - barWidth / 2);
         }
 
     }
@@ -102,13 +102,13 @@ public class CircleBarView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawArc(mRectF,startAngle,sweepAngle,false,bgPaint);
-        canvas.drawArc(mRectF,startAngle,progressSweepAngle,false, progressPaint);
+        canvas.drawArc(mRectF, startAngle, sweepAngle, false, bgPaint);
+        canvas.drawArc(mRectF, startAngle, progressSweepAngle, false, progressPaint);
     }
 
-    public class CircleBarAnim extends Animation{
+    public class CircleBarAnim extends Animation {
 
-        public CircleBarAnim(){
+        public CircleBarAnim() {
         }
 
         @Override
@@ -119,14 +119,14 @@ public class CircleBarView extends View {
 
             progressSweepAngle = interpolatedTime * sweepAngle * progress;
 
-            if(onAnimationListener!=null){
-                onAnimationListener.changeProgressColor(progressPaint,interpolatedTime, progress,maxNum);
+            if (onAnimationListener != null) {
+                onAnimationListener.changeProgressColor(progressPaint, interpolatedTime, progress, maxNum);
             }
             postInvalidate();
         }
     }
 
-    private int measureSize(int defaultSize,int measureSpec) {
+    private int measureSize(int defaultSize, int measureSpec) {
         int result = defaultSize;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
@@ -142,6 +142,7 @@ public class CircleBarView extends View {
 
     /**
      * 设置进度条最大值
+     *
      * @param maxNum
      */
     public void setMaxNum(float maxNum) {
@@ -150,8 +151,9 @@ public class CircleBarView extends View {
 
     /**
      * 设置进度条数值
+     *
      * @param progressNum 进度条数值
-     * @param time 动画持续时间（毫秒）
+     * @param time        动画持续时间（毫秒）
      */
     public void setProgressNum(float progressNum, int time) {
         this.progressNum = progressNum;
@@ -163,10 +165,11 @@ public class CircleBarView extends View {
 
         /**
          * 如何处理进度条的颜色
-         * @param paint 进度条画笔
+         *
+         * @param paint            进度条画笔
          * @param interpolatedTime 从0渐变成1,到1时结束动画
-         * @param updateNum 进度条数值
-         * @param maxNum 进度条最大值
+         * @param updateNum        进度条数值
+         * @param maxNum           进度条最大值
          */
         void changeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum);
 
@@ -175,8 +178,6 @@ public class CircleBarView extends View {
     public void setOnAnimationListener(OnAnimationListener onAnimationListener) {
         this.onAnimationListener = onAnimationListener;
     }
-
-
 
 
     public static float dip2px(Context context, float dpValue) {
