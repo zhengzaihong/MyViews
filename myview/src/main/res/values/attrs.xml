@@ -232,7 +232,8 @@
 
 
     <!-- 有边框和背景的View -->
-    <declare-styleable name="FilletView">
+    <declare-styleable name="FilletTextViewConfig">
+
         <attr name="f_strokeWidth" format="dimension" />
         <attr name="f_cornerRadius" format="dimension" />
         <attr name="f_strokeColor" format="color|reference" />
@@ -255,6 +256,36 @@
             <enum name="f_right_bootom_radius" value="5" />
             <enum name="f_all_radius" value="6" />
             <enum name="f_none_radius" value="7" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 有边框和背景的View -->
+    <declare-styleable name="FilletEditViewConfig">
+
+        <attr name="e_normalStrokeWidth" format="dimension" />
+        <attr name="e_pressStrokeWidth" format="dimension" />
+        <attr name="e_cornerRadius" format="dimension" />
+        <attr name="e_normalStrokeColor" format="color|reference" />
+        <attr name="e_pressStrokeColor" format="color|reference" />
+        <attr name="e_normalBgColor" format="color|reference" />
+        <attr name="e_pressedBgColor" format="color|reference" />
+        <attr name="e_followTextColor" format="boolean" />
+        <attr name="e_normalTextColor" format="color|reference" />
+        <attr name="e_pressedTextColor" format="color|reference" />
+        <attr name="e_showAnimation" format="boolean" />
+
+
+        <attr name="e_radius_type">
+            <enum name="e_left_top_bottom_radius" value="0" />
+            <enum name="e_right_top_bootom_radius" value="1" />
+
+            <enum name="e_left_top_radius" value="2" />
+            <enum name="e_left_bottom_radius" value="3" />
+            <enum name="e_right_top_radius" value="4" />
+
+            <enum name="e_right_bootom_radius" value="5" />
+            <enum name="e_all_radius" value="6" />
+            <enum name="e_none_radius" value="7" />
         </attr>
     </declare-styleable>
 

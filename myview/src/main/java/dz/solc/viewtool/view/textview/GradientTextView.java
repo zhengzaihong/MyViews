@@ -41,7 +41,9 @@ import dz.solc.viewtool.R;
  * {@link GradientDrawable}
  * {@link BitmapDrawable}
  * {@link StateListDrawable}：即selector,selector的item的drawable以必须是以上三种支持的drawable
- **/
+ *
+ * 该控件只支持 7.0以上
+ *  **/
 @SuppressWarnings("all")
 public class GradientTextView extends android.support.v7.widget.AppCompatTextView {
 
@@ -295,7 +297,7 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
             try {
                 Field field = GradientDrawable.class.getDeclaredField("mGradientState");
                 field.setAccessible(true);
-                Field colorsField = field.get(drawable).getClass().getDeclaredField("mColorStateList");
+                Field colorsField = field.get(drawable).getClass().getDeclaredField("mGradientColors");
                 colorsField.setAccessible(true);
                 return (ColorStateList) colorsField.get(field.get(drawable));
             } catch (NoSuchFieldException | IllegalAccessException e) {

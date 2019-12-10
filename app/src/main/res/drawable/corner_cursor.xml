@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 手机号，密码输入框 输入框的光标颜色  -->
+    <size android:width="0.5dp" />
+    <solid android:color="@color/yellow" />
+</shape>
