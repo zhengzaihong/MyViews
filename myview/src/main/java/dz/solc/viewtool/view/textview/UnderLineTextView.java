@@ -26,6 +26,7 @@ public class UnderLineTextView extends AppCompatTextView {
     private int mColor;
     private float density;
     private float mStrokeWidth;
+    private float marginTop;
 
     public UnderLineTextView(Context context) {
         this(context, null, 0);
@@ -47,6 +48,7 @@ public class UnderLineTextView extends AppCompatTextView {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.UnderlinedTextView, defStyleAttr, 0);
         mColor = array.getColor(R.styleable.UnderlinedTextView_underlineColor, 0xFFFF0000);
         mStrokeWidth = array.getDimension(R.styleable.UnderlinedTextView_underlineWidth, density * 2);
+        marginTop = array.getDimension(R.styleable.UnderlinedTextView_marginTop, 0);
         array.recycle();
 
         mRect = new Rect();
@@ -81,7 +83,7 @@ public class UnderLineTextView extends AppCompatTextView {
             x_diff = layout.getPrimaryHorizontal(firstCharInLine + 1) - x_start;
             x_stop = layout.getPrimaryHorizontal(lastCharInLine - 1) + x_diff;
 
-            canvas.drawLine(x_start, baseline + mStrokeWidth, x_stop, baseline + mStrokeWidth, mPaint);
+            canvas.drawLine(x_start, baseline + mStrokeWidth+marginTop, x_stop, baseline + mStrokeWidth+marginTop, mPaint);
 
 
         }

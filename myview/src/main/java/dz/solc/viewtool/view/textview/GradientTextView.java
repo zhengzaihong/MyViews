@@ -41,9 +41,9 @@ import dz.solc.viewtool.R;
  * {@link GradientDrawable}
  * {@link BitmapDrawable}
  * {@link StateListDrawable}：即selector,selector的item的drawable以必须是以上三种支持的drawable
- *
- * 该控件只支持 7.0以上
- *  **/
+ * <p>
+ * 该控件支持 7.0以下只支持横向渐变
+ **/
 @SuppressWarnings("all")
 public class GradientTextView extends android.support.v7.widget.AppCompatTextView {
 
@@ -68,9 +68,12 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
     public static final int horizontal = 0;
     public static final int vertical = 1;
 
+    private int startColor;
+    private int endColor;
+
 
     public GradientTextView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public GradientTextView(Context context, AttributeSet attrs) {
@@ -80,8 +83,12 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DrawableTextView);
+            //纵向渐变的 drawable 7.0以上支持
             textColorDrawable = ta.getDrawable(R.styleable.DrawableTextView_gradient_drawable);
             orientation = ta.getInt(R.styleable.DrawableTextView_gradient_orientation, horizontal);
+            //这两个属性是配置横向渐变的
+            startColor = ta.getColor(R.styleable.DrawableTextView_gradient_start_color, Color.TRANSPARENT);
+            endColor = ta.getColor(R.styleable.DrawableTextView_gradient_end_color, Color.TRANSPARENT);
             ta.recycle();
         }
     }
@@ -114,6 +121,7 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
 
     /**
      * 设置文字的渐变方向
+     *
      * @param orientation
      */
     public void setGradientOrientation(int orientation) {
@@ -218,9 +226,11 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
                         colors, getPositions(drawable,
                         colors.length == 3), Shader.TileMode.CLAMP));
             } else {
-                getPaint().setShader(shader = new LinearGradient(0, 0, 0, getMeasuredHeight(),
+                shader = new LinearGradient(0, 0, 0, getMeasuredHeight(),
                         colors, getPositions(drawable,
-                        colors.length == 3), Shader.TileMode.CLAMP));
+                        colors.length == 3), Shader.TileMode.CLAMP);
+
+                getPaint().setShader(shader);
             }
 
 
@@ -261,7 +271,7 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
     }
 
 
-    public static int[] getColors(GradientDrawable drawable) {
+    public int[] getColors(GradientDrawable drawable) {
         if (drawable == null)
             return new int[]{};
         int[] colors = null;
@@ -287,10 +297,10 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
                 e.printStackTrace();
             }
         }
-        return new int[]{};
+        return new int[]{startColor, endColor};
     }
 
-    public static ColorStateList getColorStateList(GradientDrawable drawable) {
+    public ColorStateList getColorStateList(GradientDrawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return drawable.getColor();
         } else {
@@ -307,7 +317,7 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
         return null;
     }
 
-    public static float[] getPositions(GradientDrawable drawable, boolean hasCenterColor) {
+    public float[] getPositions(GradientDrawable drawable, boolean hasCenterColor) {
         if (hasCenterColor) {
             float[] mPositions = new float[3];
             mPositions[0] = 0.0f;

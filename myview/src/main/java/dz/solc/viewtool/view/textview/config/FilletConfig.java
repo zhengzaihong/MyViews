@@ -37,10 +37,14 @@ public class FilletConfig {
     //记录零时的边框值
     private int undeterMinedStrokeColor = strokeColor;
 
+    //是否开启动画效果
     private boolean showAnimation = false;
 
+    //动画显示时间
+    private Integer showAnimationTime = 500;
+
     // 设置圆角类型
-    private RadiusType radiusType = RadiusType.NONE_RADIUS;
+    private RadiusType radiusType = RadiusType.ALL_RADIUS;
 
     public enum RadiusType {
         /**
@@ -83,6 +87,13 @@ public class FilletConfig {
 
     }
 
+    public Integer getShowAnimationTime() {
+        return showAnimationTime;
+    }
+
+    public void setShowAnimationTime(Integer showAnimationTime) {
+        this.showAnimationTime = showAnimationTime;
+    }
 
     public boolean isShowAnimation() {
         return showAnimation;

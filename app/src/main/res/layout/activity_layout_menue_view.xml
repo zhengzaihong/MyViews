@@ -68,6 +68,7 @@
             app:strokeWidth="@dimen/len_1" />
 
 
+        <!--            app:gradient_drawable="@drawable/selector" -->
         <dz.solc.viewtool.view.textview.GradientTextView
             android:id="@+id/gtTextView"
             android:layout_width="wrap_content"
@@ -76,7 +77,9 @@
             android:textSize="@dimen/len_30"
             android:textStyle="bold"
             app:gradient_orientation="vertical"
-            app:gradient_drawable="@drawable/selector" />
+
+            app:gradient_start_color="@color/yellow"
+            app:gradient_end_color="@color/red_400" />
 
 
         <dz.solc.viewtool.view.editview.FilletEditView
@@ -110,7 +113,6 @@
             app:e_radius_type="e_all_radius"
             app:e_normalBgColor="@color/red_400"
             app:e_pressedBgColor="#029CFD" />
-
 
 
         <android.support.v7.widget.RecyclerView

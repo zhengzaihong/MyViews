@@ -20,6 +20,8 @@ import dz.solc.viewtool.view.tableview.listener.FillContentListener;
  * creat_time: 11:33
  * describe 用于每行包含cell的容器
  **/
+
+@SuppressWarnings("all")
 public class TableItem extends LinearLayout {
 
     //TODO 记录所有Views 方便后续做 表修改获取数据功能
@@ -52,7 +54,7 @@ public class TableItem extends LinearLayout {
 
         //获取绑定的 TableView
         final TableView tableView = listener.bindTableView();
-
+        final ColumnController controller = tableView.getColumnController();
         final TableViewConfig viewConfig = tableView.getViewConfig();
         final boolean isCloseCycle = viewConfig.isCloseCycle();
         final int dividerHeight = viewConfig.getDividerHeight();
@@ -81,21 +83,33 @@ public class TableItem extends LinearLayout {
 
         this.addView(secondLayout);
 
+        int tempWidth;
         for (int i = 0; i < itemCells.size(); i++) {
+
             final ItemCell itemCell = itemCells.get(i);
-            //TODO 外部提供单元格信息
+            //获取到外部提供单元格信息
             View view = listener.cellItem(itemCell, i, rowItem);
-            LayoutParams cellParms = new LayoutParams(cellWidth, cellHeight);
+            int specialWidth = -1;
+            tempWidth = cellWidth;
+            if (null != controller && controller.isContainsKey(i)) {
+                specialWidth = controller.getSpecialWidth(i);
+            }
+            if (specialWidth >= 0) {
+                tempWidth = specialWidth;
+            }
+            LayoutParams cellParms = new LayoutParams(tempWidth, cellHeight);
             if (autoWrapHeight) {
-                cellParms.width = cellWidth;
+                cellParms.width = tempWidth;
                 cellParms.height = LayoutParams.MATCH_PARENT;
+
                 //TODO 增加一个可控制分割的边距
                 if (!isLastItem) {
                     cellParms.bottomMargin = viewConfig.getDividerMargin();
                 }
             } else {
-                cellParms = new LayoutParams(cellWidth, cellHeight);
+                cellParms = new LayoutParams(tempWidth, cellHeight);
             }
+
             view.setLayoutParams(cellParms);
             view.setMinimumHeight(cellHeight);
 

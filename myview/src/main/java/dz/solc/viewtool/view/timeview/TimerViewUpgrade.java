@@ -87,7 +87,6 @@ public class TimerViewUpgrade {
      * 简述下两个方法的区别
      * scheduleAtFixedRate ，是以上一个任务开始的时间计时，period时间过去后，检测上一个任务是否执行完毕，如果上一个任务执行完毕，则当前任务立即执行，
      * 如果上一个任务没有执行完毕，则需要等上一个任务执行完毕后立即执行。
-     * <p>
      * scheduleWithFixedDelay，是以上一个任务结束时开始计时，period时间过去后，立即执行
      */
     private void timeAction() {
@@ -110,7 +109,6 @@ public class TimerViewUpgrade {
 
     /**
      * 关闭倒计时
-     * <p>
      * shutdown只是将线程池的状态设置为SHUTWDOWN状态，正在执行的任务会继续执行下去，没有被执行的则中断。
      * shutdownNow则是将线程池的状态设置为STOP，正在执行的任务则被停止，没被执行任务的则返回。
      */

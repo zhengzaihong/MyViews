@@ -34,7 +34,7 @@ import static dz.solc.viewtool.view.textview.config.FilletConfig.RadiusType.RIGH
  * describe:支持任意边圆角的View,保留TextView全部特性，减少开发中大量的却写xml配置文件来改变背景色文字颜色等，
  **/
 
-@SuppressLint("AppCompatCustomView")
+@SuppressWarnings("all")
 public class FilletView extends AppCompatTextView {
 
     private FilletConfig configBean = new FilletConfig();
@@ -62,8 +62,9 @@ public class FilletView extends AppCompatTextView {
         configBean.setNormalTextColor(ta.getColor(R.styleable.FilletTextViewConfig_f_normalTextColor, configBean.getNormalTextColor()));
         configBean.setPressedTextColor(ta.getColor(R.styleable.FilletTextViewConfig_f_pressedTextColor, configBean.getPressedTextColor()));
         configBean.setShowAnimation(ta.getBoolean(R.styleable.FilletTextViewConfig_f_showAnimation, false));
+        configBean.setShowAnimationTime(ta.getInteger(R.styleable.FilletTextViewConfig_f_animationTime, 500));
 
-        int radiusType = ta.getInt(R.styleable.FilletTextViewConfig_f_radius_type, 0);
+        int radiusType = ta.getInt(R.styleable.FilletTextViewConfig_f_radius_type, -1);
 
         if (radiusType >= 0) {
             FilletConfig.RadiusType[] enumType = FilletConfig.RadiusType.values();
@@ -106,7 +107,7 @@ public class FilletView extends AppCompatTextView {
     }
 
 
-    public static Drawable getPressedSelector(FilletConfig config) {
+    private Drawable getPressedSelector(FilletConfig config) {
         //TODO 目前只做了 按下和抬起状态
         Drawable pressed = createShape(config.getPressedBgColor(), config);
         Drawable normal = createShape(config.getNormalBgColor(), config);
@@ -122,14 +123,14 @@ public class FilletView extends AppCompatTextView {
 
         if (config.isShowAnimation()) {
             // 设置状态选择器过度动画/渐变选择器/渐变动画
-            drawable.setEnterFadeDuration(500);
-            drawable.setExitFadeDuration(500);
+            drawable.setEnterFadeDuration(config.getShowAnimationTime());
+            drawable.setExitFadeDuration(config.getShowAnimationTime());
 
         }
         return drawable;
     }
 
-    public static GradientDrawable createShape(int color, FilletConfig config) {
+    private GradientDrawable createShape(int color, FilletConfig config) {
         GradientDrawable drawable = new GradientDrawable();
         FilletConfig.RadiusType radiusType = config.getRadiusType();
         float radius = config.getCornerRadius();
@@ -163,7 +164,7 @@ public class FilletView extends AppCompatTextView {
     /**
      * 对TextView设置不同状态时其文字颜色。
      */
-    public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+    private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
         int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};

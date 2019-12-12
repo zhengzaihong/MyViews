@@ -25,26 +25,29 @@ import java.util.List;
  * creat_time: 17:42
  * describe: 简化listView 的适配器
  **/
-
+@SuppressWarnings("all")
 public abstract class CommonAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
-    protected List<T> datas = new ArrayList<>();
+    protected List<T> datas;
     protected LayoutInflater mInflater;
     protected int xmlId;
 
+    public CommonAdapter(Context context) {
+        this(context, 0);
+    }
+
+    public CommonAdapter(Context context, int xmlId) {
+        this(context, xmlId, null);
+    }
+
     public CommonAdapter(Context context, int xmlId, List datas) {
         this.mContext = context;
-        this.datas = datas;
+        this.datas = datas == null ? new ArrayList<>() : datas;
         this.mInflater = LayoutInflater.from(context);
         this.xmlId = xmlId;
     }
 
-    public CommonAdapter(Context context, int xmlId) {
-        this.mContext = context;
-        this.mInflater = LayoutInflater.from(context);
-        this.xmlId = xmlId;
-    }
 
     @Override
     public int getCount() {
@@ -94,7 +97,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         convert(holder, position, getItem(position));
         return holder.getConvertView();
     }
-
 
 
     /**
@@ -149,7 +151,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
          */
         public ViewHolder setText(int viewId, CharSequence text) {
             TextView tv = getView(viewId);
-            tv.setText(null == text?"":text);
+            tv.setText(null == text ? "" : text);
             return this;
         }
 
@@ -159,31 +161,32 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             return this;
         }
 
-        public ViewHolder setTextAndColor(int viewId, CharSequence text,int color) {
+        public ViewHolder setTextAndColor(int viewId, CharSequence text, int color) {
             TextView tv = getView(viewId);
-            tv.setText(null == text?"":text);
+            tv.setText(null == text ? "" : text);
             tv.setTextColor(color);
             return this;
         }
 
 
-        public ViewHolder setTextEmptyGone(int viewId, CharSequence text,int color) {
+        public ViewHolder setTextEmptyGone(int viewId, CharSequence text, int color) {
             TextView tv = getView(viewId);
-            if(TextUtils.isEmpty(text)){
+            if (TextUtils.isEmpty(text)) {
                 tv.setVisibility(View.GONE);
                 return this;
             }
-            tv.setText(null == text?"":text);
+            tv.setText(null == text ? "" : text);
             tv.setTextColor(color);
             return this;
         }
+
         public ViewHolder setTextEmptyGone(int viewId, CharSequence text) {
             TextView tv = getView(viewId);
-            if(TextUtils.isEmpty(text)){
+            if (TextUtils.isEmpty(text)) {
                 tv.setVisibility(View.GONE);
                 return this;
             }
-            tv.setText(null == text?"":text);
+            tv.setText(null == text ? "" : text);
             return this;
         }
 

@@ -44,9 +44,7 @@
         app:f_pressedBgColor="@color/yellow"
         app:f_pressedTextColor="@color/red"
         android:clickable="true"
-        app:f_radius_type="f_all_radius"
-        app:f_showAnimation="false">
-    </dz.solc.viewtool.view.textview.FilletView>
+        app:f_showAnimation="false"></dz.solc.viewtool.view.textview.FilletView>
 
     <dz.solc.viewtool.view.textview.FilletView
         android:layout_width="@dimen/len_100"
@@ -63,8 +61,7 @@
         app:f_pressedBgColor="@color/orange_50"
         app:f_pressedTextColor="@color/red"
         app:f_radius_type="f_left_top_radius"
-        app:f_showAnimation="false">
-    </dz.solc.viewtool.view.textview.FilletView>
+        app:f_showAnimation="false"></dz.solc.viewtool.view.textview.FilletView>
 
     <dz.solc.viewtool.view.textview.FilletView
         android:layout_width="@dimen/len_100"
@@ -82,8 +79,7 @@
         app:f_pressedBgColor="@color/white_alpha_80"
         app:f_pressedTextColor="@color/red"
         app:f_radius_type="f_right_top_bootom_radius"
-        app:f_showAnimation="true">
-    </dz.solc.viewtool.view.textview.FilletView>
+        app:f_showAnimation="true"></dz.solc.viewtool.view.textview.FilletView>
 
 
 </LinearLayout>

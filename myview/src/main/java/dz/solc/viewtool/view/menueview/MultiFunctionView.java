@@ -70,7 +70,7 @@ public class MultiFunctionView extends CheckBox {
 
         configBean.setShowAnimation(ta.getBoolean(R.styleable.MultiFunctionView_showAnimation, false));
 
-        int radiusType = ta.getInt(R.styleable.MultiFunctionView_radius_type, 0);
+        int radiusType = ta.getInt(R.styleable.MultiFunctionView_radius_type, -1);
 
         if (radiusType >= 0) {
             MultiFunctionConfig.RadiusType[] enumType = MultiFunctionConfig.RadiusType.values();
@@ -113,7 +113,7 @@ public class MultiFunctionView extends CheckBox {
     }
 
 
-    public static Drawable getPressedSelector(MultiFunctionConfig config) {
+    private Drawable getPressedSelector(MultiFunctionConfig config) {
         //TODO 目前只做了 按下和抬起状态
         Drawable pressed = createShape(config.getPressedBgColor(), config);
         Drawable normal = createShape(config.getNormalBgColor(), config);
@@ -134,7 +134,7 @@ public class MultiFunctionView extends CheckBox {
         return drawable;
     }
 
-    public static GradientDrawable createShape(int color, MultiFunctionConfig config) {
+    private GradientDrawable createShape(int color, MultiFunctionConfig config) {
         GradientDrawable drawable = new GradientDrawable();
         MultiFunctionConfig.RadiusType radiusType = config.getRadiusType();
         float radius = config.getCornerRadius();
@@ -168,7 +168,7 @@ public class MultiFunctionView extends CheckBox {
     /**
      * 对TextView设置不同状态时其文字颜色。
      */
-    public static ColorStateList createColorStateList(int normal, int pressed) {
+    private ColorStateList createColorStateList(int normal, int pressed) {
 
         int[] colors = new int[]{normal, pressed, normal};
         int[][] states = new int[3][];

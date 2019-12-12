@@ -1,15 +1,15 @@
-package dz.solc.viewtool.view.editview.config;
+package dz.solc.viewtool.view.viewgroup;
 
 import android.graphics.Color;
 
 /**
  * creat_user: zhengzaihong
- * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 16:20
- * describe: 自定义可圆角的TextView配置文件
+ * Email:1096877329@qq.com
+ * creat_date: 2019/12/12
+ * creat_time: 19:10
+ * describe 配置 容器的信息
  **/
-public class FilletEditViewConfig {
+public class ViewGroupConfig {
 
     // 边框线宽
     private int normalStrokeWidth = 0;
@@ -25,23 +25,14 @@ public class FilletEditViewConfig {
     private int pressedBgColor = 0xff4C6DE1;
     // 圆角半径
     private int cornerRadius = 30;
-
-    //正常文字颜色
-    private int normalTextColor = Color.WHITE;
-
-    //按压时候的文字颜色
-    private int pressedTextColor = Color.WHITE;
-
     //按压时候边框颜色
     private int pressedStrokeColor = Color.TRANSPARENT;
 
-    // 边框颜色是否跟随文字颜色
-    private boolean followTextColor;
-
-    //记录零时的边框值
-    private int undeterMinedStrokeColor = normalStrokeColor;
-
+    //动画
     private boolean showAnimation = false;
+
+    //动画时间
+    private int animationTime = 500;
 
     // 设置圆角类型
     private RadiusType radiusType = RadiusType.ALL_RADIUS;
@@ -86,47 +77,6 @@ public class FilletEditViewConfig {
         NONE_RADIUS
 
 
-    }
-
-
-    public boolean isShowAnimation() {
-        return showAnimation;
-    }
-
-    public void setShowAnimation(boolean showAnimation) {
-        this.showAnimation = showAnimation;
-    }
-
-    public int getUndeterMinedStrokeColor() {
-        return undeterMinedStrokeColor;
-    }
-
-    public void setUndeterMinedStrokeColor(int undeterMinedStrokeColor) {
-        this.undeterMinedStrokeColor = undeterMinedStrokeColor;
-    }
-
-    public int getNormalTextColor() {
-        return normalTextColor;
-    }
-
-    public void setNormalTextColor(int normalTextColor) {
-        this.normalTextColor = normalTextColor;
-    }
-
-    public int getPressedTextColor() {
-        return pressedTextColor;
-    }
-
-    public void setPressedTextColor(int pressedTextColor) {
-        this.pressedTextColor = pressedTextColor;
-    }
-
-    public int getPressedStrokeColor() {
-        return pressedStrokeColor;
-    }
-
-    public void setPressedStrokeColor(int pressedStrokeColor) {
-        this.pressedStrokeColor = pressedStrokeColor;
     }
 
     public int getNormalStrokeWidth() {
@@ -185,12 +135,20 @@ public class FilletEditViewConfig {
         this.cornerRadius = cornerRadius;
     }
 
-    public boolean isFollowTextColor() {
-        return followTextColor;
+    public int getPressedStrokeColor() {
+        return pressedStrokeColor;
     }
 
-    public void setFollowTextColor(boolean followTextColor) {
-        this.followTextColor = followTextColor;
+    public void setPressedStrokeColor(int pressedStrokeColor) {
+        this.pressedStrokeColor = pressedStrokeColor;
+    }
+
+    public boolean isShowAnimation() {
+        return showAnimation;
+    }
+
+    public void setShowAnimation(boolean showAnimation) {
+        this.showAnimation = showAnimation;
     }
 
     public RadiusType getRadiusType() {
@@ -199,5 +157,13 @@ public class FilletEditViewConfig {
 
     public void setRadiusType(RadiusType radiusType) {
         this.radiusType = radiusType;
+    }
+
+    public int getAnimationTime() {
+        return animationTime;
+    }
+
+    public void setAnimationTime(int animationTime) {
+        this.animationTime = animationTime;
     }
 }

@@ -21,7 +21,9 @@
 
         <activity android:name=".ui.TimeViewActivity"></activity>
         <activity android:name=".ui.MarqueeViewActivity"></activity>
-        <activity android:name=".ui.MenueViewActivity"></activity>
+        <activity
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            android:name=".ui.MenueViewActivity"></activity>
         <activity android:name=".ui.TipDialogActivity"></activity>
         <activity android:name=".ui.ImageViewActivity"></activity>
         <activity android:name=".ui.CalendarViewActivity"></activity>

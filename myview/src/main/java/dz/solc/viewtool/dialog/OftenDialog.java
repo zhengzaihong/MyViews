@@ -135,6 +135,26 @@ public class OftenDialog {
         return this;
     }
 
+    public OftenDialog setTitle(String title) {
+        tv_title.setText(title);
+        return this;
+    }
+
+    public OftenDialog setTitleGravity(int gravity) {
+        tv_title.setGravity(gravity);
+        return this;
+    }
+
+    public OftenDialog setContent(String content) {
+        tv_content.setText(content);
+        return this;
+    }
+
+    public OftenDialog setContentGravity(int gravity) {
+        tv_content.setGravity(gravity);
+        return this;
+    }
+
     /**
      * 标题是否可见
      *

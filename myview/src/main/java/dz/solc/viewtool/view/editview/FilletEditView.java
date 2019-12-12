@@ -29,9 +29,11 @@ import static dz.solc.viewtool.view.editview.config.FilletEditViewConfig.RadiusT
  * email:1096877329@qq.com
  * creat_date: 2019/4/24 0024
  * creat_time: 17:55
- * describe:支持任意边圆角的View,保留EditText全部特性，减少开发中大量的编写xml配置文件来改变背景色文字颜色等，
+ * describe:支持任意边圆角的编辑EditText 可设置背景和前景色,
+ * 保留EditText全部特性，减少开发中大量的编写xml配置文件来改变背景色文字颜色等，
  **/
 
+@SuppressWarnings("all")
 public class FilletEditView extends AppCompatEditText {
 
     private FilletEditViewConfig configBean = new FilletEditViewConfig();
@@ -59,7 +61,7 @@ public class FilletEditView extends AppCompatEditText {
         configBean.setPressedTextColor(ta.getColor(R.styleable.FilletEditViewConfig_e_pressedTextColor, configBean.getPressedTextColor()));
         configBean.setShowAnimation(ta.getBoolean(R.styleable.FilletEditViewConfig_e_showAnimation, false));
 
-        int radiusType = ta.getInt(R.styleable.FilletEditViewConfig_e_radius_type, 0);
+        int radiusType = ta.getInt(R.styleable.FilletEditViewConfig_e_radius_type, -1);
 
         if (radiusType >= 0) {
             FilletEditViewConfig.RadiusType[] enumType = FilletEditViewConfig.RadiusType.values();
@@ -104,7 +106,7 @@ public class FilletEditView extends AppCompatEditText {
     }
 
 
-    public static Drawable getPressedSelector(FilletEditViewConfig config) {
+    private Drawable getPressedSelector(FilletEditViewConfig config) {
         //TODO 目前只做了 按下和抬起状态
 
         Drawable normal = createShape(config.getNormalBgColor(), config, true);
@@ -130,7 +132,7 @@ public class FilletEditView extends AppCompatEditText {
         return drawable;
     }
 
-    public static GradientDrawable createShape(int color, FilletEditViewConfig config, boolean isNormal) {
+    private GradientDrawable createShape(int color, FilletEditViewConfig config, boolean isNormal) {
         GradientDrawable drawable = new GradientDrawable();
         FilletEditViewConfig.RadiusType radiusType = config.getRadiusType();
         float radius = config.getCornerRadius();
@@ -169,7 +171,7 @@ public class FilletEditView extends AppCompatEditText {
     /**
      * 对TextView设置不同状态时其文字颜色。
      */
-    public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+    private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
         int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};

@@ -77,6 +77,12 @@ public class TableView<E> extends HorizontalScrollView {
     private SparseArray<LinkedHashSet<View>> itemsView = new SparseArray<LinkedHashSet<View>>();
 
 
+    /**
+     * 用于控制特殊的列
+     */
+    private ColumnController columnController;
+
+
     public TableView(Context context) {
         this(context, null);
     }
@@ -163,38 +169,6 @@ public class TableView<E> extends HorizontalScrollView {
 
 
     /**
-     * 去掉拉动效果
-     */
-    private void disableOverScrollMode(View view) {
-        if (Build.VERSION.SDK_INT < 9) {
-            return;
-        }
-        try {
-            Method m = View.class.getMethod("setOverScrollMode", int.class);
-            m.setAccessible(true);
-            m.invoke(view, 2);
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
-
-    /**
-     * 设置配置文件
-     *
-     * @param viewConfig
-     */
-    public void setViewConfig(TableViewConfig viewConfig) {
-        this.viewConfig = viewConfig;
-        this.removeAllViews();
-        initView();
-    }
-
-    public TableViewConfig getViewConfig() {
-        return viewConfig;
-    }
-
-
-    /**
      * 添加头部信息
      */
     public void setHead(List<?> headData) {
@@ -226,17 +200,22 @@ public class TableView<E> extends HorizontalScrollView {
             int dividerColor = viewConfig.getDividerColor();
 
             for (int i = 0; i < headMap.size(); i++) {
-                if (isCloseCysle) {
 
+                int specialWidth = -1;
+                if (null != columnController && columnController.isContainsKey(i)) {
+                    specialWidth = columnController.getSpecialWidth(i);
+                }
+
+                if (isCloseCysle) {
                     LinearLayout wrapHeadLayout = new LinearLayout(mContext);
                     wrapHeadLayout.setLayoutParams(params);
                     wrapHeadLayout.setOrientation(LinearLayout.VERTICAL);
 
                     LinearLayout topLine = new LinearLayout(mContext);
                     if (i == headMap.size() - 1) {
-                        topLine.setLayoutParams(new ViewGroup.LayoutParams(headViewWidth + 2 * dividerWidth, dividerHeight));
+                        topLine.setLayoutParams(new LayoutParams((specialWidth >= 0 ? specialWidth : headViewWidth) + 2 * dividerWidth, dividerHeight));
                     } else {
-                        topLine.setLayoutParams(new ViewGroup.LayoutParams(headViewWidth + dividerWidth, dividerHeight));
+                        topLine.setLayoutParams(new LayoutParams((specialWidth >= 0 ? specialWidth : headViewWidth) + dividerWidth, dividerHeight));
                     }
 
                     topLine.setBackgroundColor(dividerColor);
@@ -257,9 +236,13 @@ public class TableView<E> extends HorizontalScrollView {
 
                     wrapHeadLayoutContent.addView(v_line);
 
-
                     View view = contentListener.addHead(headData.get(i));
-                    view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    if (specialWidth >= 0) {
+                        view.setLayoutParams(new LayoutParams(specialWidth, headViewHeight));
+                    } else {
+                        view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    }
+
                     view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     wrapHeadLayoutContent.addView(view);
 
@@ -269,11 +252,14 @@ public class TableView<E> extends HorizontalScrollView {
                         rowlastLine.setBackgroundColor(dividerColor);
                         wrapHeadLayoutContent.addView(rowlastLine);
                     }
-
                     headLayout.addView(wrapHeadLayout);
                 } else {
                     View view = contentListener.addHead(headData.get(i));
-                    view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    if (specialWidth >= 0) {
+                        view.setLayoutParams(new LayoutParams(specialWidth, headViewHeight));
+                    } else {
+                        view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                    }
                     view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     headLayout.addView(view);
 
@@ -335,6 +321,57 @@ public class TableView<E> extends HorizontalScrollView {
         } else {
             Log.e(TAG, "please bind FillContentListener setData before!!");
         }
+    }
+
+
+    /**
+     * 设置需要特殊处理的列控制器
+     *
+     * @param controller
+     */
+    public void setColumnController(ColumnController controller) {
+        this.columnController = controller;
+    }
+
+
+    /**
+     * 获取控制器
+     *
+     * @return
+     */
+    public ColumnController getColumnController() {
+        return columnController;
+    }
+
+    /**
+     * 去掉拉动效果
+     */
+    private void disableOverScrollMode(View view) {
+        if (Build.VERSION.SDK_INT < 9) {
+            return;
+        }
+        try {
+            Method m = View.class.getMethod("setOverScrollMode", int.class);
+            m.setAccessible(true);
+            m.invoke(view, 2);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置配置文件
+     *
+     * @param viewConfig
+     */
+    public void setViewConfig(TableViewConfig viewConfig) {
+        this.viewConfig = viewConfig;
+        this.removeAllViews();
+        initView();
+    }
+
+    public TableViewConfig getViewConfig() {
+        return viewConfig;
     }
 
     /**

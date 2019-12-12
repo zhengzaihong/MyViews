@@ -88,6 +88,7 @@
     <declare-styleable name="UnderlinedTextView">
         <attr name="underlineWidth" format="dimension" />
         <attr name="underlineColor" format="color" />
+        <attr name="marginTop" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="circleProgressBar">
@@ -134,6 +135,10 @@
 
         <!--渐变drawable-->
         <attr name="gradient_drawable" format="reference" />
+        <!--渐变的开始颜色-->
+        <attr name="gradient_start_color" format="color|reference" />
+        <!--渐变的结束颜色-->
+        <attr name="gradient_end_color" format="color|reference" />
 
         <!--设置文字的渐变方向-->
         <attr name="gradient_orientation">
@@ -201,7 +206,7 @@
     </style>
 
 
-    <!-- 有边框和背景的菜单View -->
+    <!-- 有边框和背景的菜单View  属性同  FilletTextViewConfig-->
     <declare-styleable name="MultiFunctionView">
         <attr name="strokeWidth" format="dimension" />
         <attr name="cornerRadius" format="dimension" />
@@ -234,17 +239,28 @@
     <!-- 有边框和背景的View -->
     <declare-styleable name="FilletTextViewConfig">
 
+        <!-- 边框宽度-->
         <attr name="f_strokeWidth" format="dimension" />
-        <attr name="f_cornerRadius" format="dimension" />
+        <!-- 边框颜色-->
         <attr name="f_strokeColor" format="color|reference" />
+        <!-- 非选择时的背景-->
         <attr name="f_normalBgColor" format="color|reference" />
+        <!-- 选择时的背景-->
         <attr name="f_pressedBgColor" format="color|reference" />
+        <!-- 是否跟随文字变化 边框-->
         <attr name="f_followTextColor" format="boolean" />
+        <!-- 未选择时的字体颜色-->
         <attr name="f_normalTextColor" format="color|reference" />
+        <!-- 选择时的字体颜色-->
         <attr name="f_pressedTextColor" format="color|reference" />
+
+        <!-- 是否开启按压动画-->
         <attr name="f_showAnimation" format="boolean" />
-
-
+        <!-- 动画执行时间-->
+        <attr name="f_animationTime" format="integer" />
+        <!-- 圆角度数-->
+        <attr name="f_cornerRadius" format="dimension" />
+        <!-- 圆角类型-->
         <attr name="f_radius_type">
             <enum name="f_left_top_bottom_radius" value="0" />
             <enum name="f_right_top_bootom_radius" value="1" />
@@ -262,19 +278,30 @@
     <!-- 有边框和背景的View -->
     <declare-styleable name="FilletEditViewConfig">
 
+        <!-- 非选择时的边框宽-->
         <attr name="e_normalStrokeWidth" format="dimension" />
+        <!-- 选择时的边框宽-->
         <attr name="e_pressStrokeWidth" format="dimension" />
+        <!-- 圆角度数-->
         <attr name="e_cornerRadius" format="dimension" />
+        <!-- 非选择时的边框颜色-->
         <attr name="e_normalStrokeColor" format="color|reference" />
+        <!-- 选择时的边框颜色-->
         <attr name="e_pressStrokeColor" format="color|reference" />
+        <!-- 非选择时的背景-->
         <attr name="e_normalBgColor" format="color|reference" />
+        <!-- 选择时的背景-->
         <attr name="e_pressedBgColor" format="color|reference" />
+        <!-- 是否跟随文字变化 边框-->
         <attr name="e_followTextColor" format="boolean" />
+        <!-- 未选择时的字体颜色-->
         <attr name="e_normalTextColor" format="color|reference" />
+        <!-- 选择时的字体颜色-->
         <attr name="e_pressedTextColor" format="color|reference" />
+        <!-- 是否开启按压动画-->
         <attr name="e_showAnimation" format="boolean" />
 
-
+        <!-- 圆角类型-->
         <attr name="e_radius_type">
             <enum name="e_left_top_bottom_radius" value="0" />
             <enum name="e_right_top_bootom_radius" value="1" />
@@ -286,6 +313,45 @@
             <enum name="e_right_bootom_radius" value="5" />
             <enum name="e_all_radius" value="6" />
             <enum name="e_none_radius" value="7" />
+        </attr>
+    </declare-styleable>
+
+
+    <!-- 支持圆角的容器 -->
+    <declare-styleable name="ViewGroupConfig">
+
+        <!-- 非选择时的边框宽-->
+        <attr name="vg_normalStrokeWidth" format="dimension" />
+        <!-- 选择时的边框宽-->
+        <attr name="vg_pressStrokeWidth" format="dimension" />
+        <!-- 圆角度数-->
+        <attr name="vg_cornerRadius" format="dimension" />
+        <!-- 非选择时的边框颜色-->
+        <attr name="vg_normalStrokeColor" format="color|reference" />
+        <!-- 选择时的边框颜色-->
+        <attr name="vg_pressStrokeColor" format="color|reference" />
+        <!-- 非选择时的背景-->
+        <attr name="vg_normalBgColor" format="color|reference" />
+        <!-- 选择时的背景-->
+        <attr name="vg_pressedBgColor" format="color|reference" />
+        <!-- 是否开启按压动画-->
+        <attr name="vg_showAnimation" format="boolean" />
+        <!-- 动画时间-->
+        <attr name="vg_animationTime" format="integer" />
+
+        <!-- 圆角类型-->
+        <attr name="vg_radius_type">
+
+            <enum name="vg_left_top_bottom_radius" value="0" />
+            <enum name="vg_right_top_bootom_radius" value="1" />
+
+            <enum name="vg_left_top_radius" value="2" />
+            <enum name="vg_left_bottom_radius" value="3" />
+            <enum name="vg_right_top_radius" value="4" />
+
+            <enum name="vg_right_bootom_radius" value="5" />
+            <enum name="vg_all_radius" value="6" />
+            <enum name="vg_none_radius" value="7" />
         </attr>
     </declare-styleable>
 
@@ -389,7 +455,6 @@
     </declare-styleable>
 
 
-    <!--注意这里的name要和自定义View的名称一致，不然在xml布局中无法引用-->
     <declare-styleable name="CircleBarView">
         <attr name="progress_color" format="color"></attr>
         <attr name="bg_color" format="color"></attr>

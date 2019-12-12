@@ -25,6 +25,7 @@ import dz.solc.myviews.R;
 import dz.solc.myviews.bean.PersonInfoBean;
 import dz.solc.myviews.uitls.Constans;
 import dz.solc.viewtool.adapter.CommonAdapter;
+import dz.solc.viewtool.view.tableview.ColumnController;
 import dz.solc.viewtool.view.tableview.ItemCell;
 import dz.solc.viewtool.view.tableview.RowItem;
 import dz.solc.viewtool.view.tableview.TableItem;
@@ -65,6 +66,18 @@ public class TableViewActivity extends AppCompatActivity {
         btGetData = findViewById(R.id.btGetData);
 
 
+        // 用于控制特殊列的宽度
+        ColumnController columnController = new ColumnController();
+        //单位使用dp
+        columnController.addSpecial(0, 400);
+        tableView.setColumnController(columnController);
+
+        ColumnController columnController1 = new ColumnController();
+        columnController1.addSpecial(0, 500)
+                .addSpecial(3, 800);
+        tableView1.setColumnController(columnController1);
+
+
         btGetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +105,9 @@ public class TableViewActivity extends AppCompatActivity {
                 .setCellsHeight(Utils.dp2px(this, 40))   //设置单元格的高度
                 .setAutoWrapHeight(true)  //自适应高度
                 .setShowHead(true)        //是否显表头信息
-                .setDivider(1)          //设置分割线高
+                .setDivider(0)          //设置分割线高
                 .setEditTable(false)    //是否表格中需要编辑
-                .setDividerColor(getResources().getColor(R.color.light_blue_200))  //设置分割线颜色
+                .setDividerColor(getResources().getColor(R.color.trans))  //设置分割线颜色
                 .setCloseCycle(false);   //是否形成分割闭环样式
 
 
