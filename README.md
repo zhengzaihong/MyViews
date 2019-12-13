@@ -16,7 +16,6 @@
 
 样列图，更多请下载apk或者查看源码
 
-![image](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif)
 ![apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
 
 
