@@ -226,11 +226,9 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
                         colors, getPositions(drawable,
                         colors.length == 3), Shader.TileMode.CLAMP));
             } else {
-                shader = new LinearGradient(0, 0, 0, getMeasuredHeight(),
+                getPaint().setShader(shader = new LinearGradient(0, 0, 0, getMeasuredHeight(),
                         colors, getPositions(drawable,
-                        colors.length == 3), Shader.TileMode.CLAMP);
-
-                getPaint().setShader(shader);
+                        colors.length == 3), Shader.TileMode.CLAMP));
             }
 
             mShaderHashMap.put(drawable.getClass().getName(), new ViewState(shader, getMeasuredWidth()));

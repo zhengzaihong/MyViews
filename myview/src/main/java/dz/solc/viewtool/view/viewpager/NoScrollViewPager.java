@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 * Email:1096877329@qq.com
 * creat_date: 2017/11/22
 * creat_time: 14:12
-* describe 用于主界面 是否滑动的ViewPage isScroll： false不能滑动,否则反之
+* describe 用于界面 是否滑动的ViewPage isScroll： false不能滑动,否则反之
 **/
 public class NoScrollViewPager extends ViewPager {
     private boolean isScroll;

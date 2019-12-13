@@ -90,7 +90,6 @@
         </dz.solc.viewtool.view.viewgroup.RadiusRelateLayout>
 
 
-        <!--            app:gradient_drawable="@drawable/selector" -->
         <dz.solc.viewtool.view.textview.GradientTextView
             android:id="@+id/gtTextView"
             android:layout_width="wrap_content"
@@ -98,6 +97,7 @@
             android:text="Hello World!"
             android:textSize="@dimen/len_30"
             android:textStyle="bold"
+            app:gradient_drawable="@drawable/selector"
             app:gradient_orientation="vertical"
             app:gradient_start_color="@color/yellow"
             app:gradient_end_color="@color/red_400" />

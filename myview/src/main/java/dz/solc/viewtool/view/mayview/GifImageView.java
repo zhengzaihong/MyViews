@@ -24,6 +24,7 @@ import dz.solc.viewtool.R;
  * creat_time: 14:31
  * describe 支持播放 gif的控件(不建议大图使用该控件播放)
  **/
+@SuppressWarnings("all")
 public class GifImageView extends AppCompatImageView {
 
     private static final int DEFAULT_DURATION = 1000;
