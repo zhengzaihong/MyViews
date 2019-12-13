@@ -1,6 +1,5 @@
 package dz.solc.viewtool.view.textview;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -11,7 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-
+import android.util.Log;
 
 import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.textview.config.FilletConfig;
@@ -37,6 +36,8 @@ import static dz.solc.viewtool.view.textview.config.FilletConfig.RadiusType.RIGH
 @SuppressWarnings("all")
 public class FilletView extends AppCompatTextView {
 
+    private static final String TAG = FilletView.class.getSimpleName();
+
     private FilletConfig configBean = new FilletConfig();
     private Paint mPaint = new Paint();
 
@@ -45,11 +46,8 @@ public class FilletView extends AppCompatTextView {
     }
 
     public FilletView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
+        super(context, attrs);
 
-    public FilletView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FilletTextViewConfig);
         configBean.setNormalBgColor(ta.getColor(R.styleable.FilletTextViewConfig_f_normalBgColor, Color.TRANSPARENT));
@@ -80,6 +78,8 @@ public class FilletView extends AppCompatTextView {
         initView();
     }
 
+
+
     private void initView() {
         // 初始化画笔
         mPaint.setStyle(Paint.Style.STROKE);
@@ -101,7 +101,11 @@ public class FilletView extends AppCompatTextView {
      * @param configBean
      */
     public void setConfig(FilletConfig configBean) {
-        this.configBean = configBean;
+
+        if (null == configBean) {
+            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
+            return;
+        }
         // 设置背景
         initView();
     }

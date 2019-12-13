@@ -201,20 +201,20 @@ public class UtilAdapter {
 
 
     /**
-     * 设置 listView 显示动画从左渐进
+     * 设置 gridView 显示动画从左渐进
      *
      * @param listView
      * @param adapter
      */
-    public static void setSwingLeftInAnimationAdapter(GridView listView, BaseAdapter adapter) {
+    public static void setSwingLeftInAnimationAdapter(GridView gridView, BaseAdapter adapter) {
         SwingLeftInAnimationAdapter animationAdapter = new SwingLeftInAnimationAdapter(adapter);
-        animationAdapter.setAbsListView(listView);
-        listView.setAdapter(animationAdapter);
+        animationAdapter.setAbsListView(gridView);
+        gridView.setAdapter(animationAdapter);
 
     }
 
     /**
-     * 设置 listView 显示动画从右渐进
+     * 设置 gridView 显示动画从右渐进
      *
      * @param gridView
      * @param adapter
@@ -228,7 +228,7 @@ public class UtilAdapter {
 
 
     /**
-     * 设置 listView 显示动画淡入
+     * 设置 gridView 显示动画淡入
      *
      * @param gridView
      * @param adapter

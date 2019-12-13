@@ -381,10 +381,11 @@ public class OftenDialog {
 
     }
 
-    public void showDialog() {
+    public OftenDialog showDialog() {
         if (null != dialog && !dialog.isShowing()) {
             dialog.show();
         }
+        return this;
     }
 
 

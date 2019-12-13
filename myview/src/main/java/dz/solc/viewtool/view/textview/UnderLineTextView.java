@@ -2,9 +2,15 @@ package dz.solc.viewtool.view.textview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+import android.os.Build;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Layout;
 import android.util.AttributeSet;
@@ -48,7 +54,6 @@ public class UnderLineTextView extends AppCompatTextView {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.UnderlinedTextView, defStyleAttr, 0);
         mColor = array.getColor(R.styleable.UnderlinedTextView_underlineColor, 0xFFFF0000);
         mStrokeWidth = array.getDimension(R.styleable.UnderlinedTextView_underlineWidth, density * 2);
-        marginTop = array.getDimension(R.styleable.UnderlinedTextView_marginTop, 0);
         array.recycle();
 
         mRect = new Rect();
@@ -67,8 +72,11 @@ public class UnderLineTextView extends AppCompatTextView {
         //得到TextView的布局
         final Layout layout = getLayout();
 
-        float x_start, x_stop, x_diff;
-        int firstCharInLine, lastCharInLine;
+        float x_start;
+        float x_stop;
+        float x_diff;
+        float firstCharInLine, lastCharInLine;
+
 
         for (int i = 0; i < count; i++) {
 
@@ -79,12 +87,14 @@ public class UnderLineTextView extends AppCompatTextView {
 
             //要得到这个字符的左边X坐标 用layout.getPrimaryHorizontal
             //得到字符的右边X坐标用layout.getSecondaryHorizontal
-            x_start = layout.getPrimaryHorizontal(firstCharInLine);
-            x_diff = layout.getPrimaryHorizontal(firstCharInLine + 1) - x_start;
-            x_stop = layout.getPrimaryHorizontal(lastCharInLine - 1) + x_diff;
+            x_start = layout.getPrimaryHorizontal((int) firstCharInLine);
+            x_diff = layout.getPrimaryHorizontal((int) (firstCharInLine + 1)) - x_start;
+            x_stop = layout.getPrimaryHorizontal((int) (lastCharInLine - 1)) + x_diff;
 
-            canvas.drawLine(x_start, baseline + mStrokeWidth+marginTop, x_stop, baseline + mStrokeWidth+marginTop, mPaint);
+            float startY = baseline + mStrokeWidth;
+            float stopY = baseline + mStrokeWidth;
 
+            canvas.drawLine(x_start, startY, x_stop, stopY, mPaint);
 
         }
         super.onDraw(canvas);

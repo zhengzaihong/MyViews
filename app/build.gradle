@@ -49,6 +49,7 @@ configurations.all {
 }
 
 dependencies {
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0-alpha'
@@ -60,4 +61,5 @@ dependencies {
     implementation 'com.zzh:rjtools:1.0.82'
     implementation project(':myview')
     implementation 'com.alibaba:fastjson:1.2.44'
+
 }

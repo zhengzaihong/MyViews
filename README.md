@@ -19,9 +19,33 @@
 ![image](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/GIF.gif)
 
 
+##更新日志 2019-12-13
+
+新特性  TableView 控件支持特殊列宽度控制，用法如下
+
+    //用于控制特殊列的宽度
+    ColumnController controller = new ColumnController();
+    //单位使用dp 参数1：第几列   参数2:第几列的宽度
+    //文字过多建议配合自适应高度属性使用
+    
+    controller.addSpecial(0, 400)
+              .addSpecial(3, 200);
+    
+    //配置控制器
+    tableView.setColumnController(controller);
+
+
+新增 支持圆角和按压背景切换的 RadiusLinearLayout和RadiusRelateLayout
+
+新增 RadioButtonPlus 圆角和背景切换以及文字颜色切换的 RadioButton
+
+其他优化...
+
+
 ##更新日志 2019-12-4
 
-新特性 表格控件 支持自适应内容高度，性能优化。支持布局文件配置,使用更简洁
+
+新特性 TableView控件 支持自适应内容高度，性能优化。支持布局文件配置,使用更简洁.
 
 如果TableView 是需要编辑的且需要编辑后值，则TableView 的 如下两个属性必须为true,否则第一行数据将丢失
 
@@ -62,7 +86,7 @@ setShowHead(true)
 
                                                   
 
-新增 支持gif的控件
+新增 支持动画 GifImageView的控件
 
 新增 加载动画新增API 
 

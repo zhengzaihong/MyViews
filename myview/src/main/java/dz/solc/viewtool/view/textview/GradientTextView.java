@@ -233,7 +233,6 @@ public class GradientTextView extends android.support.v7.widget.AppCompatTextVie
                 getPaint().setShader(shader);
             }
 
-
             mShaderHashMap.put(drawable.getClass().getName(), new ViewState(shader, getMeasuredWidth()));
         }
     }

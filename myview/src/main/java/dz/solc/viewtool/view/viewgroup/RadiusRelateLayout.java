@@ -1,7 +1,6 @@
 package dz.solc.viewtool.view.viewgroup;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import dz.solc.viewtool.R;
@@ -30,8 +30,9 @@ import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_T
  * creat_time: 19:09
  * describe 支持圆角的 相对布局
  **/
+@SuppressWarnings("all")
 public class RadiusRelateLayout extends RelativeLayout {
-
+    private static final String TAG = RadiusRelateLayout.class.getSimpleName();
 
     private ViewGroupConfig configBean = new ViewGroupConfig();
     private Paint mPaint = new Paint();
@@ -55,7 +56,7 @@ public class RadiusRelateLayout extends RelativeLayout {
         configBean.setPressStrokeWidth(ta.getDimensionPixelSize(R.styleable.ViewGroupConfig_vg_pressStrokeWidth, 0));
         configBean.setNormalStrokeColor(ta.getColor(R.styleable.ViewGroupConfig_vg_normalStrokeColor, Color.TRANSPARENT));
         configBean.setPressStrokeColor(ta.getColor(R.styleable.ViewGroupConfig_vg_pressStrokeColor, Color.TRANSPARENT));
-        configBean.setCornerRadius(ta.getDimensionPixelSize(R.styleable.ViewGroupConfig_vg_radius_type, 0));
+        configBean.setCornerRadius(ta.getDimensionPixelSize(R.styleable.ViewGroupConfig_vg_cornerRadius, 0));
 
         configBean.setShowAnimation(ta.getBoolean(R.styleable.ViewGroupConfig_vg_showAnimation, false));
         configBean.setAnimationTime(ta.getInteger(R.styleable.ViewGroupConfig_vg_animationTime, 500));
@@ -94,6 +95,11 @@ public class RadiusRelateLayout extends RelativeLayout {
      * @param configBean
      */
     public void setConfig(ViewGroupConfig configBean) {
+
+        if (null == configBean) {
+            Log.e(TAG, "<<-------------配置文件不能为空-------------->>");
+            return;
+        }
         this.configBean = configBean;
         // 设置背景
         initView();

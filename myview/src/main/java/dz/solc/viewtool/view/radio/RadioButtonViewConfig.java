@@ -1,4 +1,4 @@
-package dz.solc.viewtool.view.menueview.config;
+package dz.solc.viewtool.view.radio;
 
 import android.graphics.Color;
 
@@ -9,7 +9,9 @@ import android.graphics.Color;
  * creat_time: 16:20
  * describe: 自定义菜单的配置文件
  **/
-public class MultiFunctionConfig {
+
+@SuppressWarnings("all")
+public class RadioButtonViewConfig {
 
     // 边框线宽
     private int strokeWidth = 1;

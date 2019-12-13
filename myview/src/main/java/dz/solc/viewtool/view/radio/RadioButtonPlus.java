@@ -1,4 +1,4 @@
-package dz.solc.viewtool.view.menueview;
+package dz.solc.viewtool.view.radio;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -8,75 +8,61 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.util.Log;
 
 import dz.solc.viewtool.R;
-import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig;
 
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.ALL_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.LEFT_BOTTOM_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.LEFT_TOP_BOTTOM_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.LEFT_TOP_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.NONE_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.RIGHT_BOOTOM_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.RIGHT_TOP_BOOTOM_RADIUS;
-import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.RIGHT_TOP_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.ALL_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.LEFT_BOTTOM_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.LEFT_TOP_BOTTOM_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.LEFT_TOP_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.NONE_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.RIGHT_BOOTOM_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.RIGHT_TOP_BOOTOM_RADIUS;
+import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.RIGHT_TOP_RADIUS;
 
 /**
  * creat_user: zhengzaihong
- * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 17:55
- * describe: 仿ios UISegmentedControl自定义控件 支持各种不同维度的圆角,保留chekBox全部特性
- * 选中和非选中文字需要改变颜色 和平常使用checkBox 定义xml文字颜色一样或者代码方式动态setTextColor方式或者通过配置文件即可
- * <p>
- * 单独使用时可以减少需要设置背景样式的按钮的xml样式定制，当该控件配合listView 或者RecycleView使用时 想要控件之间有分割，可以通过
- * 设置 divider 或者 DividerItemDecoration达到效果
- * <p>
- * 单独使用建议使用本库提供的FilletView 控件
+ * Email:1096877329@qq.com
+ * creat_date: 2019/12/13
+ * creat_time: 10:03
+ * describe 支持圆角和背景切换的 RadioButton
  **/
 
 @SuppressWarnings("all")
-public class MultiFunctionView extends AppCompatCheckBox {
+public class RadioButtonPlus extends AppCompatRadioButton {
 
-    private static final String TAG = MultiFunctionView.class.getSimpleName();
-
-    private MultiFunctionConfig configBean;
+    private RadioButtonViewConfig configBean;
     private Paint mPaint = new Paint();
 
-    public MultiFunctionView(Context context) {
-        this(context,null);
+    public RadioButtonPlus(Context context) {
+        this(context, null);
     }
 
-    public MultiFunctionView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
-    }
+    public RadioButtonPlus(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-    public MultiFunctionView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        this.configBean = new MultiFunctionConfig();
+        this.configBean = new RadioButtonViewConfig();
         // 读取属性值
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MultiFunctionView);
-        configBean.setNormalBgColor(ta.getColor(R.styleable.MultiFunctionView_normalBgColor, Color.TRANSPARENT));
-        configBean.setPressedBgColor(ta.getColor(R.styleable.MultiFunctionView_pressedBgColor, configBean.getPressedBgColor()));
-        configBean.setStrokeWidth(ta.getDimensionPixelSize(R.styleable.MultiFunctionView_strokeWidth, 0));
-        configBean.setStrokeColor(ta.getColor(R.styleable.MultiFunctionView_strokeColor, Color.TRANSPARENT));
-        configBean.setCornerRadius(ta.getDimensionPixelSize(R.styleable.MultiFunctionView_cornerRadius, 0));
-        configBean.setFollowTextColor(ta.getBoolean(R.styleable.MultiFunctionView_followTextColor, false));
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RadioButtonPlusStyle);
+        configBean.setNormalBgColor(ta.getColor(R.styleable.RadioButtonPlusStyle_rbp_normalBgColor, Color.TRANSPARENT));
+        configBean.setPressedBgColor(ta.getColor(R.styleable.RadioButtonPlusStyle_rbp_pressedBgColor, configBean.getPressedBgColor()));
+        configBean.setStrokeWidth(ta.getDimensionPixelSize(R.styleable.RadioButtonPlusStyle_rbp_strokeWidth, 0));
+        configBean.setStrokeColor(ta.getColor(R.styleable.RadioButtonPlusStyle_rbp_strokeColor, Color.TRANSPARENT));
+        configBean.setCornerRadius(ta.getDimensionPixelSize(R.styleable.RadioButtonPlusStyle_rbp_cornerRadius, 0));
+        configBean.setFollowTextColor(ta.getBoolean(R.styleable.RadioButtonPlusStyle_rbp_followTextColor, false));
 
-        configBean.setNormalTextColor(ta.getColor(R.styleable.MultiFunctionView_normalTextColor, configBean.getNormalTextColor()));
-        configBean.setPressedTextColor(ta.getColor(R.styleable.MultiFunctionView_pressedTextColor, configBean.getPressedTextColor()));
+        configBean.setNormalTextColor(ta.getColor(R.styleable.RadioButtonPlusStyle_rbp_normalTextColor, configBean.getNormalTextColor()));
+        configBean.setPressedTextColor(ta.getColor(R.styleable.RadioButtonPlusStyle_rbp_pressedTextColor, configBean.getPressedTextColor()));
 
-        configBean.setShowAnimation(ta.getBoolean(R.styleable.MultiFunctionView_showAnimation, false));
-        configBean.setAnimationTime(ta.getInteger(R.styleable.MultiFunctionView_animationTime, 500));
+        configBean.setShowAnimation(ta.getBoolean(R.styleable.RadioButtonPlusStyle_rbp_showAnimation, false));
 
-        int radiusType = ta.getInt(R.styleable.MultiFunctionView_radius_type, -1);
+        int radiusType = ta.getInt(R.styleable.RadioButtonPlusStyle_rbp_radius_type, -1);
 
         if (radiusType >= 0) {
-            MultiFunctionConfig.RadiusType[] enumType = MultiFunctionConfig.RadiusType.values();
+            RadioButtonViewConfig.RadiusType[] enumType = RadioButtonViewConfig.RadiusType.values();
             for (int i = 0; i < enumType.length; i++) {
                 if (radiusType == enumType[i].ordinal()) {
                     configBean.setRadiusType(enumType[i]);
@@ -84,8 +70,6 @@ public class MultiFunctionView extends AppCompatCheckBox {
                 }
             }
         }
-
-
         ta.recycle();
         initView();
     }
@@ -110,22 +94,18 @@ public class MultiFunctionView extends AppCompatCheckBox {
      *
      * @param configBean
      */
-    public void setConfig(MultiFunctionConfig configBean) {
-
-
+    public void setConfig(RadioButtonViewConfig configBean) {
         if (null == configBean) {
-            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
+            Log.e(this.getClass().getSimpleName(), "<<-------------配置文件不能为空-------------->>");
             return;
         }
-
-
         this.configBean = configBean;
         // 设置背景
         initView();
     }
 
 
-    private Drawable getPressedSelector(MultiFunctionConfig config) {
+    private Drawable getPressedSelector(RadioButtonViewConfig config) {
         //TODO 目前只做了 按下和抬起状态
         Drawable pressed = createShape(config.getPressedBgColor(), config);
         Drawable normal = createShape(config.getNormalBgColor(), config);
@@ -140,16 +120,19 @@ public class MultiFunctionView extends AppCompatCheckBox {
         drawable.addState(new int[]{}, normal);
 
         // 设置状态选择器过度动画/渐变选择器/渐变动画
-        if(config.isShowAnimation()){
+
+        if (config.isShowAnimation()) {
             drawable.setEnterFadeDuration(config.getAnimationTime());
             drawable.setExitFadeDuration(config.getAnimationTime());
         }
+
+
         return drawable;
     }
 
-    private GradientDrawable createShape(int color, MultiFunctionConfig config) {
+    private GradientDrawable createShape(int color, RadioButtonViewConfig config) {
         GradientDrawable drawable = new GradientDrawable();
-        MultiFunctionConfig.RadiusType radiusType = config.getRadiusType();
+        RadioButtonViewConfig.RadiusType radiusType = config.getRadiusType();
         float radius = config.getCornerRadius();
         if (radiusType == LEFT_TOP_BOTTOM_RADIUS) {
             //1、2两个参数表示左上角，3、4表示右上角，5、6表示右下角，7、8表示左下角

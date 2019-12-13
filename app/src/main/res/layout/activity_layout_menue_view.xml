@@ -22,50 +22,72 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <dz.solc.viewtool.view.menueview.SwitchButton
-            android:id="@+id/sbutton"
-            android:layout_width="@dimen/len_100"
-            android:layout_height="@dimen/len_40"
-            app:circleCheckedColor="@color/green_200"
-            app:circleNoCheckedColor="@color/gray"
-            app:circleStrokeWidth="@dimen/len_2"
-            app:strokeLineColor="@color/green_200"
-            app:strokeLineWidth="@dimen/len_1"
-            app:strokeNoCheckedSolidColor="@color/trans"
-            app:strokeSolidColor="@color/colorAccent" />
 
-        <dz.solc.viewtool.view.menueview.SwitchButton
-            android:layout_width="@dimen/len_100"
-            android:layout_height="@dimen/len_40"
+        <dz.solc.viewtool.view.viewgroup.RadiusLinearLayout
+            android:orientation="horizontal"
+            app:vg_cornerRadius="@dimen/len_30"
+            app:vg_radius_type="vg_all_radius"
+            app:vg_normalBgColor="@color/cadetblue"
+            app:vg_pressedBgColor="@color/cadetblue"
+            app:vg_normalStrokeWidth="@dimen/len_1"
+            app:vg_pressStrokeWidth="@dimen/len_1"
+            app:vg_normalStrokeColor="@color/trans"
+            app:vg_pressStrokeColor="@color/purple"
             android:layout_marginTop="@dimen/len_10"
-            app:circleCheckedColor="@color/green_200"
-            app:circleNoCheckedColor="@color/gray"
-            app:circleStrokeColor="@color/gray"
-            app:circleStrokeWidth="@dimen/len_0"
-            app:isBigCircle="true"
-            app:isChecked="true"
-            app:strokeLineColor="@color/line_color"
-            app:strokeLineWidth="@dimen/len_1"
-            app:strokeNoCheckedSolidColor="@color/white"
-            app:strokeSolidColor="@color/white" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
-        <dz.solc.viewtool.view.menueview.MultiFunctionView
-            android:layout_width="@dimen/len_80"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_15"
-            android:gravity="center"
-            android:text="菜单1"
-            app:cornerRadius="@dimen/len_15"
-            app:followTextColor="false"
-            app:normalBgColor="@color/red_50"
-            app:normalTextColor="@color/red"
-            app:pressedBgColor="@color/green"
-            app:pressedTextColor="@color/red"
-            app:radius_type="all_radius"
-            app:showAnimation="false"
-            app:strokeColor="@color/white"
-            app:strokeWidth="@dimen/len_1" />
+            <dz.solc.viewtool.view.menueview.SwitchButton
+                android:id="@+id/sbutton"
+                android:layout_width="@dimen/len_100"
+                android:layout_height="@dimen/len_40"
+                app:circleCheckedColor="@color/green_200"
+                app:circleNoCheckedColor="@color/gray"
+                app:circleStrokeWidth="@dimen/len_2"
+                app:strokeLineColor="@color/green_200"
+                app:strokeLineWidth="@dimen/len_1"
+                app:strokeNoCheckedSolidColor="@color/trans"
+                app:strokeSolidColor="@color/colorAccent" />
+
+            <dz.solc.viewtool.view.menueview.SwitchButton
+                android:layout_width="@dimen/len_100"
+                android:layout_height="@dimen/len_40"
+                app:circleCheckedColor="@color/green_200"
+                app:circleNoCheckedColor="@color/gray"
+                app:circleStrokeColor="@color/gray"
+                app:circleStrokeWidth="@dimen/len_0"
+                app:isBigCircle="true"
+                app:isChecked="true"
+                app:strokeLineColor="@color/line_color"
+                app:strokeLineWidth="@dimen/len_1"
+                app:strokeNoCheckedSolidColor="@color/white"
+                app:strokeSolidColor="@color/white" />
+
+        </dz.solc.viewtool.view.viewgroup.RadiusLinearLayout>
+
+
+        <dz.solc.viewtool.view.viewgroup.RadiusRelateLayout
+            app:vg_cornerRadius="@dimen/len_30"
+            app:vg_radius_type="vg_all_radius"
+            app:vg_normalBgColor="@color/white"
+            app:vg_pressedBgColor="@color/white"
+            app:vg_normalStrokeWidth="@dimen/len_1"
+            app:vg_pressStrokeWidth="@dimen/len_1"
+            app:vg_normalStrokeColor="@color/black_alpha_128"
+            app:vg_pressStrokeColor="@color/white"
+            android:layout_marginTop="@dimen/len_10"
+            android:layout_width="@dimen/len_300"
+            android:layout_height="@dimen/len_50">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="支持圆角和按压背景的相对布局和线性布局"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </dz.solc.viewtool.view.viewgroup.RadiusRelateLayout>
 
 
         <!--            app:gradient_drawable="@drawable/selector" -->
@@ -77,43 +99,93 @@
             android:textSize="@dimen/len_30"
             android:textStyle="bold"
             app:gradient_orientation="vertical"
-
             app:gradient_start_color="@color/yellow"
             app:gradient_end_color="@color/red_400" />
 
 
-        <dz.solc.viewtool.view.editview.FilletEditView
-            android:layout_width="@dimen/len_80"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_15"
-            android:gravity="center"
-            android:hint="asdfasf"
-            android:text="菜单1"
-
-            app:e_normalTextColor="@color/green"
-            app:e_pressedTextColor="@color/green"
-            app:e_cornerRadius="@dimen/len_30"
-            app:e_radius_type="e_all_radius"
-            app:e_normalBgColor="@color/white"
-            app:e_pressedBgColor="@color/white"
-            app:e_normalStrokeWidth="@dimen/len_1"
-            app:e_pressStrokeWidth="@dimen/len_1"
-            app:e_normalStrokeColor="@color/black_alpha_128"
-            app:e_pressStrokeColor="@color/purple" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-        <dz.solc.viewtool.view.editview.FilletEditView
-            android:layout_width="@dimen/len_80"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_15"
-            android:gravity="center"
-            android:hint="asdfasf"
-            android:text="菜单1"
-            app:e_cornerRadius="@dimen/len_30"
-            app:e_radius_type="e_all_radius"
-            app:e_normalBgColor="@color/red_400"
-            app:e_pressedBgColor="#029CFD" />
+            <dz.solc.viewtool.view.editview.FilletEditView
+                android:layout_width="@dimen/len_80"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/len_15"
+                android:gravity="center"
+                android:hint="asdfasf"
+                android:text="菜单1"
 
+                app:e_normalTextColor="@color/green"
+                app:e_pressedTextColor="@color/green"
+                app:e_cornerRadius="@dimen/len_30"
+                app:e_radius_type="e_all_radius"
+                app:e_normalBgColor="@color/white"
+                app:e_pressedBgColor="@color/white"
+                app:e_normalStrokeWidth="@dimen/len_1"
+                app:e_pressStrokeWidth="@dimen/len_1"
+                app:e_normalStrokeColor="@color/black_alpha_128"
+                app:e_pressStrokeColor="@color/purple" />
+
+
+            <dz.solc.viewtool.view.editview.FilletEditView
+                android:layout_marginLeft="@dimen/len_30"
+                android:layout_width="@dimen/len_80"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/len_15"
+                android:gravity="center"
+                android:hint="asdfasf"
+                android:text="菜单1"
+                app:e_cornerRadius="@dimen/len_30"
+                app:e_radius_type="e_all_radius"
+                app:e_normalBgColor="@color/red_400"
+                app:e_pressedBgColor="#029CFD" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_margin="@dimen/len_20"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <dz.solc.viewtool.view.radio.RadioButtonPlus
+                app:rbp_cornerRadius="@dimen/len_15"
+                app:rbp_followTextColor="false"
+                app:rbp_normalBgColor="@color/white"
+                app:rbp_normalTextColor="@color/red"
+                app:rbp_pressedBgColor="@color/light_blue_200"
+                app:rbp_pressedTextColor="@color/white"
+                app:rbp_radius_type="all_radius"
+                android:button="@null"
+                android:text="男"
+                android:gravity="center"
+                app:rbp_showAnimation="false"
+                app:rbp_strokeColor="@color/white"
+                android:layout_width="@dimen/len_50"
+                android:layout_height="@dimen/len_20" />
+
+
+            <dz.solc.viewtool.view.radio.RadioButtonPlus
+                app:rbp_cornerRadius="@dimen/len_15"
+                android:layout_marginLeft="@dimen/len_20"
+                app:rbp_followTextColor="false"
+                app:rbp_normalBgColor="@color/white"
+                app:rbp_normalTextColor="@color/red"
+                app:rbp_pressedBgColor="@color/light_blue_200"
+                app:rbp_pressedTextColor="@color/white"
+                app:rbp_radius_type="all_radius"
+                android:button="@null"
+                android:text="女"
+                android:gravity="center"
+                app:rbp_showAnimation="false"
+                app:rbp_strokeColor="@color/white"
+                android:layout_width="@dimen/len_50"
+                android:layout_height="@dimen/len_20" />
+
+
+        </RadioGroup>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rivChangeRPoint"

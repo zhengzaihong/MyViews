@@ -26,10 +26,6 @@ class MenueViewActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_layout_menue_view)
 
-
-        gtTextView.setGradientOrientation(GradientTextView.horizontal)
-
-
         sbutton.setOnCheckedListener { isChecked ->
             Log.v("--------", "选择状态$isChecked")
         }
@@ -39,7 +35,6 @@ class MenueViewActivity : AppCompatActivity() {
 
     var clickPosition = 0
     var clickPosition1 = 0
-    var clickPosition2 = 0
     var clickPosition3 = 0
 
     fun addBarMenue() {
@@ -53,7 +48,7 @@ class MenueViewActivity : AppCompatActivity() {
 
         viewConfig.strokeWidth = 1
         viewConfig.cornerRadius = ScreenUtils.dip2px(this, 15f).toInt()
-        viewConfig.setFollowTextColor(false)
+        viewConfig.isFollowTextColor = false
 
         var adapter = object : MenueAdapter<String, MenueViewHolder>(R.layout.item_layout_list_menue) {
             override fun convert(holder: MenueViewHolder?, item: String) {
@@ -91,7 +86,7 @@ class MenueViewActivity : AppCompatActivity() {
 
         viewConfig1.strokeWidth = 1
         viewConfig1.cornerRadius = 0
-        viewConfig1.setFollowTextColor(true)
+        viewConfig1.isFollowTextColor = true
         var adapter1 = object : MenueAdapter<String, MenueViewHolder>(R.layout.item_layout_list_menue) {
             override fun convert(holder: MenueViewHolder?, item: String) {
 
@@ -116,53 +111,6 @@ class MenueViewActivity : AppCompatActivity() {
         adapter1.setNewData(listMenue)
         rivChangeRPoint1.layoutManager = LinearLayoutManager(this@MenueViewActivity, RecyclerView.HORIZONTAL, false)
         rivChangeRPoint1.adapter = adapter1
-
-
-        var listMenue2 = listOf("天王", "地虎")
-        val viewConfig2 = MultiFunctionConfig()
-        viewConfig2.normalBgColor = UiCompat.getColor(resources, R.color.yellow_300)
-        viewConfig2.pressedBgColor = UiCompat.getColor(resources, R.color.red)
-        viewConfig2.strokeColor = UiCompat.getColor(resources, R.color.green)
-
-        viewConfig2.strokeWidth = 1
-        viewConfig2.cornerRadius = ScreenUtils.dip2px(this, 15f).toInt()
-
-        viewConfig2.normalTextColor = UiCompat.getColor(resources, R.color.white)
-        viewConfig2.pressedTextColor = UiCompat.getColor(resources, R.color.yellow_300)
-
-        //配置选中和未选择的文字颜色
-        viewConfig2.setFollowTextColor(false)
-        var adapter2 = object : MenueAdapter<String, MenueViewHolder>(R.layout.item_layout_list_menue) {
-            override fun convert(holder: MenueViewHolder?, item: String) {
-
-                var functionView = holder?.getView<MultiFunctionView>(R.id.tvContent)
-                var position = holder?.layoutPosition
-
-
-                functionView?.let {
-                    when (position) {
-                        0 -> viewConfig2.radiusType = RadiusType.LEFT_TOP_BOTTOM_RADIUS
-                        1 -> viewConfig2.radiusType = RadiusType.RIGHT_TOP_BOOTOM_RADIUS
-                    }
-                }
-
-                functionView?.setConfig(viewConfig2)
-                functionView?.text = item
-                functionView?.isChecked = clickPosition2 == position
-                holder?.itemView?.setOnClickListener {
-                    clickPosition2 = position!!
-//                    ToastTool.show("点击了$item")
-                    notifyDataSetChanged()
-                }
-            }
-        }
-
-
-
-        adapter2.setNewData(listMenue2)
-        rivChangeRPoint2.layoutManager = LinearLayoutManager(this@MenueViewActivity, RecyclerView.HORIZONTAL, false)
-        rivChangeRPoint2.adapter = adapter2
-
 
 
 

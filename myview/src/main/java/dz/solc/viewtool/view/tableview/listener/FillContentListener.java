@@ -28,7 +28,7 @@ public interface FillContentListener {
     View addHead(Object obj);
 
     /**
-     * 每显示一行会触发一次 这个和listView 的adapter 一直
+     * 每显示一行会触发一次 这个和listView 的adapter机制一直
      *
      * @param holder
      * @param rowItem  表格每行的信息
@@ -46,13 +46,12 @@ public interface FillContentListener {
     View cellItem(ItemCell obj, int cellIndex, RowItem rowItem);
 
     /**
-     * @return 每个item 的部件文件id
+     * @return 每个item 的布局文件id
      */
     int itemLayout();
 
     /**
-     * 绑定当前的TableView
-     *
+     * 绑定TableView
      * @return
      */
     TableView bindTableView();

@@ -9,6 +9,7 @@ import java.util.Map;
  * creat_date: 2019/12/11
  * creat_time: 20:18
  * describe 新特性 主要用于控制特殊列
+ * 更多玩法待拓展
  **/
 public class ColumnController {
 

@@ -66,16 +66,15 @@ public class TableViewActivity extends AppCompatActivity {
         btGetData = findViewById(R.id.btGetData);
 
 
-        // 用于控制特殊列的宽度
-        ColumnController columnController = new ColumnController();
+        //用于控制特殊列的宽度
+        ColumnController controller = new ColumnController();
         //单位使用dp
-        columnController.addSpecial(0, 400);
-        tableView.setColumnController(columnController);
+        controller.addSpecial(0, 400)
+                  .addSpecial(3, 200);
 
-        ColumnController columnController1 = new ColumnController();
-        columnController1.addSpecial(0, 500)
-                .addSpecial(3, 800);
-        tableView1.setColumnController(columnController1);
+        //配置控制器
+        tableView.setColumnController(controller);
+
 
 
         btGetData.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +119,7 @@ public class TableViewActivity extends AppCompatActivity {
 
 
         test();
-        test1(config1);
+        test1(null);
         test2(config2);
 
 

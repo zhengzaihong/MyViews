@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.editview.config.FilletEditViewConfig;
@@ -35,6 +36,8 @@ import static dz.solc.viewtool.view.editview.config.FilletEditViewConfig.RadiusT
 
 @SuppressWarnings("all")
 public class FilletEditView extends AppCompatEditText {
+
+    private static final String TAG = FilletEditView.class.getSimpleName();
 
     private FilletEditViewConfig configBean = new FilletEditViewConfig();
     private Paint mPaint = new Paint();
@@ -100,6 +103,12 @@ public class FilletEditView extends AppCompatEditText {
      * @param configBean
      */
     public void setConfig(FilletEditViewConfig configBean) {
+
+        if (null == configBean) {
+            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
+            return;
+        }
+
         this.configBean = configBean;
         // 设置背景
         initView();

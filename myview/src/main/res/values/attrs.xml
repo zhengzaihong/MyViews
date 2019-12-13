@@ -88,7 +88,6 @@
     <declare-styleable name="UnderlinedTextView">
         <attr name="underlineWidth" format="dimension" />
         <attr name="underlineColor" format="color" />
-        <attr name="marginTop" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="circleProgressBar">
@@ -218,9 +217,41 @@
         <attr name="pressedTextColor" format="color|reference" />
 
         <attr name="showAnimation" format="boolean" />
+        <attr name="animationTime" format="integer" />
 
 
         <attr name="radius_type">
+            <enum name="left_top_bottom_radius" value="0" />
+            <enum name="right_top_bootom_radius" value="1" />
+
+            <enum name="left_top_radius" value="2" />
+            <enum name="left_bottom_radius" value="3" />
+            <enum name="right_top_radius" value="4" />
+
+            <enum name="right_bootom_radius" value="5" />
+            <enum name="all_radius" value="6" />
+            <enum name="none_radius" value="7" />
+        </attr>
+
+    </declare-styleable>
+
+
+    <!-- 有边框和背景的菜单View  属性同  FilletTextViewConfig-->
+    <declare-styleable name="RadioButtonPlusStyle">
+        <attr name="rbp_strokeWidth" format="dimension" />
+        <attr name="rbp_cornerRadius" format="dimension" />
+        <attr name="rbp_strokeColor" format="color|reference" />
+        <attr name="rbp_normalBgColor" format="color|reference" />
+        <attr name="rbp_pressedBgColor" format="color|reference" />
+        <attr name="rbp_followTextColor" format="boolean" />
+        <attr name="rbp_normalTextColor" format="color|reference" />
+        <attr name="rbp_pressedTextColor" format="color|reference" />
+
+        <attr name="rbp_showAnimation" format="boolean" />
+        <attr name="rbp_animationTime" format="integer" />
+
+
+        <attr name="rbp_radius_type">
             <enum name="left_top_bottom_radius" value="0" />
             <enum name="right_top_bootom_radius" value="1" />
 
