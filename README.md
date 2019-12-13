@@ -49,13 +49,14 @@
 
 如果TableView 是需要编辑的且需要编辑后值，则TableView 的 如下两个属性必须为true,否则第一行数据将丢失
 
-app:table_visible_head="true"
-app:table_need_edit="true"
-
-或者代码配置
-
-setEditTable(true)
-setShowHead(true)
+        app:table_visible_head="true"
+        app:table_need_edit="true"
+        
+        或者代码配置
+        
+        setEditTable(true)
+        
+        setShowHead(true)
 
 
 获取值的需要特殊处理下，因为TableView 为了灵活性并没限制每个单元格使用什么View,即可以是任何View,因此内部不能帮你采集出编辑后的值，
