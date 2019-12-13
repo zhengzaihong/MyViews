@@ -70,7 +70,7 @@ public class TableViewActivity extends AppCompatActivity {
         ColumnController controller = new ColumnController();
         //单位使用dp
         controller.addSpecial(0, 400)
-                  .addSpecial(3, 200);
+                  .addSpecial(3, 800);
 
         //配置控制器
         tableView.setColumnController(controller);
@@ -119,7 +119,7 @@ public class TableViewActivity extends AppCompatActivity {
 
 
         test();
-        test1(null);
+        test1(config1);
         test2(config2);
 
 

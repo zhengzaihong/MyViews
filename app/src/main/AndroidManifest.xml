@@ -26,7 +26,6 @@
             android:name=".ui.MenueViewActivity"></activity>
         <activity android:name=".ui.TipDialogActivity"></activity>
         <activity android:name=".ui.ImageViewActivity"></activity>
-        <activity android:name=".ui.CalendarViewActivity"></activity>
         <activity android:name=".ui.TableViewActivity" />
         <activity android:name=".ui.MayViewActivity" />
     </application>

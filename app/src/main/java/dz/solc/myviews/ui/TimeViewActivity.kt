@@ -16,7 +16,7 @@ import dz.solc.viewtool.view.timeview.TimerView
 import dz.solc.viewtool.view.timeview.TimerViewUpgrade
 import kotlinx.android.synthetic.main.activity_layout_timeview.*
 
-class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
+class TimeViewActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +24,6 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
         setContentView(R.layout.activity_layout_timeview)
 
         var timerView = TimerView.create()
-
-//      一般用法1
         tv_timego.setOnClickListener {
             if (timerView.isWait) {
                 ToastTool.get().show("请${timerView.time}秒后再试")
@@ -47,47 +45,6 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
             timerView.closeTimer()
         }
 
-
-//      一般用法2
-        var timerView1 = TimerView.create()
-        var count = 0
-        tv_timego1.setOnClickListener {
-
-            if (!timerView1.isWait) {
-
-                timerView1.start(object : TimerView.OnAlarmClockListener {
-
-                    override fun startfresh(currentime: Int) {
-                        if (currentime % 2 == 0) {
-                            count++
-                            tv_timego1.text = "刷新次数$count"
-                        }
-                    }
-
-                    override fun endfresh() {
-                        tv_timego1.text = "每隔2秒刷新"
-                    }
-                }, Int.MAX_VALUE)
-            }
-
-
-        }
-
-        timestop1.setOnClickListener {
-            timerView1.closeTimer()
-            count = 0
-        }
-
-
-//      用法3
-        var timerView2 = TimerView.create()
-        timerView2.speed = 500
-        tv_timego2.setOnClickListener {
-
-            if (!timerView2.isWait) {
-                timerView2.start(this, 10)
-            }
-        }
 
 
 //      TimerView线程池版
@@ -164,14 +121,6 @@ class TimeViewActivity : AppCompatActivity(), TimerView.OnAlarmClockListener {
         })
     }
 
-
-    override fun startfresh(currentime: Int) {
-        tv_timego2.text = "当前时间$currentime"
-    }
-
-    override fun endfresh() {
-        tv_timego2.text = "倒计时加速一倍"
-    }
 
 
 }
