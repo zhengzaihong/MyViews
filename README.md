@@ -1,7 +1,7 @@
 
 
 
-[new version](https://api.bintray.com/packages/zhengzaihong/maven/viewtoolX/images/download.svg) ]()
+[new version](https://api.bintray.com/packages/zhengzaihong/maven/viewtoolX/images/download.svg)
 
 [apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
 
