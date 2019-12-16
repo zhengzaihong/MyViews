@@ -1,4 +1,11 @@
 
+
+
+[![最新版本](https://api.bintray.com/packages/zhengzaihong/maven/viewtoolX/images/download.svg) ]()
+
+[apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
+
+
 项目依赖：
 
 使用AndroidX包的请添加如下依赖：
@@ -16,9 +23,6 @@
 
 样列图，更多请下载apk或者查看源码
 
-[![Download](https://api.bintray.com/packages/zhengzaihong/maven/viewtoolX/images/download.svg) ](https://bintray.com/zhengzaihong/maven/viewtoolX/_latestVersion)
-
-[apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
 
 
 ##更新日志 2019-12-13
