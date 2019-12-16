@@ -68,13 +68,12 @@ public class TableViewActivity extends AppCompatActivity {
 
         //用于控制特殊列的宽度
         ColumnController controller = new ColumnController();
-        //单位使用dp
+        //单位注意转换成 dp
         controller.addSpecial(0, 400)
-                  .addSpecial(3, 800);
+                .addSpecial(3, 800);
 
         //配置控制器
         tableView.setColumnController(controller);
-
 
 
         btGetData.setOnClickListener(new View.OnClickListener() {

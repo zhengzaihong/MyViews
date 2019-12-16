@@ -21,7 +21,7 @@
 
 ##更新日志 2019-12-13
 
-新特性  TableView 控件支持特殊列宽度控制，用法如下
+新特性 TableView 控件支持特殊列宽度控制，用法如下
 
     //用于控制特殊列的宽度
     ColumnController controller = new ColumnController();

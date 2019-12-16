@@ -48,7 +48,7 @@ publish {
     userOrg = 'zhengzaihong'
     groupId = 'com.zzh'
     uploadName = "viewtool"
-    publishVersion = '0.1.92'
+    publishVersion = '0.1.93'
     desc = 'this quick tools make your app has kinds of view tools'
     website = 'https://github.com/zhengzaihong/MyViews.git'
 }

@@ -123,6 +123,7 @@ public class LoadingDialog {
         rotateImageView.setBackgroundResource(resid);
         return this;
     }
+
     /**
      * 样式的图片
      *
@@ -130,11 +131,11 @@ public class LoadingDialog {
      * @param isGif 是否是gif 图
      * @return
      */
-    public LoadingDialog setLoadingIcon(int resid,boolean isGif) {
+    public LoadingDialog setLoadingIcon(int resid, boolean isGif) {
         rotateImageView.setBackground(null);
-        if(isGif){
+        if (isGif) {
             rotateImageView.setGifResource(resid);
-        }else {
+        } else {
             rotateImageView.setBackgroundResource(resid);
         }
         return this;
@@ -154,6 +155,7 @@ public class LoadingDialog {
 
     /**
      * 设置加载提示框的文本提示
+     *
      * @param text
      * @return
      */
@@ -164,8 +166,10 @@ public class LoadingDialog {
         tvTips.setText(text);
         return this;
     }
+
     /**
      * 设置加载提示框的文本颜色
+     *
      * @param color
      * @return
      */
@@ -198,6 +202,7 @@ public class LoadingDialog {
 
     /**
      * 设置dialog 的宽
+     *
      * @param width
      * @return
      */
@@ -206,8 +211,10 @@ public class LoadingDialog {
         window.getAttributes().width = width;
         return this;
     }
+
     /**
      * 设置dialog 的高
+     *
      * @param height
      * @return
      */
@@ -219,6 +226,7 @@ public class LoadingDialog {
 
     /**
      * 触碰非dialog区域是否取消显示
+     *
      * @param outTouchside
      * @return
      */
@@ -230,6 +238,7 @@ public class LoadingDialog {
 
     /**
      * 设置提示框的最大显示时间
+     *
      * @param maxTime
      * @return
      */
@@ -239,7 +248,7 @@ public class LoadingDialog {
     }
 
 
-    public void showDialog() {
+    public LoadingDialog showDialog() {
         if (null != dialog && !dialog.isShowing()) {
             if (rotateIcon) {
                 rotateImageView.rotate();
@@ -249,6 +258,7 @@ public class LoadingDialog {
             dialog.show();
             handler.sendEmptyMessageDelayed(1, 1000);
         }
+        return this;
     }
 
     public boolean isShowing() {

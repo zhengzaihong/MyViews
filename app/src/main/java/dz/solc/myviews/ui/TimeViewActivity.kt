@@ -18,12 +18,16 @@ import kotlinx.android.synthetic.main.activity_layout_timeview.*
 
 class TimeViewActivity : AppCompatActivity(){
 
+    var timerView = TimerView.create()
+   // TimerView线程池版
+    var timeViewUp = TimerViewUpgrade.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_layout_timeview)
 
-        var timerView = TimerView.create()
+
         tv_timego.setOnClickListener {
             if (timerView.isWait) {
                 ToastTool.get().show("请${timerView.time}秒后再试")
@@ -47,8 +51,6 @@ class TimeViewActivity : AppCompatActivity(){
 
 
 
-//      TimerView线程池版
-        var timeViewUp = TimerViewUpgrade.create()
 //        timeViewUp.period = 100
         tv_timego3.setOnClickListener {
             if (timeViewUp.isWait) {
@@ -121,6 +123,18 @@ class TimeViewActivity : AppCompatActivity(){
         })
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        timerView.closeTimer()
+        timeViewUp.closeTimer()
+
+        timerView = null
+        timeViewUp = null
+
+
+    }
 
 
 }

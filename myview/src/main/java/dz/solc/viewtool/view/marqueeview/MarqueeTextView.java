@@ -86,7 +86,6 @@ public class MarqueeTextView extends AppCompatTextView {
         float mGhostOffset = lineWidth + gap;
         float mFadeStop = lineWidth + textWidth / 6.0f;
         float mMaxFadeScroll = mGhostStart + lineWidth + lineWidth;
-        Log.e("point_X", mMaxFadeScroll + "");
         super.onDraw(canvas);
     }
 }
