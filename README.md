@@ -3,7 +3,7 @@
 
 使用AndroidX包的请添加如下依赖：
 
-``` implementation 'com.zzh.viewtoolsX:xxx(版本号)' ``` 
+``` implementation 'implementation 'com.zzh:viewtoolsX:xxx'(版本号)' ``` 
 
 使用support包的请添加如下依赖
 
@@ -15,6 +15,8 @@
 
 
 样列图，更多请下载apk或者查看源码
+
+[![Download](https://api.bintray.com/packages/zhengzaihong/maven/viewtoolX/images/download.svg) ](https://bintray.com/zhengzaihong/maven/viewtoolX/_latestVersion)
 
 [apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
 
