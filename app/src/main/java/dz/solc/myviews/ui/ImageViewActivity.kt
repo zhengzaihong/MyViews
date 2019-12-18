@@ -2,7 +2,7 @@ package dz.solc.myviews.ui
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.SeekBar
 import dz.solc.myviews.R
 import dz.solc.viewtool.view.barview.CircleBarView

@@ -97,7 +97,7 @@ public class OftenDialog {
      *
      * @return
      */
-    public OftenDialog setCancleGone() {
+    public OftenDialog setCancelGone() {
         tv_cance.setVisibility(View.GONE);
         view_line2.setVisibility(View.GONE);
         return this;
@@ -311,7 +311,7 @@ public class OftenDialog {
      * @param color
      * @return
      */
-    public OftenDialog setCancleTextColor(int color) {
+    public OftenDialog setCancelTextColor(int color) {
         tv_cance.setTextColor(color);
         return this;
     }
@@ -334,7 +334,7 @@ public class OftenDialog {
      * @return
      */
 
-    public OftenDialog setCancleBgColor(int color) {
+    public OftenDialog setCancelBgColor(int color) {
         tv_cance.setBackgroundColor(color);
         return this;
     }

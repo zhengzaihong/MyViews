@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -52,7 +52,7 @@ public class TableView<E> extends HorizontalScrollView {
     private LinearLayout headLayout;
     /**
      * 数据内容列表
-     * 利用 listView 的复用机制，减少性能的开销
+     * 利用 listView 的复用机制，减少性能开销
      */
     private ListView listView;
 
@@ -127,6 +127,223 @@ public class TableView<E> extends HorizontalScrollView {
 
         initView();
     }
+
+
+    /**
+     * 设置需要特殊处理的列控制器
+     *
+     * @param controller
+     */
+    public void setColumnController(ColumnController controller) {
+        this.columnController = controller;
+    }
+
+
+    /**
+     * 获取控制器
+     *
+     * @return
+     */
+    public ColumnController getColumnController() {
+        return columnController;
+    }
+
+    /**
+     * 去掉拉动效果
+     */
+    private void disableOverScrollMode(View view) {
+        if (Build.VERSION.SDK_INT < 9) {
+            return;
+        }
+        try {
+            Method m = View.class.getMethod("setOverScrollMode", int.class);
+            m.setAccessible(true);
+            m.invoke(view, 2);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置配置文件
+     *
+     * @param viewConfig
+     */
+    public void setViewConfig(TableViewConfig viewConfig) {
+
+        if (null == viewConfig) {
+            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
+            return;
+        }
+
+        this.viewConfig = viewConfig;
+        this.removeAllViews();
+        initView();
+    }
+
+    public TableViewConfig getViewConfig() {
+        return viewConfig;
+    }
+
+    /**
+     * 如果是在类似 ScrollView 中则需要测量
+     */
+    public void measureHeight() {
+        setListViewHeightBasedOnChildren(listView);
+    }
+
+    /**
+     * @param headData 表头信息
+     * @param data     表格数据
+     */
+    public void setHeadAndData(List<?> headData, List<E> data) {
+        setHead(headData);
+        setData(data);
+    }
+
+
+    /**
+     * 添加数据
+     *
+     * @param data
+     */
+    public void addData(List<E> data) {
+        if (null != customeTableViewAdapter && null != data) {
+            customeTableViewAdapter.addData(data);
+        }
+    }
+
+
+    /**
+     * 添加一行空数据，内部使用
+     */
+    private void addEmptyData(List<E> data) {
+
+        //如果是可编辑的 TableView 则在第一行添加一行过滤行
+        if (viewConfig.isEditTable() && viewConfig.isShowHead()) {
+            if (null != data && data.size() > 0) {
+                datas.add(0, null);
+            }
+        }
+    }
+
+
+    /**
+     * 添加数据
+     *
+     * @param data
+     */
+    public void addData(int index, List<E> data) {
+        if (null != customeTableViewAdapter && null != data) {
+            customeTableViewAdapter.getDatas().addAll(index, data);
+        }
+    }
+
+
+
+
+    /**
+     * 替换数据
+     *
+     * @param data
+     */
+    public void replaceData(List<E> data) {
+        if (null != customeTableViewAdapter) {
+            datas.clear();
+            setData(data);
+        }
+    }
+
+    /**
+     * 删除表格数据
+     */
+    public void clearData() {
+        if (null != customeTableViewAdapter) {
+            customeTableViewAdapter.getDatas().clear();
+            notifyDataSetChanged();
+        }
+    }
+
+
+    public void notifyDataSetChanged() {
+        if (null != customeTableViewAdapter) {
+            customeTableViewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * 返回当前列表 如有需要可实现点击等操作
+     * 点击事件建议使用提供的 OnCellItemClickListener
+     *
+     * @return
+     */
+    public ListView getListView() {
+
+        return listView;
+    }
+
+    /**
+     * 返回适配器数据
+     *
+     * @return
+     */
+
+    public List<E> getAdapterData() {
+
+        if (null != customeTableViewAdapter) {
+            return customeTableViewAdapter.getDatas();
+        }
+        return null;
+    }
+
+    /**
+     * 添加数据 Cell 视图
+     *
+     * @param index 集合的 下标
+     * @param view  具体的每行 cell
+     */
+    protected synchronized void addDataView(int index, LinkedHashSet<View> view) {
+        itemsView.put(index, view);
+    }
+
+
+    /**
+     * 获取整个表格数据 使用
+     *
+     * @return
+     */
+    public SparseArray<LinkedHashSet<View>> getDataView() {
+        return itemsView;
+    }
+
+
+    /**
+     * 必须设置该回调监听，否则不填充数据
+     *
+     * @param fillContentListener
+     */
+    private FillContentListener contentListener;
+
+    public void setFillContentListener(FillContentListener fillContentListener) {
+        this.contentListener = fillContentListener;
+    }
+
+
+    /**
+     * 设置单击每个单元格的点击事件
+     *
+     * @param onCellItemClickListener
+     */
+
+    private OnCellItemClickListener onCellItemClickListener;
+
+    public void setOnCellItemClickListener(OnCellItemClickListener onCellItemClickListener) {
+        this.onCellItemClickListener = onCellItemClickListener;
+        viewConfig.setOnCellItemClickListener(onCellItemClickListener);
+
+    }
+
+
 
 
     private void initView() {
@@ -294,6 +511,7 @@ public class TableView<E> extends HorizontalScrollView {
         }
     }
 
+
     /**
      * 设置内容数据
      */
@@ -321,206 +539,4 @@ public class TableView<E> extends HorizontalScrollView {
             Log.e(TAG, "please bind FillContentListener setData before!!");
         }
     }
-
-
-    /**
-     * 设置需要特殊处理的列控制器
-     *
-     * @param controller
-     */
-    public void setColumnController(ColumnController controller) {
-        this.columnController = controller;
-    }
-
-
-    /**
-     * 获取控制器
-     *
-     * @return
-     */
-    public ColumnController getColumnController() {
-        return columnController;
-    }
-
-    /**
-     * 去掉拉动效果
-     */
-    private void disableOverScrollMode(View view) {
-        if (Build.VERSION.SDK_INT < 9) {
-            return;
-        }
-        try {
-            Method m = View.class.getMethod("setOverScrollMode", int.class);
-            m.setAccessible(true);
-            m.invoke(view, 2);
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
-
-    /**
-     * 设置配置文件
-     *
-     * @param viewConfig
-     */
-    public void setViewConfig(TableViewConfig viewConfig) {
-
-        if (null == viewConfig) {
-            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
-            return;
-        }
-
-        this.viewConfig = viewConfig;
-        this.removeAllViews();
-        initView();
-    }
-
-    public TableViewConfig getViewConfig() {
-        return viewConfig;
-    }
-
-    /**
-     * 如果是在类似 ScrollView 中则需要测量
-     */
-    public void measureHeight() {
-        setListViewHeightBasedOnChildren(listView);
-    }
-
-    /**
-     * @param headData 表头信息
-     * @param data     表格数据
-     */
-    public void setHeadAndData(List<?> headData, List<E> data) {
-        setHead(headData);
-        setData(data);
-    }
-
-
-    /**
-     * 添加数据
-     *
-     * @param data
-     */
-    public void addData(List<E> data) {
-        if (null != customeTableViewAdapter && null != data) {
-            customeTableViewAdapter.addData(data);
-        }
-    }
-
-
-    /**
-     * 添加一行空数据，内部使用
-     */
-    private void addEmptyData(List<E> data) {
-
-        //如果是可编辑的 TableView 则在第一行添加一行过滤行
-        if (viewConfig.isEditTable() && viewConfig.isShowHead()) {
-            if (null != data && data.size() > 0) {
-                datas.add(0, null);
-            }
-        }
-    }
-
-
-    /**
-     * 替换数据
-     *
-     * @param data
-     */
-    public void replaceData(List<E> data) {
-        if (null != customeTableViewAdapter) {
-            datas.clear();
-            setData(data);
-        }
-    }
-
-    /**
-     * 删除表格数据
-     */
-    public void clearData() {
-        if (null != customeTableViewAdapter) {
-            customeTableViewAdapter.getDatas().clear();
-            notifyDataSetChanged();
-        }
-    }
-
-
-    public void notifyDataSetChanged() {
-        if (null != customeTableViewAdapter) {
-            customeTableViewAdapter.notifyDataSetChanged();
-        }
-    }
-
-    /**
-     * 返回当前列表 如有需要可实现点击等操作
-     * 点击事件建议使用提供的 OnCellItemClickListener
-     *
-     * @return
-     */
-    public ListView getListView() {
-
-        return listView;
-    }
-
-    /**
-     * 返回适配器数据
-     *
-     * @return
-     */
-
-    public List<E> getAdapterData() {
-
-        if (null != customeTableViewAdapter) {
-            return customeTableViewAdapter.getDatas();
-        }
-        return null;
-    }
-
-    /**
-     * 添加数据 Cell 视图
-     *
-     * @param index 集合的 下标
-     * @param view  具体的每行 cell
-     */
-    protected synchronized void addDataView(int index, LinkedHashSet<View> view) {
-        itemsView.put(index, view);
-    }
-
-
-    /**
-     * 获取整个表格数据 使用
-     *
-     * @return
-     */
-    public SparseArray<LinkedHashSet<View>> getDataView() {
-        return itemsView;
-    }
-
-
-    /**
-     * 必须设置该回调监听，否则不填充数据
-     *
-     * @param fillContentListener
-     */
-    private FillContentListener contentListener;
-
-    public void setFillContentListener(FillContentListener fillContentListener) {
-        this.contentListener = fillContentListener;
-    }
-
-
-    /**
-     * 设置单击每个单元格的点击事件
-     *
-     * @param onCellItemClickListener
-     */
-
-    private OnCellItemClickListener onCellItemClickListener;
-
-    public void setOnCellItemClickListener(OnCellItemClickListener onCellItemClickListener) {
-        this.onCellItemClickListener = onCellItemClickListener;
-        viewConfig.setOnCellItemClickListener(onCellItemClickListener);
-
-    }
-
 }

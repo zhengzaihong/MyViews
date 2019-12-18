@@ -1,7 +1,7 @@
 package dz.solc.myviews.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.dz.utlis.ScreenUtils
 import com.dz.utlis.ToastTool
 import dz.solc.myviews.R

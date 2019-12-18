@@ -1,7 +1,7 @@
 package dz.solc.myviews.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import dz.solc.myviews.R
 import dz.solc.viewtool.dialog.LoadingDialog
 import dz.solc.viewtool.dialog.OftenDialog

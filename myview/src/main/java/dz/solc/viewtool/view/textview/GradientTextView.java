@@ -45,7 +45,7 @@ import dz.solc.viewtool.R;
  * 该控件支持 7.0以下只支持横向渐变
  **/
 @SuppressWarnings("all")
-public class GradientTextView extends android.support.v7.widget.AppCompatTextView {
+public class GradientTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     private static final String TAG = "GradientTextView";
     boolean inflated;

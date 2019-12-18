@@ -169,7 +169,7 @@
         />
 
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seek_bar_progress"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="32dp"/>
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seek_bar_outer"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         android:layout_marginTop="16dp"
         />
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seek_bar_inner"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
