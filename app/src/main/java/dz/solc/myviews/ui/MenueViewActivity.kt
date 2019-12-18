@@ -15,7 +15,6 @@ import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig
 import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.*
 import dz.solc.viewtool.view.menueview.helper.MenueAdapter
 import dz.solc.viewtool.view.menueview.helper.MenueViewHolder
-import dz.solc.viewtool.view.textview.GradientTextView
 import kotlinx.android.synthetic.main.activity_layout_menue_view.*
 
 class MenueViewActivity : AppCompatActivity() {

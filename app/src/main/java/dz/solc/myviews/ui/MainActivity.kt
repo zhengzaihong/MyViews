@@ -10,6 +10,7 @@ import com.dz.utlis.AndroidUtils
 import dz.solc.myviews.R
 import dz.solc.viewtool.adapter.CommonAdapter
 import dz.solc.viewtool.adapter.UtilAdapter
+import dz.solc.viewtool.view.tableview.TableView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

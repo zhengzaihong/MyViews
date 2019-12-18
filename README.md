@@ -1,9 +1,12 @@
 
+[apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
+
+
 项目依赖：
 
 使用AndroidX包的请添加如下依赖：
 
-``` implementation 'com.zzh.viewtoolsX:xxx(版本号)' ``` 
+``` 'implementation 'com.zzh:viewtoolsX:xxx'(版本号)' ``` 
 
 使用support包的请添加如下依赖
 
@@ -16,7 +19,6 @@
 
 样列图，更多请下载apk或者查看源码
 
-[apk 下载](https://github.com/zhengzaihong/MyViews/blob/master/Screenshots/app-debug.apk)
 
 
 ##更新日志 2019-12-13
@@ -25,7 +27,7 @@
 
     //用于控制特殊列的宽度
     ColumnController controller = new ColumnController();
-    //单位使用dp 参数1：第几列   参数2:第几列的宽度
+    //单位注意转换成 dp  参数1：第几列   参数2:第几列的宽度
     //文字过多建议配合自适应高度属性使用
     
     controller.addSpecial(0, 400)
