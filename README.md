@@ -15,6 +15,18 @@
 
 *注意：本库使用到Androidx库 和SDK 28以下的区别，请分别正确引入 *
 
+如果遇到不能添加依赖 gradle 提示错误类似，not found viewtools 等，请在项目的根目录中 build.gradle 添加如下代码：
+
+
+
+    repositories {
+       
+        .....
+        mavenCentral()
+
+        maven { url 'https://dl.bintray.com/zhengzaihong/maven' }
+    }
+
 
 
 样列图，更多请下载apk或者查看源码

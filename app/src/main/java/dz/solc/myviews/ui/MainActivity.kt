@@ -3,14 +3,9 @@ package dz.solc.myviews.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
-import android.widget.AdapterView
-import android.widget.TextView
-import com.dz.utlis.AndroidUtils
 import dz.solc.myviews.R
 import dz.solc.viewtool.adapter.CommonAdapter
 import dz.solc.viewtool.adapter.UtilAdapter
-import dz.solc.viewtool.view.tableview.TableView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
 
 
         listMenues.setOnItemClickListener { _, _, position, _ ->
