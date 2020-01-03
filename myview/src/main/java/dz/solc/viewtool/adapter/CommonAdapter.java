@@ -2,8 +2,10 @@ package dz.solc.viewtool.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -174,7 +176,10 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             if (TextUtils.isEmpty(text)) {
                 tv.setVisibility(View.GONE);
                 return this;
+            } else {
+                tv.setVisibility(View.VISIBLE);
             }
+
             tv.setText(null == text ? "" : text);
             tv.setTextColor(color);
             return this;
@@ -185,6 +190,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             if (TextUtils.isEmpty(text)) {
                 tv.setVisibility(View.GONE);
                 return this;
+            } else {
+                tv.setVisibility(View.VISIBLE);
             }
             tv.setText(null == text ? "" : text);
             return this;
