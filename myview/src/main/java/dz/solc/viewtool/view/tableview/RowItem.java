@@ -1,4 +1,5 @@
 package dz.solc.viewtool.view.tableview;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -117,6 +118,18 @@ public class RowItem<T> {
     }
 
     /**
+     * 添加一个单元格
+     *
+     * @param cell  单元格信息
+     * @param index 添加到指定的位置
+     * @return
+     */
+    public RowItem addCell(ItemCell cell, int index) {
+        cells.add(index, cell);
+        return this;
+    }
+
+    /**
      * 删除一个单元格
      *
      * @param cell 单元格信息
@@ -128,6 +141,12 @@ public class RowItem<T> {
         }
         return this;
     }
+
+    public RowItem removeCell(int index) {
+        cells.remove(index);
+        return this;
+    }
+
     public RowItem clearCells() {
         cells.clear();
         return this;

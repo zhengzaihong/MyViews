@@ -249,8 +249,7 @@ public class TableView<E> extends HorizontalScrollView {
      */
     public void replaceData(List<E> data) {
         if (null != customeTableViewAdapter) {
-            datas.clear();
-            setData(data);
+            customeTableViewAdapter.replaceData(data);
         }
     }
 
@@ -259,6 +258,9 @@ public class TableView<E> extends HorizontalScrollView {
      */
     public void clearData() {
         if (null != customeTableViewAdapter) {
+            if(null!=headLayout){
+                headLayout.removeAllViews();
+            }
             customeTableViewAdapter.getDatas().clear();
             notifyDataSetChanged();
         }

@@ -112,7 +112,6 @@ class MenueViewActivity : AppCompatActivity() {
         rivChangeRPoint1.adapter = adapter1
 
 
-
         var listMenue3 = listOf("荤菜", "蔬菜", "美女", "帅哥")
         val viewConfig3 = MultiFunctionConfig()
         viewConfig3.normalBgColor = UiCompat.getColor(resources, R.color.orange_100)

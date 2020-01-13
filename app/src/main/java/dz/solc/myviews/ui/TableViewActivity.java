@@ -52,6 +52,8 @@ public class TableViewActivity extends AppCompatActivity {
     private TableView<PersonInfoBean.DataBean> tableView1;
     private TableView<PersonInfoBean.DataBean> tableView2;
     private Button btGetData;
+    private Button btClear;
+    private Button btAddData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class TableViewActivity extends AppCompatActivity {
         tableView2 = findViewById(R.id.tableView2);
 
         btGetData = findViewById(R.id.btGetData);
+        btClear = findViewById(R.id.btClear);
+        btAddData = findViewById(R.id.btAddData);
 
 
         //用于控制特殊列的宽度
@@ -74,6 +78,31 @@ public class TableViewActivity extends AppCompatActivity {
 
         //配置控制器
         tableView.setColumnController(controller);
+
+        btClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableView1.clearData();
+            }
+        });
+        btAddData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableView1.clearData();
+
+                PersonInfoBean personInfoBean = JSON.toJavaObject(JSON.parseObject(Constans.testJson1), PersonInfoBean.class);
+
+                List<String> head = new ArrayList<>();
+                head.add("姓名阿三发生达大厦大");
+                head.add("职位11111111111");
+                head.add("时间");
+                head.add("待遇");
+
+                tableView1.setHead(head);
+                tableView1.setData(personInfoBean.getData());
+
+            }
+        });
 
 
         btGetData.setOnClickListener(new View.OnClickListener() {

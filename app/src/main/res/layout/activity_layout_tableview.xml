@@ -52,11 +52,29 @@
 
         -->
 
-        <Button
-            android:id="@+id/btGetData"
-            android:text="获取表格数据"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Button>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btGetData"
+                android:text="获取表格数据"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Button>
+
+            <Button
+                android:id="@+id/btClear"
+                android:text="删除表格数据"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Button>
+            <Button
+                android:id="@+id/btAddData"
+                android:text="添加表格数据"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Button>
+        </LinearLayout>
 
 
         <dz.solc.viewtool.view.tableview.TableView
