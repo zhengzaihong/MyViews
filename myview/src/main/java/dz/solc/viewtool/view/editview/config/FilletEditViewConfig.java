@@ -3,10 +3,10 @@ package dz.solc.viewtool.view.editview.config;
 import android.graphics.Color;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 16:20
+ * create_date: 2019/4/24 0024
+ * create_time: 16:20
  * describe: 自定义可圆角的TextView配置文件
  **/
 public class FilletEditViewConfig {

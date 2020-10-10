@@ -11,10 +11,10 @@ import android.widget.FrameLayout;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2018/2/22
- * creat_time: 20:01
+ * create_date: 2018/2/22
+ * create_time: 20:01
  * describe: 可实现类似电影结束字幕效果，此view只是个容器,真正需要滚动的文字需要放入该ViewGroup节点下,
  * 同时完整滚动完还需要在该ViewGroup的外层在用ScrollView包装下，完整使用请看demo
  **/

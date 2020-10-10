@@ -51,5 +51,5 @@ dependencies {
     implementation project(':myview')
     implementation 'com.alibaba:fastjson:1.2.44'
 
-//    implementation 'com.zzh:viewtools:0.1.92'
+//    implementation 'com.zzh:viewtoolsX:0.1.94'
 }

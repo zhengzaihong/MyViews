@@ -14,10 +14,10 @@ import static dz.solc.viewtool.view.scrollview.ObservableScrollView.OnScrollList
 
 
 /**
- *creat_user: zhengzaihong
+ *create_user: zhengzaihong
  *email:1096877329@qq.com
- *creat_date: 2018/6/26
- *creat_time: 16:45
+ *create_date: 2018/6/26
+ *create_time: 16:45
  *describe: 测量滑动距离的和状态的view
  **/
 public class ObservableScrollView extends ScrollView {

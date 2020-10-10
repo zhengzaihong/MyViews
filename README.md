@@ -6,11 +6,11 @@
 
 使用AndroidX包的请添加如下依赖：
 
-``` 'implementation 'com.zzh:viewtoolsX:xxx'(版本号)' ``` 
+``` 'implementation 'com.zzh:viewtoolsX:0.1.95'(版本号)' ```
 
-使用support包的请添加如下依赖
+使用support包的请添加如下依赖(停止更新)
 
-``` implementation 'com.zzh.viewtools:xxx(版本号)'  ```//最新查看version_xxx.txt信息
+``` implementation 'com.zzh.viewtools:0.1.94'  ```
 
 
 *注意：本库使用到Androidx库 和SDK 28以下的区别，请分别正确引入 *
@@ -30,6 +30,14 @@
 
 
 样列图，更多请下载apk或者查看源码
+
+
+##更新日志 2020-10-9
+1.TableView 优化回调
+
+FilletView 新增加功能：
+ 1.支持背景渐变，渐变方向全部支持
+ 2.支持绑定EditText 控件状态切换
 
 
 

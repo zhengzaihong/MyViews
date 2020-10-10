@@ -25,10 +25,10 @@ import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusT
 import static dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.RadiusType.RIGHT_TOP_RADIUS;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 17:55
+ * create_date: 2019/4/24 0024
+ * create_time: 17:55
  * describe: 仿ios UISegmentedControl自定义控件 支持各种不同维度的圆角,保留chekBox全部特性
  * 选中和非选中文字需要改变颜色 和平常使用checkBox 定义xml文字颜色一样或者代码方式动态setTextColor方式或者通过配置文件即可
  * <p>

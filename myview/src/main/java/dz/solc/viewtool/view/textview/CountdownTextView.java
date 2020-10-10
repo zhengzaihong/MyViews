@@ -14,10 +14,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2017/12/26
- * creat_time: 10:06
+ * create_date: 2017/12/26
+ * create_time: 10:06
  * describe 抢购倒计时控件
  **/
 

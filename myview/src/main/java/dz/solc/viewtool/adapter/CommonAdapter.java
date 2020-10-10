@@ -21,10 +21,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2018/11/30 0030
- * creat_time: 17:42
+ * create_date: 2018/11/30 0030
+ * create_time: 17:42
  * describe: 简化listView 的适配器
  **/
 @SuppressWarnings("all")
@@ -127,6 +127,11 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
                 holder.mPosition = position;
                 return holder;
             }
+        }
+
+        public ImageView getImageView(int viewId){
+
+            return (ImageView)getView(viewId);
         }
 
         //根据id，从xml中找出来

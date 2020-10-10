@@ -17,10 +17,10 @@ import com.haarman.listviewanimations.swinginadapters.prepared.SwingRightInAnima
 import java.lang.reflect.Field;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2017/12/6
- * creat_time: 10:30
+ * create_date: 2017/12/6
+ * create_time: 10:30
  * describe 适配器的一些常用方法
  **/
 

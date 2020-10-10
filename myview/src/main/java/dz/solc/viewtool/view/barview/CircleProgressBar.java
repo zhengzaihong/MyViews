@@ -19,10 +19,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2018/11/24 0024
- * creat_time: 14:25
+ * create_date: 2018/11/24 0024
+ * create_time: 14:25
  * describe: 自定义进度动画bar
  **/
 @SuppressWarnings("all")

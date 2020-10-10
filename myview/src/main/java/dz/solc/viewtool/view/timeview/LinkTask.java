@@ -9,10 +9,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2018/7/8
- * creat_time: 10:14
+ * create_date: 2018/7/8
+ * create_time: 10:14
  * describe 创建一个任务队列，定时从队列中取出任务,不建议使用在过长的时间定时中
  **/
 

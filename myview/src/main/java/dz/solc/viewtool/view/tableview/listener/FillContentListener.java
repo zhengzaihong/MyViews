@@ -11,10 +11,10 @@ import dz.solc.viewtool.view.tableview.TableView;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/11/27
- * creat_time: 17:29
+ * create_date: 2019/11/27
+ * create_time: 17:29
  * describe 填充数据的 监听(必须设置，否则不填充)
  **/
 public interface FillContentListener {
@@ -31,10 +31,11 @@ public interface FillContentListener {
      * 每显示一行会触发一次 这个和listView 的adapter机制一直
      *
      * @param holder
+     * @param tableView 表格控件
      * @param rowItem  表格每行的信息
      */
 
-    void getView(CommonAdapter.ViewHolder holder,  RowItem rowItem);
+    void getView(CommonAdapter.ViewHolder holder, TableView tableView, RowItem rowItem);
 
     /**
      * @param obj         当前单元格数据
@@ -49,10 +50,4 @@ public interface FillContentListener {
      * @return 每个item 的布局文件id
      */
     int itemLayout();
-
-    /**
-     * 绑定TableView
-     * @return
-     */
-    TableView bindTableView();
 }

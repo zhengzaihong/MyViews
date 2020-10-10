@@ -8,10 +8,10 @@ import android.view.MotionEvent;
 
 
 /**
- *creat_user: zhengzaihong
+ *create_user: zhengzaihong
  *email:1096877329@qq.com
- *creat_date: 2018/12/24 0024
- *creat_time: 15:45
+ *create_date: 2018/12/24 0024
+ *create_time: 15:45
  *describe: 处理滑动事件导致无法点击的问题
  **/
 

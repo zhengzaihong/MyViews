@@ -15,10 +15,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/3/29 0029
- * creat_time: 11:32
+ * create_date: 2019/3/29 0029
+ * create_time: 11:32
  * describe: 自定义圆环
  **/
 

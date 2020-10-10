@@ -5,10 +5,10 @@ import android.app.Application;
 import android.os.Bundle;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2018/6/22
- * creat_time: 11:14
+ * create_date: 2018/6/22
+ * create_time: 11:14
  * describe 监听注册后进入当前activit的生命周期
  **/
 public class RegisetActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {

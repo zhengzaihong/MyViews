@@ -5,10 +5,10 @@ import android.graphics.Color;
 import dz.solc.viewtool.view.tableview.listener.OnCellItemClickListener;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/7/15
- * creat_time: 11:35
+ * create_date: 2019/7/15
+ * create_time: 11:35
  * describe 表格控件的配置文件
  **/
 

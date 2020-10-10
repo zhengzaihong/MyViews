@@ -3,10 +3,10 @@ package dz.solc.viewtool.view.viewgroup;
 import android.graphics.Color;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/12
- * creat_time: 19:10
+ * create_date: 2019/12/12
+ * create_time: 19:10
  * describe 配置 容器的信息
  **/
 public class ViewGroupConfig {

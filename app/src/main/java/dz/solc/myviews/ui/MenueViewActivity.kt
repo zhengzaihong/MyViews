@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
+import android.widget.EditText
 import com.dz.utlis.ScreenUtils
 import com.dz.utlis.ToastTool
 import com.dz.utlis.UiCompat
@@ -24,6 +25,9 @@ class MenueViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_layout_menue_view)
+
+
+        mFilletView.bindEditText(mEditText,6,false)
 
         sbutton.setOnCheckedListener { isChecked ->
             Log.v("--------", "选择状态$isChecked")

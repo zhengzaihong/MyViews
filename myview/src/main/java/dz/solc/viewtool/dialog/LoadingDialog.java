@@ -18,10 +18,10 @@ import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.imageview.RotateImageView;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/3/29 0029
- * creat_time: 9:07
+ * create_date: 2019/3/29 0029
+ * create_time: 9:07
  * describe: 简易加载dialog
  **/
 @SuppressWarnings("all")
@@ -46,7 +46,7 @@ public class LoadingDialog {
     private boolean rotateIcon = true;
 
     /**
-     * 设置显示的最长时间 单位秒
+     * 设置显示的时间 单位秒
      */
     private int showMaxTime = 10;
 
@@ -246,7 +246,6 @@ public class LoadingDialog {
         this.showMaxTime = maxTime;
         return this;
     }
-
 
     public LoadingDialog showDialog() {
         if (null != dialog && !dialog.isShowing()) {

@@ -1,12 +1,15 @@
 package dz.solc.viewtool.view.textview.config;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+
+import static android.graphics.Color.TRANSPARENT;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 16:20
+ * create_date: 2019/4/24 0024
+ * create_time: 16:20
  * describe: 自定义可圆角的TextView配置文件
  **/
 public class FilletConfig {
@@ -14,7 +17,7 @@ public class FilletConfig {
     // 边框线宽
     private int strokeWidth = 1;
     // 边框颜色
-    private int strokeColor = Color.TRANSPARENT;
+    private int strokeColor = TRANSPARENT;
     // 背景颜色
     private int normalBgColor = 0xff132051;
     // 按下背景颜色
@@ -29,7 +32,7 @@ public class FilletConfig {
     private int pressedTextColor = Color.WHITE;
 
     //按压时候边框颜色
-    private int pressedStrokeColor = Color.TRANSPARENT;
+    private int pressedStrokeColor = TRANSPARENT;
 
     // 边框颜色是否跟随文字颜色
     private boolean followTextColor;
@@ -43,6 +46,15 @@ public class FilletConfig {
     //动画显示时间
     private Integer showAnimationTime = 500;
 
+    //渐变的颜色
+    private int startColor = TRANSPARENT;
+    private int centerColor = -1;
+    private int endColor = TRANSPARENT;
+    //是否启用渐变背景的控制开关
+    private boolean userGradient = false;
+    //渐变的方向
+    private GradientDrawable.Orientation orientation = GradientDrawable.Orientation.LEFT_RIGHT;
+
     // 设置圆角类型
     private RadiusType radiusType = RadiusType.ALL_RADIUS;
 
@@ -50,7 +62,7 @@ public class FilletConfig {
         /**
          * 左边_上_下圆角
          */
-        LEFT_TOP_BOTTOM_RADIUS(),
+        LEFT_TOP_BOTTOM_RADIUS,
         /**
          * 右边_上_下圆角
          */
@@ -85,6 +97,46 @@ public class FilletConfig {
         NONE_RADIUS
 
 
+    }
+
+    public boolean isUserGradient() {
+        return userGradient;
+    }
+
+    public void setUserGradient(boolean userGradient) {
+        this.userGradient = userGradient;
+    }
+
+    public int getCenterColor() {
+        return centerColor;
+    }
+
+    public void setCenterColor(int centerColor) {
+        this.centerColor = centerColor;
+    }
+
+    public GradientDrawable.Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(GradientDrawable.Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+    public int getStartColor() {
+        return startColor;
+    }
+
+    public void setStartColor(int startColor) {
+        this.startColor = startColor;
+    }
+
+    public int getEndColor() {
+        return endColor;
+    }
+
+    public void setEndColor(int endColor) {
+        this.endColor = endColor;
     }
 
     public Integer getShowAnimationTime() {

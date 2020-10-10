@@ -7,10 +7,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2017/12/6
- * creat_time: 15:48
+ * create_date: 2017/12/6
+ * create_time: 15:48
  * describe 用于倒计时的类 不绑定任何view
  **/
 
@@ -155,7 +155,7 @@ public class TimerView {
      */
     public interface OnAlarmClockListener {
 
-        void startfresh(int currentime);
+        void startfresh(int time);
 
         void endfresh();
 

@@ -8,10 +8,10 @@ import android.view.View;
 import dz.solc.viewtool.R;
 
 /**
-* creat_user: zhengzaihong
+* create_user: zhengzaihong
 * Email:1096877329@qq.com
-* creat_date: 2018/2/10
-* creat_time: 15:03
+* create_date: 2018/2/10
+* create_time: 15:03
 * describe
 **/
 class AirAttribute {

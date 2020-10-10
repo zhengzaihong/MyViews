@@ -11,10 +11,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2017/12/6
- * creat_time: 15:48
+ * create_date: 2017/12/6
+ * create_time: 15:48
  * describe 用于倒计时的类 TimerView 加强版,用于使用长计时轮训等
  **/
 

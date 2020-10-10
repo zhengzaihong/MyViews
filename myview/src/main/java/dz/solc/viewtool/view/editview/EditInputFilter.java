@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/11/15
- * creat_time: 11:37
+ * create_date: 2019/11/15
+ * create_time: 11:37
  * describe 限制数据 数字大小的过滤器   editText.setFilters(new InputFilter[]{new EditInputFilter()});
  **/
 public class EditInputFilter implements InputFilter {

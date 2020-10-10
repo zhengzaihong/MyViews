@@ -16,10 +16,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2018/9/6
- * creat_time: 16:47
+ * create_date: 2018/9/6
+ * create_time: 16:47
  * describe: 电池控件
  **/
 public class PowerBatteryView extends View {

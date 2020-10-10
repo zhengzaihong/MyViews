@@ -9,10 +9,10 @@ import android.view.View;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2018/4/25
- * creat_time: 10:48
+ * create_date: 2018/4/25
+ * create_time: 10:48
  * describe 处理下分割线 装饰的ItemDecoration
  **/
 public class HDividerItemDecoration extends RecyclerView.ItemDecoration {

@@ -21,10 +21,10 @@ import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.utils.Utils;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2018/7/10
- * creat_time: 15:56
+ * create_date: 2018/7/10
+ * create_time: 15:56
  * describe 横向进度条
  **/
 

@@ -6,10 +6,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
-* creat_user: zhengzaihong
+* create_user: zhengzaihong
 * Email:1096877329@qq.com
-* creat_date: 2017/11/22
-* creat_time: 14:12
+* create_date: 2017/11/22
+* create_time: 14:12
 * describe 用于界面 是否滑动的ViewPage isScroll： false不能滑动,否则反之
 **/
 public class NoScrollViewPager extends ViewPager {

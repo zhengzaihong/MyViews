@@ -14,10 +14,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2018/9/21 0021
- * creat_time: 13:41
+ * create_date: 2018/9/21 0021
+ * create_time: 13:41
  * describe: 下划线TextView
  **/
 public class UnderLineTextView extends AppCompatTextView {

@@ -31,10 +31,10 @@ import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChild
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/7/11
- * creat_time: 13:42
+ * create_date: 2019/7/11
+ * create_time: 13:42
  * describe  支持任意数据可横向和纵向滑动的表格控件，目前不支持单元格合并
  **/
 @SuppressWarnings("all")

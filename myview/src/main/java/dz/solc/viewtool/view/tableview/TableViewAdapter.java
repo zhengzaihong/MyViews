@@ -6,10 +6,10 @@ import dz.solc.viewtool.view.tableview.listener.FillContentListener;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/7/15
- * creat_time: 11:35
+ * create_date: 2019/7/15
+ * create_time: 11:35
  * describe 表格适配器
  **/
 public class TableViewAdapter extends CommonAdapter {
@@ -46,7 +46,7 @@ public class TableViewAdapter extends CommonAdapter {
                 .setPosition(position)
                 .setLastItem(position == datas.size() - 1);
 
-        contentListener.getView(holder, rowItem);
+        contentListener.getView(holder, tableView, rowItem);
     }
 
 }

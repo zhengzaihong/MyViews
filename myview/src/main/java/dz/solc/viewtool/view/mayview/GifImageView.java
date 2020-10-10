@@ -18,10 +18,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/11/28
- * creat_time: 14:31
+ * create_date: 2019/11/28
+ * create_time: 14:31
  * describe 支持播放 gif的控件(不建议大图使用该控件播放)
  **/
 @SuppressWarnings("all")

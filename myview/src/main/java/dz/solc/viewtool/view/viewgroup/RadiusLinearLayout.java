@@ -23,10 +23,10 @@ import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_T
 import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_TOP_RADIUS;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/12
- * creat_time: 19:09
+ * create_date: 2019/12/12
+ * create_time: 19:09
  * describe 支持圆角的 线性布局
  **/
 @SuppressWarnings("all")
@@ -103,6 +103,11 @@ public class RadiusLinearLayout extends LinearLayout {
         // 设置背景
         initView();
     }
+
+    public ViewGroupConfig getConfig(){
+        return configBean;
+    }
+
 
 
     private Drawable getPressedSelector(ViewGroupConfig config) {

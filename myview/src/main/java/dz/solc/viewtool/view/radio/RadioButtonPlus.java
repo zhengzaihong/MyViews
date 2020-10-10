@@ -24,10 +24,10 @@ import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.RIGHT
 import static dz.solc.viewtool.view.radio.RadioButtonViewConfig.RadiusType.RIGHT_TOP_RADIUS;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/13
- * creat_time: 10:03
+ * create_date: 2019/12/13
+ * create_time: 10:03
  * describe 支持圆角和背景切换的 RadioButton
  **/
 
@@ -102,6 +102,9 @@ public class RadioButtonPlus extends AppCompatRadioButton {
         this.configBean = configBean;
         // 设置背景
         initView();
+    }
+    public RadioButtonViewConfig getConfig(){
+        return configBean;
     }
 
 

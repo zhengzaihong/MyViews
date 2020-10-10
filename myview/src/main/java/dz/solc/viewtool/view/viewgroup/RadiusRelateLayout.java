@@ -24,10 +24,10 @@ import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_T
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/12
- * creat_time: 19:09
+ * create_date: 2019/12/12
+ * create_time: 19:09
  * describe 支持圆角的 相对布局
  **/
 @SuppressWarnings("all")
@@ -105,6 +105,9 @@ public class RadiusRelateLayout extends RelativeLayout {
         initView();
     }
 
+    public ViewGroupConfig getConfig(){
+        return configBean;
+    }
 
     private Drawable getPressedSelector(ViewGroupConfig config) {
         //TODO 目前只做了 按下和抬起状态

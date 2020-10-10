@@ -17,10 +17,10 @@ import android.widget.Scroller;
 import dz.solc.viewtool.R;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/1/16 0016
- * creat_time: 14:22
+ * create_date: 2019/1/16 0016
+ * create_time: 14:22
  * describe: 开关控制按钮
  **/
 

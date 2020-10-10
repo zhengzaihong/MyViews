@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/11
- * creat_time: 20:18
+ * create_date: 2019/12/11
+ * create_time: 20:18
  * describe 新特性 主要用于控制特殊列
  * 更多玩法待拓展
  **/

@@ -1,8 +1,10 @@
 package dz.solc.myviews.ui;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
@@ -39,10 +41,10 @@ import static com.dz.utlis.JavaUtils.getMap4Json;
 import static com.dz.utlis.JavaUtils.outRedPrint;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/7/15
- * creat_time: 14:07
+ * create_date: 2019/7/15
+ * create_time: 14:07
  * describe 表格基本功能已具有,更多功能待完善优化.
  **/
 @SuppressWarnings("all")
@@ -182,7 +184,7 @@ public class TableViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void getView(CommonAdapter.ViewHolder holder, RowItem rowItem) {
+            public void getView(CommonAdapter.ViewHolder holder, TableView tableView, RowItem rowItem) {
 
                 Map<String, Object> map = (Map<String, Object>) rowItem.getRowData();
 
@@ -194,7 +196,7 @@ public class TableViewActivity extends AppCompatActivity {
 
 
                 TableItem item = (TableItem) holder.getConvertView();
-                item.buildItem(this, rowItem);
+                item.buildItem(this, tableView, rowItem);
 
 //                //或者重新构建一行数据
 //                RowItem rowItem1 = new RowItem(
@@ -243,11 +245,6 @@ public class TableViewActivity extends AppCompatActivity {
                 return R.layout.table_view_row_item_layout;
             }
 
-            @Override
-            public TableView bindTableView() {
-                return tableView;
-            }
-
         });
 
 
@@ -275,7 +272,7 @@ public class TableViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void getView(CommonAdapter.ViewHolder holder, RowItem rowItem) {
+            public void getView(CommonAdapter.ViewHolder holder, TableView tableView, RowItem rowItem) {
                 PersonInfoBean.DataBean dataBean = (PersonInfoBean.DataBean) rowItem.getRowData();
                 rowItem.addCell(new ItemCell(dataBean.getName()))
                         .addCell(new ItemCell(dataBean.getJob()))
@@ -283,7 +280,7 @@ public class TableViewActivity extends AppCompatActivity {
                         .addCell(new ItemCell(dataBean.getMoney()));
 
                 TableItem item = (TableItem) holder.getConvertView();
-                item.buildItem(this, rowItem);
+                item.buildItem(this, tableView, rowItem);
 
 
 //                //或者重新构建一行数据
@@ -316,11 +313,6 @@ public class TableViewActivity extends AppCompatActivity {
             public int itemLayout() {
                 return R.layout.table_view_row_item_layout1;
             }
-
-            @Override
-            public TableView bindTableView() {
-                return tableView1;
-            }
         });
 
 
@@ -350,7 +342,7 @@ public class TableViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void getView(CommonAdapter.ViewHolder holder, RowItem rowItem) {
+            public void getView(CommonAdapter.ViewHolder holder, TableView tableView, RowItem rowItem) {
                 PersonInfoBean.DataBean dataBean = (PersonInfoBean.DataBean) rowItem.getRowData();
                 //设置每行数据
                 rowItem.addCell(new ItemCell(dataBean.getName()))
@@ -359,7 +351,7 @@ public class TableViewActivity extends AppCompatActivity {
                         .addCell(new ItemCell(dataBean.getMoney()));
 
                 TableItem item = (TableItem) holder.getConvertView();
-                item.buildItem(this, rowItem);
+                item.buildItem(this, tableView, rowItem);
 
             }
 
@@ -385,10 +377,6 @@ public class TableViewActivity extends AppCompatActivity {
                 return R.layout.table_view_row_item_layout1;
             }
 
-            @Override
-            public TableView bindTableView() {
-                return tableView2;
-            }
         });
 
 

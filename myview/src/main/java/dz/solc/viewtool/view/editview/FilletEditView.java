@@ -26,10 +26,10 @@ import static dz.solc.viewtool.view.editview.config.FilletEditViewConfig.RadiusT
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 17:55
+ * create_date: 2019/4/24 0024
+ * create_time: 17:55
  * describe:支持任意边圆角的编辑EditText 可设置背景和前景色,
  * 保留EditText全部特性，减少开发中大量的编写xml配置文件来改变背景色文字颜色等，
  **/
@@ -114,6 +114,10 @@ public class FilletEditView extends AppCompatEditText {
         initView();
     }
 
+
+    public FilletEditViewConfig getConfig(){
+        return configBean;
+    }
 
     private Drawable getPressedSelector(FilletEditViewConfig config) {
         //TODO 目前只做了 按下和抬起状态

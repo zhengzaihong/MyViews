@@ -31,10 +31,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/9
- * creat_time: 13:19
+ * create_date: 2019/12/9
+ * create_time: 13:19
  * describe 文字能显示drawable 渐变的TextView
  * 支持的Drawable有：
  * {@link ColorDrawable}

@@ -8,10 +8,10 @@ import android.view.animation.RotateAnimation;
 import dz.solc.viewtool.view.mayview.GifImageView;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2017/12/6
- * creat_time: 10:28
+ * create_date: 2017/12/6
+ * create_time: 10:28
  * describe 让图片转起来的view
  **/
 public class RotateImageView extends GifImageView {

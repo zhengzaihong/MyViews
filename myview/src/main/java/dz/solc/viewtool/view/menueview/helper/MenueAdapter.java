@@ -27,10 +27,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * email:1096877329@qq.com
- * creat_date: 2019/4/24 0024
- * creat_time: 16:25
+ * create_date: 2019/4/24 0024
+ * create_time: 16:25
  * describe: 此adaper 参考开源BaseQuickAdapter
  **/
 

@@ -27,10 +27,10 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 /**
- *creat_user: zhengzaihong
+ *create_user: zhengzaihong
  *email:1096877329@qq.com
- *creat_date: 2019/4/24 0024
- *creat_time: 10:58
+ *create_date: 2019/4/24 0024
+ *create_time: 10:58
  *describe: 参照开源 BaseQuickAdapter
  **/
 

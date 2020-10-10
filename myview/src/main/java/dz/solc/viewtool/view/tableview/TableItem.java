@@ -14,10 +14,10 @@ import java.util.List;
 import dz.solc.viewtool.view.tableview.listener.FillContentListener;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/7/15
- * creat_time: 11:33
+ * create_date: 2019/7/15
+ * create_time: 11:33
  * describe 用于每行包含cell的容器
  **/
 
@@ -42,7 +42,7 @@ public class TableItem extends LinearLayout {
 
     }
 
-    public void buildItem(FillContentListener listener, final RowItem rowItem) {
+    public void buildItem(FillContentListener listener, TableView tableView, final RowItem rowItem) {
 
         //先移除全部旧数据显示
         this.removeAllViews();
@@ -52,8 +52,6 @@ public class TableItem extends LinearLayout {
         final List<ItemCell> itemCells = rowItem.getCells();
         final boolean isLastItem = rowItem.isLastItem();
 
-        //获取绑定的 TableView
-        final TableView tableView = listener.bindTableView();
         final ColumnController controller = tableView.getColumnController();
         final TableViewConfig viewConfig = tableView.getViewConfig();
         final boolean isCloseCycle = viewConfig.isCloseCycle();

@@ -21,12 +21,22 @@ import dz.solc.viewtool.R;
 
 
 /**
-* creat_user: zhengzaihong
+* create_user: zhengzaihong
 * Email:1096877329@qq.com
-* creat_date: 2017/12/6
-* creat_time: 10:29
+* create_date: 2017/12/6
+* create_time: 10:29
 * describe  圆形ImageView，可设置最多两个宽度不同且颜色不同的圆形边框。
-**/
+ *    <dz.solc.viewtool.view.imageview.RoundImageView
+ *     android:id="@+id/rv_myhead"
+ *     android:layout_width="80dp"
+ *     android:layout_height="80dp"
+ *     android:scaleType="centerInside"
+ *     android:src="@drawable/bgphones"
+ *     imagecontrol:border_inside_color="#d5e8ca" //圆外边界颜色
+ *     imagecontrol:border_outside_color="#d5e8ca"//圆内边界颜色
+ *     imagecontrol:border_thickness="1dp" />// 内圆和外圆之间边界的宽度
+ *
+ *    */
 @SuppressLint("AppCompatCustomView")
 public class RoundImageView extends ImageView {
     private int mBorderThickness = 0;
@@ -212,17 +222,6 @@ public class RoundImageView extends ImageView {
         canvas.drawCircle(defaultWidth / 2, defaultHeight / 2, radius, paint);
     }
 
-   /**
-   //常规用法
-   <xxxx.RoundImageView
-    android:id="@+id/rv_myhead"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:scaleType="centerInside"
-    android:src="@drawable/bgphones"
-    imagecontrol:border_inside_color="#d5e8ca" //圆外边界颜色
-    imagecontrol:border_outside_color="#d5e8ca"//圆内边界颜色
-    imagecontrol:border_thickness="1dp" />// 内圆和外圆之间边界的宽度
-    */
+
 }
 

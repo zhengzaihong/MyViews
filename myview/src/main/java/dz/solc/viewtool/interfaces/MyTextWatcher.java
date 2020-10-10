@@ -4,10 +4,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 /**
- *creat_user: zhengzaihong
+ *create_user: zhengzaihong
  *email:1096877329@qq.com
- *creat_date: 2018/6/30
- *creat_time: 16:19
+ *create_date: 2018/6/30
+ *create_time: 16:19
  *describe: 简化回调
  **/
 public class MyTextWatcher implements TextWatcher {

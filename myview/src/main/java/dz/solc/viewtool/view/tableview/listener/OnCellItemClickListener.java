@@ -8,10 +8,10 @@ import dz.solc.viewtool.view.tableview.ItemCell;
 import dz.solc.viewtool.view.tableview.RowItem;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/11/27
- * creat_time: 17:29
+ * create_date: 2019/11/27
+ * create_time: 17:29
  * describe 响应单元格点击事件的监听
  **/
 public interface OnCellItemClickListener {

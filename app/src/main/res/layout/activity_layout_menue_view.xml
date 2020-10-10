@@ -77,7 +77,7 @@
             app:vg_normalStrokeColor="@color/black_alpha_128"
             app:vg_pressStrokeColor="@color/white"
             android:layout_marginTop="@dimen/len_10"
-            android:layout_width="@dimen/len_300"
+            android:layout_width="@dimen/len_220"
             android:layout_height="@dimen/len_50">
 
             <TextView
@@ -101,6 +101,36 @@
             app:gradient_orientation="vertical"
             app:gradient_start_color="@color/yellow"
             app:gradient_end_color="@color/red_400" />
+
+
+        <EditText
+            android:id="@+id/mEditText"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_20">
+
+        </EditText>
+
+<!--        app:f_centerColor="@color/purple_800"-->
+        <dz.solc.viewtool.view.textview.FilletView
+            android:id="@+id/mFilletView"
+            android:layout_width="@dimen/len_200"
+            android:layout_height="@dimen/len_50"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_marginRight="@dimen/len_10"
+            android:gravity="center"
+            android:text="渐变TextView"
+            app:f_usegradient="true"
+            app:f_startColor="@color/colorAccent"
+            app:f_endColor="@color/yellow"
+            app:f_orientation="left_right"
+            app:f_cornerRadius="@dimen/len_30"
+            app:f_normalBgColor="@color/light_blue_200"
+            app:f_normalTextColor="@color/white"
+            app:f_pressedBgColor="@color/white_alpha_80"
+            app:f_pressedTextColor="@color/white"
+            app:f_radius_type="f_all_radius"
+            app:f_showAnimation="false"/>
 
 
         <LinearLayout

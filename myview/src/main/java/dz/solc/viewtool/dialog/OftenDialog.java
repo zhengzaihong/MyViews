@@ -14,10 +14,10 @@ import dz.solc.viewtool.R;
 
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2018/4/20
- * creat_time: 10:24
+ * create_date: 2018/4/20
+ * create_time: 10:24
  * describe 普通常用dialog
  **/
 

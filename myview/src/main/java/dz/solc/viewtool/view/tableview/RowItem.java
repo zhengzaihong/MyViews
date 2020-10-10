@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * creat_user: zhengzaihong
+ * create_user: zhengzaihong
  * Email:1096877329@qq.com
- * creat_date: 2019/12/4
- * creat_time: 9:30
+ * create_date: 2019/12/4
+ * create_time: 9:30
  * describe 每行的信息（新增特性 0.1.92之前版本不具有）
  * 老版本从 ItemCell 和 每行集合中读取每个单元格信息。
  **/
