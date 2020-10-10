@@ -34,8 +34,15 @@ android {
         doNotStrip '*/mips64/*.so'
     }
 
+
 }
 
+repositories {
+    maven { url "https://jitpack.io" }
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
 
@@ -48,8 +55,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation 'com.zzh:rjtools:1.0.82'
-    implementation project(':myview')
+//    implementation project(':myview')
     implementation 'com.alibaba:fastjson:1.2.44'
 
-//    implementation 'com.zzh:viewtoolsX:0.1.94'
+    implementation 'com.zzh:viewtoolsX:0.1.95'
 }
