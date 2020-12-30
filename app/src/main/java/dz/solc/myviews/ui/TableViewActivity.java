@@ -133,7 +133,7 @@ public class TableViewActivity extends AppCompatActivity {
                 .setCellsWidth(Utils.dp2px(this, 100))   // 设置单元格的宽度
                 .setCellsHeight(Utils.dp2px(this, 40))   //设置单元格的高度
                 .setAutoWrapHeight(true)  //自适应高度
-                .setShowHead(true)        //是否显表头信息
+                .setShowHead(false)        //是否显表头信息
                 .setDivider(0)          //设置分割线高
                 .setEditTable(false)    //是否表格中需要编辑
                 .setDividerColor(getResources().getColor(R.color.trans))  //设置分割线颜色
@@ -173,6 +173,13 @@ public class TableViewActivity extends AppCompatActivity {
             }
 
         });
+
+        List<String> head = new ArrayList<>();
+        final List<Map<String, Object>> content = getContent();
+        for (int i = 0; i < 4; i++) {
+            head.add(content.get(i).get("name").toString());
+        }
+
 
         tableView.setFillContentListener(new FillContentListener() {
             @Override
@@ -220,7 +227,7 @@ public class TableViewActivity extends AppCompatActivity {
                 //处理不需要编辑的 单元格
                 if (cellIndex == 3) {
                     view = AndroidUtils.getView(TableViewActivity.this, R.layout.table_cell_text_view_layout);
-                    TextView textView = view.findViewById(R.id.tvCell);
+                    final TextView textView = view.findViewById(R.id.tvCell);
                     textView.setText("操作");
                     obj.setTag(rowItem.getPosition());
 
@@ -248,11 +255,6 @@ public class TableViewActivity extends AppCompatActivity {
         });
 
 
-        List<String> head = new ArrayList<>();
-        List<Map<String, Object>> content = getContent();
-        for (int i = 0; i < 4; i++) {
-            head.add(content.get(i).get("name").toString());
-        }
 
         tableView.setHead(head);
         tableView.setData(content);
@@ -331,6 +333,14 @@ public class TableViewActivity extends AppCompatActivity {
     }
 
     private void test2(TableViewConfig config) {
+        final PersonInfoBean personInfoBean = JSON.toJavaObject(JSON.parseObject(Constans.testJson1), PersonInfoBean.class);
+
+        List<String> head = new ArrayList<>();
+        head.add("姓名");
+        head.add("职位");
+        head.add("时间");
+        head.add("待遇");
+
 
         tableView2.setViewConfig(config);
         tableView2.setFillContentListener(new FillContentListener() {
@@ -363,6 +373,15 @@ public class TableViewActivity extends AppCompatActivity {
                 TextView textView = view.findViewById(R.id.tvCell);
                 textView.setText(obj.getCellValue().toString());
 
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastTool.get().show("sssss操作s");
+                        tableView2.addData(personInfoBean.getData());
+                        tableView2.measureHeight();
+                    }
+                });
+
                 if (rowItem.getPosition() % 2 == 0) {
                     view.setBackgroundColor(getResources().getColor(R.color.amber_50));
                 } else {
@@ -380,14 +399,8 @@ public class TableViewActivity extends AppCompatActivity {
         });
 
 
-        PersonInfoBean personInfoBean = JSON.toJavaObject(JSON.parseObject(Constans.testJson1), PersonInfoBean.class);
 
 
-        List<String> head = new ArrayList<>();
-        head.add("姓名");
-        head.add("职位");
-        head.add("时间");
-        head.add("待遇");
 
         tableView2.setHead(head);
         tableView2.setData(personInfoBean.getData());

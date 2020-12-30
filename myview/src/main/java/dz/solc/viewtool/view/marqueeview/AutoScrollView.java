@@ -215,7 +215,7 @@ public class AutoScrollView extends FrameLayout {
     }
 
 
-    public void setViewHight(int px) {
+    public void setViewHeight(int px) {
         viewHeight = px;
         Log.e("AutoScrollView", "布局文件高度：" + px);
     }

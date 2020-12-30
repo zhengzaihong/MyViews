@@ -12,6 +12,6 @@
         android:gravity="center"
         android:singleLine="false"
         android:text="单元格"
-        android:textColor="#000000"
+        android:textColor="@color/red"
         android:textSize="@dimen/font_12" />
 </LinearLayout>

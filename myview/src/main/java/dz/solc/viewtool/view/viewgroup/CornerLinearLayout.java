@@ -30,21 +30,21 @@ import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_T
  * describe 支持圆角的 线性布局
  **/
 @SuppressWarnings("all")
-public class RadiusLinearLayout extends LinearLayout {
+public class CornerLinearLayout extends LinearLayout {
 
-    private static final String TAG = RadiusLinearLayout.class.getSimpleName();
+    private static final String TAG = CornerLinearLayout.class.getSimpleName();
     private ViewGroupConfig configBean = new ViewGroupConfig();
     private Paint mPaint = new Paint();
 
-    public RadiusLinearLayout(Context context) {
+    public CornerLinearLayout(Context context) {
         this(context, null);
     }
 
-    public RadiusLinearLayout(Context context, AttributeSet attrs) {
+    public CornerLinearLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RadiusLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CornerLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         // 读取属性值

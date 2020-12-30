@@ -96,6 +96,10 @@ public class LoadingDialog {
         return view;
     }
 
+    public Dialog getDialog() {
+        return dialog;
+    }
+
 
     /**
      * 设置 加载icon 的宽高
@@ -261,16 +265,19 @@ public class LoadingDialog {
     }
 
     public boolean isShowing() {
-        if (null != dialog && dialog.isShowing()) {
-            return true;
-        }
-        return false;
+        return null != dialog && dialog.isShowing();
     }
 
     public void dismiss() {
-        if (null != dialog && dialog.isShowing()) {
+        if (isShowing()) {
             dialog.dismiss();
             currentTime = 0;
+        }
+    }
+
+    public void hide() {
+        if (null != dialog) {
+            dialog.hide();
         }
     }
 

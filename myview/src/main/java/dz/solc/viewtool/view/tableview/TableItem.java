@@ -111,16 +111,18 @@ public class TableItem extends LinearLayout {
             view.setLayoutParams(cellParms);
             view.setMinimumHeight(cellHeight);
 
-            view.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //回调给用户点击的cell
-                    //新增返回一整行数据
-                    if (null != viewConfig.getOnCellItemClickListener()) {
-                        viewConfig.getOnCellItemClickListener().onClick(v, itemCell, rowItem);
+            if(!view.hasOnClickListeners()){
+                view.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //回调给用户点击的cell
+                        //新增返回一整行数据
+                        if (null != viewConfig.getOnCellItemClickListener()) {
+                            viewConfig.getOnCellItemClickListener().onClick(v, itemCell, rowItem);
+                        }
                     }
-                }
-            });
+                });
+            }
 
             if (isCloseCycle) {
                 if (i == 0) {

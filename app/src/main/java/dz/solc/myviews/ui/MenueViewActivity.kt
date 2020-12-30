@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import com.dz.utlis.ScreenUtils
 import com.dz.utlis.ToastTool
 import com.dz.utlis.UiCompat
@@ -16,6 +18,7 @@ import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig
 import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig.*
 import dz.solc.viewtool.view.menueview.helper.MenueAdapter
 import dz.solc.viewtool.view.menueview.helper.MenueViewHolder
+import dz.solc.viewtool.view.textview.callback.OnClickTextListener
 import kotlinx.android.synthetic.main.activity_layout_menue_view.*
 
 class MenueViewActivity : AppCompatActivity() {
@@ -27,7 +30,13 @@ class MenueViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_layout_menue_view)
 
 
-        mFilletView.bindEditText(mEditText,6,false)
+        mFilletView.bindEditText(mEditText,40,true,0.5f)
+        mFilletView.setOnClickTextListener(object :OnClickTextListener{
+            override fun onClick(widget: View) {
+                Toast.makeText(widget.context, "部分文字点击了", Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
         sbutton.setOnCheckedListener { isChecked ->
             Log.v("--------", "选择状态$isChecked")

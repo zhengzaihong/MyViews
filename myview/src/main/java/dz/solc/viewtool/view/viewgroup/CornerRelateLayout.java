@@ -31,21 +31,21 @@ import static dz.solc.viewtool.view.viewgroup.ViewGroupConfig.RadiusType.RIGHT_T
  * describe 支持圆角的 相对布局
  **/
 @SuppressWarnings("all")
-public class RadiusRelateLayout extends RelativeLayout {
-    private static final String TAG = RadiusRelateLayout.class.getSimpleName();
+public class CornerRelateLayout extends RelativeLayout {
+    private static final String TAG = CornerRelateLayout.class.getSimpleName();
 
     private ViewGroupConfig configBean = new ViewGroupConfig();
     private Paint mPaint = new Paint();
 
-    public RadiusRelateLayout(Context context) {
+    public CornerRelateLayout(Context context) {
         this(context, null);
     }
 
-    public RadiusRelateLayout(Context context, AttributeSet attrs) {
+    public CornerRelateLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RadiusRelateLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CornerRelateLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         // 读取属性值

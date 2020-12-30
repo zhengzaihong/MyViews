@@ -42,10 +42,10 @@ import dz.solc.viewtool.R;
  * {@link BitmapDrawable}
  * {@link StateListDrawable}：即selector,selector的item的drawable以必须是以上三种支持的drawable
  * <p>
- * 该控件支持 7.0以下只支持横向渐变
+ * 该控件 7.0以下只支持横向渐变
  **/
 @SuppressWarnings("all")
-public class GradientTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class GradientTextView extends FilletView {
 
     private static final String TAG = "GradientTextView";
     boolean inflated;

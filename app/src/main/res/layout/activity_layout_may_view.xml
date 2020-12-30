@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cadetblue"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="@dimen/len_10">
 
@@ -56,6 +56,7 @@
         android:clickable="true"
         android:text="菜单2"
         app:f_cornerRadius="@dimen/len_10"
+        app:f_centor_drawable_left="@android:drawable/ic_delete"
         app:f_normalBgColor="@color/light_blue_200"
         app:f_normalTextColor="@color/black_alpha_224"
         app:f_pressedBgColor="@color/orange_50"
@@ -80,6 +81,7 @@
         app:f_pressedTextColor="@color/red"
         app:f_radius_type="f_right_top_bootom_radius"
         app:f_showAnimation="true"></dz.solc.viewtool.view.textview.FilletView>
+
 
 
 </LinearLayout>

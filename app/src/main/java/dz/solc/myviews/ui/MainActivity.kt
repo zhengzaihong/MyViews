@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import dz.solc.myviews.R
 import dz.solc.viewtool.adapter.CommonAdapter
 import dz.solc.viewtool.adapter.UtilAdapter
+import dz.solc.viewtool.interfaces.ForegroundCallbacks
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     var menues = arrayListOf("时间控件", "跑马灯控件", "菜单控件",
-            "常用提示框", "常用图片View和进度View等","表格控件","其他控件")
+            "常用提示框", "常用图片View和进度View等","表格控件","其他控件","底部导航控件")
 
     var myMenueAdapter: MyMenueAdapter? = null
 
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     intent.setClass(this@MainActivity, MayViewActivity::class.java)
                 }
                 7 -> {
-
+                    intent.setClass(this@MainActivity, BottomItemViewActivity::class.java)
                 }
             }
 
@@ -67,5 +68,6 @@ class MainActivity : AppCompatActivity() {
             holder?.setText(R.id.button, entity + "")
         }
     }
+
 
 }

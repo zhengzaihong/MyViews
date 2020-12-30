@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <dz.solc.viewtool.view.viewpager.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <dz.solc.viewtool.view.navigation.BottomTabView
+        android:id="@+id/bottomTabView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_60"
+        android:background="@color/white"
+        android:gravity="bottom" />
+
+</LinearLayout>

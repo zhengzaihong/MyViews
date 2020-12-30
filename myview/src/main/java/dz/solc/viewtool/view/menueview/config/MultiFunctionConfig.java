@@ -1,6 +1,7 @@
 package dz.solc.viewtool.view.menueview.config;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 
 /**
  * create_user: zhengzaihong
@@ -189,4 +190,5 @@ public class MultiFunctionConfig {
     public void setAnimationTime(int animationTime) {
         this.animationTime = animationTime;
     }
+
 }

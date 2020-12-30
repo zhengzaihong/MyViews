@@ -11,6 +11,7 @@ import android.graphics.drawable.StateListDrawable;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.CompoundButton;
 
 import dz.solc.viewtool.R;
 import dz.solc.viewtool.view.menueview.config.MultiFunctionConfig;
@@ -86,6 +87,7 @@ public class MultiFunctionView extends AppCompatCheckBox {
         }
 
 
+
         ta.recycle();
         initView();
     }
@@ -102,6 +104,8 @@ public class MultiFunctionView extends AppCompatCheckBox {
         // 设置边框线的颜色, 如果声明为边框跟随文字颜色且当前边框颜色与文字颜色不同时重新设置边框颜色
         if (configBean.isFollowTextColor() && configBean.getStrokeColor() != getCurrentTextColor())
             configBean.setStrokeColor(getCurrentTextColor());
+
+
     }
 
 

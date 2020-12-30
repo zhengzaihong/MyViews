@@ -390,14 +390,11 @@ public class OftenDialog {
 
 
     public boolean isShowing() {
-        if (null != dialog && dialog.isShowing()) {
-            return true;
-        }
-        return false;
+        return null != dialog && dialog.isShowing();
     }
 
     public void dismiss() {
-        if (null != dialog && dialog.isShowing()) {
+        if (isShowing()) {
             dialog.dismiss();
         }
     }

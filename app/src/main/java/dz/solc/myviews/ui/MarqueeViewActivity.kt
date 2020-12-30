@@ -55,7 +55,7 @@ class MarqueeViewActivity : AppCompatActivity() {
 
         //电影谢幕式滚动效果
         marqueeview5.startScrolled()
-        marqueeview5.setViewHight(ScreenUtils.dip2px(this, 120f).toInt())
+        marqueeview5.setViewHeight(ScreenUtils.dip2px(this, 120f).toInt())
         marqueeview5.setMarqueeType(AutoScrollView.MarqueeType.LIMIT)
 
     }

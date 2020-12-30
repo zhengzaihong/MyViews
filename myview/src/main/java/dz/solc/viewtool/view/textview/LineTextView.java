@@ -19,25 +19,30 @@ import dz.solc.viewtool.R;
  * create_date: 2018/9/21 0021
  * create_time: 13:41
  * describe: 下划线TextView
+ * 
+ * 2020-11-1 更新并更名为 LineTextView
+ * 1.支持下滑线
+ * 2.支持删除线
  **/
-public class UnderLineTextView extends AppCompatTextView {
+public class LineTextView extends AppCompatTextView {
 
-    private Rect mRect;
-    private Paint mPaint;
-    private int mColor;
+    private Rect mRect =  new Rect();
+    private Paint mPaint = new Paint();
+    private int underLineCorlor;
+    private boolean enableDelectLine;
     private float density;
     private float mStrokeWidth;
-    private float marginTop;
 
-    public UnderLineTextView(Context context) {
+
+    public LineTextView(Context context) {
         this(context, null, 0);
     }
 
-    public UnderLineTextView(Context context, AttributeSet attrs) {
+    public LineTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public UnderLineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
@@ -46,17 +51,20 @@ public class UnderLineTextView extends AppCompatTextView {
         //获取屏幕密度
         density = context.getResources().getDisplayMetrics().density;
         //获取自定义属性
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.UnderlinedTextView, defStyleAttr, 0);
-        mColor = array.getColor(R.styleable.UnderlinedTextView_underlineColor, 0xFFFF0000);
-        mStrokeWidth = array.getDimension(R.styleable.UnderlinedTextView_underlineWidth, density * 2);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LineTextView, defStyleAttr, 0);
+        underLineCorlor = array.getColor(R.styleable.LineTextView_under_line_color, 0xFFFF0000);
+        enableDelectLine = array.getBoolean(R.styleable.LineTextView_enable_delect_line, false);
+        mStrokeWidth = array.getDimension(R.styleable.LineTextView_line_height, density * 2);
+        
+        
         array.recycle();
 
-        mRect = new Rect();
-        mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(mColor);
+        mPaint.setColor(underLineCorlor);
         mPaint.setStrokeWidth(mStrokeWidth);
-
+        if(enableDelectLine){
+            this.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
     }
 
     @Override
@@ -96,13 +104,9 @@ public class UnderLineTextView extends AppCompatTextView {
 
     }
 
-    public int getUnderLineColor() {
-        return mColor;
-    }
-
-    public void setUnderLineColor(int mColor) {
-        this.mColor = mColor;
-        invalidate();
+    public void setUnderLineColor(int underLineCorlor) {
+        this.underLineCorlor = underLineCorlor;
+        freshUi();
     }
 
     @Override
@@ -110,12 +114,15 @@ public class UnderLineTextView extends AppCompatTextView {
         super.setPadding(left, top, right, bottom + (int) mStrokeWidth);
     }
 
-    public float getUnderlineWidth() {
-        return mStrokeWidth;
+    public void setUnderlineHeight(float height) {
+        this.mStrokeWidth = height;
+        freshUi();
     }
 
-    public void setUnderlineWidth(float mStrokeWidth) {
-        this.mStrokeWidth = mStrokeWidth;
+    private void freshUi(){
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(underLineCorlor);
+        mPaint.setStrokeWidth(mStrokeWidth);
         invalidate();
     }
 

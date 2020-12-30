@@ -129,11 +129,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             }
         }
 
-        public ImageView getImageView(int viewId){
-
-            return (ImageView)getView(viewId);
-        }
-
         //根据id，从xml中找出来
         public <E extends View> E getView(int viewId) {
             View view = mViews.get(viewId);
@@ -220,6 +215,10 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
             ImageView view = getView(viewId);
             view.setImageBitmap(bitMap);
             return this;
+        }
+
+        public ImageView getImageView(int viewId){
+            return (ImageView)getView(viewId);
         }
 
     }

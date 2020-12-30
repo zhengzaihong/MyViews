@@ -56,10 +56,6 @@ public class TableView<E> extends HorizontalScrollView {
      */
     private ListView listView;
 
-    /**
-     * 数据源
-     */
-    private List<E> datas = new ArrayList<>();
 
     /**
      * 列表适配器
@@ -202,27 +198,16 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
-    /**
-     * 添加数据
-     *
-     * @param data
-     */
-    public void addData(List<E> data) {
-        if (null != customeTableViewAdapter && null != data) {
-            customeTableViewAdapter.addData(data);
-        }
-    }
 
 
     /**
      * 添加一行空数据，内部使用
      */
     private void addEmptyData(List<E> data) {
-
         //如果是可编辑的 TableView 则在第一行添加一行过滤行
         if (viewConfig.isEditTable() && viewConfig.isShowHead()) {
             if (null != data && data.size() > 0) {
-                datas.add(0, null);
+                data.add(0, null);
             }
         }
     }
@@ -233,9 +218,31 @@ public class TableView<E> extends HorizontalScrollView {
      *
      * @param data
      */
+    public void addData(List<E> data) {
+        if (null != customeTableViewAdapter && null != data) {
+            List<E> datas = new ArrayList<>();
+            //填充数据
+            for (int i = 0; i < data.size(); i++) {
+                datas.add((E) new RowItem(data.get(i)));
+            }
+            customeTableViewAdapter.addData(datas);
+        }
+    }
+
+    /**
+     * 添加数据
+     *
+     * @param data
+     */
     public void addData(int index, List<E> data) {
         if (null != customeTableViewAdapter && null != data) {
-            customeTableViewAdapter.getDatas().addAll(index, data);
+            //填充数据
+            List<E> datas = new ArrayList<>();
+            for (int i = 0; i < data.size(); i++) {
+                datas.add((E) new RowItem(data.get(i)));
+            }
+            customeTableViewAdapter.getDatas().addAll(index,datas);
+            notifyDataSetChanged();
         }
     }
 
@@ -249,6 +256,10 @@ public class TableView<E> extends HorizontalScrollView {
      */
     public void replaceData(List<E> data) {
         if (null != customeTableViewAdapter) {
+            List<E> datas = new ArrayList<>();
+            for (int i = 0; i < data.size(); i++) {
+                datas.add((E) new RowItem(data.get(i)));
+            }
             customeTableViewAdapter.replaceData(data);
         }
     }
@@ -257,10 +268,17 @@ public class TableView<E> extends HorizontalScrollView {
      * 删除表格数据
      */
     public void clearData() {
+        clearHeadData();
+        clearTabData();
+    }
+
+    private void clearHeadData(){
+        if(null!=headLayout){
+            headLayout.removeAllViews();
+        }
+    }
+    public void clearTabData(){
         if (null != customeTableViewAdapter) {
-            if(null!=headLayout){
-                headLayout.removeAllViews();
-            }
             customeTableViewAdapter.getDatas().clear();
             notifyDataSetChanged();
         }
@@ -334,6 +352,8 @@ public class TableView<E> extends HorizontalScrollView {
     /**
      * 设置单击每个单元格的点击事件
      *
+     * 如果在 cellItem 回调中单独给某些view 设置了setOnClickListener 事件。则这些view的
+     * OnCellItemClickListener 事件会被拦截
      * @param onCellItemClickListener
      */
 
@@ -519,7 +539,7 @@ public class TableView<E> extends HorizontalScrollView {
      */
 
     public void setData(List<E> data) {
-
+        List<E> datas = new ArrayList<>();
         if (null != contentListener) {
             if (null == data || data.size() == 0) {
                 return;

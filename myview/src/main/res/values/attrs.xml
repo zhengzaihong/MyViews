@@ -9,7 +9,17 @@
 
 
     <declare-styleable name="RoundIconView">
-        <attr name="corner" format="dimension" />
+            <attr format="dimension" name="corner"/>
+            <attr format="boolean" name="reverseMask"/>
+            <attr name="roundedCorners">
+                <flag name="topLeft" value="8"/>
+                <flag name="topRight" value="4"/>
+                <flag name="bottomLeft" value="2"/>
+                <flag name="bottomRight" value="1"/>
+                <flag name="top" value="12"/>
+                <flag name="bottom" value="3"/>
+                <flag name="all" value="15"/>
+            </attr>
     </declare-styleable>
 
 
@@ -90,9 +100,11 @@
     </declare-styleable>
 
 
-    <declare-styleable name="UnderlinedTextView">
-        <attr name="underlineWidth" format="dimension" />
-        <attr name="underlineColor" format="color" />
+    <declare-styleable name="LineTextView">
+        <attr name="line_height" format="dimension" />
+        <attr name="under_line_color" format="color" />
+        <attr name="enable_delect_line" format="boolean" />
+
     </declare-styleable>
 
     <declare-styleable name="circleProgressBar">
@@ -149,6 +161,7 @@
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
         </attr>
+
     </declare-styleable>
 
 
@@ -220,7 +233,6 @@
         <attr name="followTextColor" format="boolean" />
         <attr name="normalTextColor" format="color|reference" />
         <attr name="pressedTextColor" format="color|reference" />
-
         <attr name="showAnimation" format="boolean" />
         <attr name="animationTime" format="integer" />
 
@@ -296,6 +308,16 @@
         <attr name="f_endColor" format="color|reference" />
          <!-- 如果要渐变背景次属性必须设置为true-->
         <attr name="f_usegradient" format="boolean" />
+        <attr name="f_centor_drawable_left" format="reference" />
+
+        <!-- 设置部分点击区域文字颜色-->
+        <attr name="f_click_textColor" format="color|reference" />
+        <!-- 设置是否有下划线-->
+        <attr name="f_support_underline" format="boolean" />
+        <!-- 设置添加额外颜色的起始位置和结束位置-->
+        <attr name="f_click_textColor_startindex" format="integer" />
+        <attr name="f_click_textColor_endindex" format="integer" />
+
         <!-- 渐变的方向-->
         <attr name="f_orientation">
             <enum name="top_bottom" value="0" />

@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
 
-        <dz.solc.viewtool.view.viewgroup.RadiusLinearLayout
+        <dz.solc.viewtool.view.viewgroup.CornerLinearLayout
             android:orientation="horizontal"
             app:vg_cornerRadius="@dimen/len_30"
             app:vg_radius_type="vg_all_radius"
@@ -64,10 +64,10 @@
                 app:strokeNoCheckedSolidColor="@color/white"
                 app:strokeSolidColor="@color/white" />
 
-        </dz.solc.viewtool.view.viewgroup.RadiusLinearLayout>
+        </dz.solc.viewtool.view.viewgroup.CornerLinearLayout>
 
 
-        <dz.solc.viewtool.view.viewgroup.RadiusRelateLayout
+        <dz.solc.viewtool.view.viewgroup.CornerRelateLayout
             app:vg_cornerRadius="@dimen/len_30"
             app:vg_radius_type="vg_all_radius"
             app:vg_normalBgColor="@color/white"
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-        </dz.solc.viewtool.view.viewgroup.RadiusRelateLayout>
+        </dz.solc.viewtool.view.viewgroup.CornerRelateLayout>
 
 
         <dz.solc.viewtool.view.textview.GradientTextView
@@ -120,14 +120,18 @@
             android:layout_marginRight="@dimen/len_10"
             android:gravity="center"
             android:text="渐变TextView"
-            app:f_usegradient="true"
+            app:f_usegradient="false"
             app:f_startColor="@color/colorAccent"
             app:f_endColor="@color/yellow"
             app:f_orientation="left_right"
             app:f_cornerRadius="@dimen/len_30"
+            app:f_click_textColor= "@color/black"
+            app:f_support_underline= "true"
+            app:f_click_textColor_startindex= "0"
+            app:f_click_textColor_endindex= "3"
             app:f_normalBgColor="@color/light_blue_200"
             app:f_normalTextColor="@color/white"
-            app:f_pressedBgColor="@color/white_alpha_80"
+            app:f_pressedBgColor="@color/light_blue_200"
             app:f_pressedTextColor="@color/white"
             app:f_radius_type="f_all_radius"
             app:f_showAnimation="false"/>

@@ -35,12 +35,17 @@
 ##更新日志 2020-10-9
 
   1.TableView 优化回调
+  2.TableView 支持动态添加数据和替换
+  3.优化cell事件
 
 FilletView 新增加功能：
 
   1.支持背景渐变，渐变方向全部支持
   2.支持绑定EditText 控件状态切换
 
+NavigationHelper 新增
+ 1.支持Activity 或者 Fragment 中添加导航菜单
+ 2.支持类似qq 消息展示
 
 
 ##更新日志 2019-12-13
