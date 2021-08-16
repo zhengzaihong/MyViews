@@ -28,6 +28,7 @@ open class RegisetActivityLifecycleCallbacks(delayTime: Long = 500L) : ActivityL
         if (activity is ForegroundCallbacks) {
             listeners.add(activity)
         }
+
     }
 
     override fun onActivityStopped(activity: Activity?) {}

@@ -1,7 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'//添加
+
+apply plugin: 'com.github.dcendents.android-maven'    // 添加本行
+group='com.github.zhengzaihong'    // 添加本行
+
 android {
     compileSdkVersion 28
 
@@ -32,22 +35,29 @@ dependencies {
     implementation files('libs/library-listviewanimations.jar')
     implementation files('libs/nineoldandroids-2.4.0.jar')
 }
-//添加
-publish {
-    artifactId = 'viewtoolsX'
-    userOrg = 'zhengzaihong'
-    groupId = 'com.zzh'
-    uploadName = "viewtoolX"
-    publishVersion = '0.1.96'
-    desc = 'this quick tools make your app has kinds of view tools'
-    website = 'https://github.com/zhengzaihong/MyViews.git'
-}
 
-tasks.withType(Javadoc).all {
-    enabled = false
-    options {
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        links "http://docs.oracle.com/javase/7/docs/api"
-    }
+
+// 指定编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+// 打包源码
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
