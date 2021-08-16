@@ -4,28 +4,8 @@
 
 项目依赖：
 
-使用AndroidX包的请添加如下依赖：
 
-``` implementation 'com.zzh:viewtoolsX:0.1.95' ```
-
-使用support包的请添加如下依赖(停止更新)
-
-``` implementation 'com.zzh.viewtools:0.1.94'  ```
-
-
-*注意：本库使用到Androidx库 和SDK 28以下的区别，请分别正确引入 *
-
-如果遇到不能添加依赖 gradle 提示错误类似，not found viewtools 等，请在项目的根目录中 build.gradle 添加如下代码：
-
-
-
-    repositories {
-       
-        .....
-        mavenCentral()
-
-        maven { url 'https://dl.bintray.com/zhengzaihong/maven' }
-    }
+``` implementation 'com.github.zhengzaihong:MyViews:1.0.0' ```
 
 
 
