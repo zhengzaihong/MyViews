@@ -1,6 +1,7 @@
 package dz.solc.viewtool.view.tableview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
@@ -38,7 +39,6 @@ public class TableItem extends LinearLayout {
 
     public TableItem(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
         this.setOrientation(LinearLayout.VERTICAL);
 
     }
@@ -64,15 +64,20 @@ public class TableItem extends LinearLayout {
         boolean autoWrapHeight = viewConfig.isAutoWrapHeight();
 
 
+
         final LinearLayout secondLayout = new LinearLayout(getContext());
         secondLayout.setOrientation(LinearLayout.HORIZONTAL);
-        if(viewConfig.isEnableWeight()){
-            secondLayout.setLayoutParams(new LayoutParams(0, LayoutParams.MATCH_PARENT));
-            secondLayout.setWeightSum(viewConfig.getWeightBody().length);
-        }else{
-            secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        }
 
+        LayoutParams  secondLayoutParm = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        if(viewConfig.isEnableWeight()){
+            float weightSum = 0;
+            for (Float aFloat : viewConfig.getWeightBody()) {
+                weightSum = weightSum+aFloat;
+            }
+
+            secondLayout.setWeightSum(weightSum);
+        }
+        secondLayout.setLayoutParams(secondLayoutParm);
 
 
         LinearLayout headBottomLine;
@@ -86,7 +91,8 @@ public class TableItem extends LinearLayout {
             this.addView(headBottomLine);
         }
 
-        this.addView(secondLayout);
+
+
 
         int tempWidth;
         for (int i = 0; i < itemCells.size(); i++) {
@@ -104,11 +110,11 @@ public class TableItem extends LinearLayout {
                     if (!isLastItem) {
                         cellParms.bottomMargin = viewConfig.getDividerMargin();
                     }
-                } else {
-                    cellParms = new LayoutParams(0, cellHeight);
                 }
+
                 //设置单个cell 权重
                 cellParms.weight = viewConfig.getWeightBody()[i];
+                cellParms.width = 0;
                 view.setLayoutParams(cellParms);
             }
             else{
@@ -210,5 +216,9 @@ public class TableItem extends LinearLayout {
         } else {
             this.addView(lineDivider);
         }
+
+
+        this.addView(secondLayout);
+
     }
 }

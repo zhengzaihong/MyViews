@@ -405,7 +405,7 @@ public class TableView<E> extends RelativeLayout {
         listView.setVerticalScrollBarEnabled(false);
         listView.setDividerHeight(0);
         listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
-        listView.setNestedScrollingEnabled(false);
+        listView.setNestedScrollingEnabled(true);
         wrapView.addView(listView);
 
         this.addView(wrapView);

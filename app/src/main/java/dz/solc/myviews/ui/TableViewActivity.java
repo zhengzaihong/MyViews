@@ -144,7 +144,7 @@ public class TableViewActivity extends AppCompatActivity {
                 .setEnableWeight(true)
                 .setWeightHead(new Float[]{1.0f,1.0f,1.0f,1.0f})
                 .setWeightBody(new Float[]{1.0f,1.0f,1.0f,1.0f})
-
+                .setAutoWrapHeight(false)
                 .setShowHead(true)
                 .setCellsWidth(Utils.dp2px(this, 100))   // 设置单元格的宽度
                 .setCellsHeight(Utils.dp2px(this, 40))   //设置单元格的高度
@@ -160,7 +160,7 @@ public class TableViewActivity extends AppCompatActivity {
 
         tableView.measureHeight();
         tableView1.measureHeight();
-        tableView2.measureHeight();
+//        tableView2.measureHeight();
     }
 
     private void test() {
@@ -244,9 +244,9 @@ public class TableViewActivity extends AppCompatActivity {
                 }
 
                 if (rowItem.getPosition() % 2 == 0) {
-                    view.setBackgroundColor(getResources().getColor(R.color.amber_50));
+                    view.setBackgroundColor(getResources().getColor(R.color.trans));
                 } else {
-                    view.setBackgroundColor(getResources().getColor(R.color.wheat));
+                    view.setBackgroundColor(getResources().getColor(R.color.trans));
                 }
 
                 return view;
@@ -387,11 +387,11 @@ public class TableViewActivity extends AppCompatActivity {
                     }
                 });
 
-                if (rowItem.getPosition() % 2 == 0) {
-                    view.setBackgroundColor(getResources().getColor(R.color.amber_50));
-                } else {
-                    view.setBackgroundColor(getResources().getColor(R.color.wheat));
-                }
+//                if (rowItem.getPosition() % 2 == 0) {
+//                    view.setBackgroundColor(getResources().getColor(R.color.trans));
+//                } else {
+//                    view.setBackgroundColor(getResources().getColor(R.color.trans));
+//                }
 
                 return view;
             }
