@@ -2,6 +2,7 @@ package dz.solc.viewtool.view.tableview;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,13 @@ public class TableItem extends LinearLayout {
 
         final LinearLayout secondLayout = new LinearLayout(getContext());
         secondLayout.setOrientation(LinearLayout.HORIZONTAL);
-        secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        if(viewConfig.isEnableWeight()){
+            secondLayout.setLayoutParams(new LayoutParams(0, LayoutParams.MATCH_PARENT));
+            secondLayout.setWeightSum(viewConfig.getWeightBody().length);
+        }else{
+            secondLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        }
+
 
 
         LinearLayout headBottomLine;
@@ -87,28 +94,49 @@ public class TableItem extends LinearLayout {
             final ItemCell itemCell = itemCells.get(i);
             //获取到外部提供单元格信息
             View view = listener.cellItem(itemCell, i, rowItem);
-            int specialWidth = -1;
-            tempWidth = cellWidth;
-            if (null != controller && controller.isContainsKey(i)) {
-                specialWidth = controller.getSpecialWidth(i);
-            }
-            if (specialWidth >= 0) {
-                tempWidth = specialWidth;
-            }
-            LayoutParams cellParms = new LayoutParams(tempWidth, cellHeight);
-            if (autoWrapHeight) {
-                cellParms.width = tempWidth;
-                cellParms.height = LayoutParams.MATCH_PARENT;
 
-                //TODO 增加一个可控制分割的边距
-                if (!isLastItem) {
-                    cellParms.bottomMargin = viewConfig.getDividerMargin();
+
+            //按照权重分配
+            if(viewConfig.isEnableWeight()){
+                LayoutParams cellParms = new LayoutParams(0, cellHeight);
+                if (autoWrapHeight) {
+                    cellParms.height = LayoutParams.MATCH_PARENT;
+                    if (!isLastItem) {
+                        cellParms.bottomMargin = viewConfig.getDividerMargin();
+                    }
+                } else {
+                    cellParms = new LayoutParams(0, cellHeight);
                 }
-            } else {
-                cellParms = new LayoutParams(tempWidth, cellHeight);
+                //设置单个cell 权重
+                cellParms.weight = viewConfig.getWeightBody()[i];
+                view.setLayoutParams(cellParms);
+            }
+            else{
+                //非权重宽度 则可以处理特殊某列宽度
+
+                int specialWidth = -1;
+                tempWidth = cellWidth;
+                if (null != controller && controller.isContainsKey(i)) {
+                    specialWidth = controller.getSpecialWidth(i);
+                }
+                if (specialWidth >= 0) {
+                    tempWidth = specialWidth;
+                }
+                LayoutParams cellParms = new LayoutParams(tempWidth, cellHeight);
+                if (autoWrapHeight) {
+                    cellParms.width = tempWidth;
+                    cellParms.height = LayoutParams.MATCH_PARENT;
+
+                    //TODO 增加一个可控制分割的边距
+                    if (!isLastItem) {
+                        cellParms.bottomMargin = viewConfig.getDividerMargin();
+                    }
+                } else {
+                    cellParms = new LayoutParams(tempWidth, cellHeight);
+                }
+                view.setLayoutParams(cellParms);
             }
 
-            view.setLayoutParams(cellParms);
             view.setMinimumHeight(cellHeight);
 
             if(!view.hasOnClickListeners()){

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/cadetblue"
+    android:fillViewport="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,6 +21,7 @@
             android:layout_width="wrap_content"
             android:fillViewport="true"
             android:layout_gravity="center"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_10"
             android:scrollbars="none">
@@ -30,7 +32,7 @@
 
         <dz.solc.viewtool.view.tableview.TableView
             android:id="@+id/tableView2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_10"
@@ -54,6 +56,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -79,6 +82,7 @@
 
         <dz.solc.viewtool.view.tableview.TableView
             android:id="@+id/tableView"
+            android:visibility="gone"
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

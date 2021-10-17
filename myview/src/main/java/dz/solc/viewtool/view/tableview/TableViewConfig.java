@@ -49,6 +49,21 @@ public class TableViewConfig {
      */
     private int cellHeight = 40;
 
+
+    /**
+     * 此属性会忽略设置的宽高 按照权重分配
+     */
+    private boolean enableWeight=false;
+
+    /**
+     * 设置单元格的权重比，
+     */
+    private Float[] weightHead;
+
+    private Float[] weightBody;
+
+
+
     /**
      * 是否形成闭环分割
      */
@@ -217,6 +232,34 @@ public class TableViewConfig {
 
     public TableViewConfig setDividerMargin(int dividerMargin) {
         this.dividerMargin = dividerMargin;
+        return this;
+    }
+
+
+    public boolean isEnableWeight() {
+        return enableWeight;
+    }
+
+    public TableViewConfig setEnableWeight(boolean enableWeight) {
+        this.enableWeight = enableWeight;
+        return  this;
+    }
+
+    public Float[] getWeightHead() {
+        return weightHead;
+    }
+
+    public TableViewConfig setWeightHead(Float[] weightHead) {
+        this.weightHead = weightHead;
+        return this;
+    }
+
+    public Float[] getWeightBody() {
+        return weightBody;
+    }
+
+    public TableViewConfig setWeightBody(Float[] weightBody) {
+        this.weightBody = weightBody;
         return this;
     }
 }

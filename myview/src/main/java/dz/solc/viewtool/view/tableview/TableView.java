@@ -5,7 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -38,7 +41,7 @@ import static dz.solc.viewtool.adapter.UtilAdapter.setListViewHeightBasedOnChild
  * describe  支持任意数据可横向和纵向滑动的表格控件，目前不支持单元格合并
  **/
 @SuppressWarnings("all")
-public class TableView<E> extends HorizontalScrollView {
+public class TableView<E> extends RelativeLayout {
 
     private static final String TAG = TableView.class.getSimpleName();
 
@@ -122,6 +125,7 @@ public class TableView<E> extends HorizontalScrollView {
         ta.recycle();
 
         initView();
+
     }
 
 
@@ -168,7 +172,7 @@ public class TableView<E> extends HorizontalScrollView {
     public void setViewConfig(TableViewConfig viewConfig) {
 
         if (null == viewConfig) {
-            Log.e(TAG,"<<-------------配置文件不能为空-------------->>");
+            Log.e(TAG, "<<-------------配置文件不能为空-------------->>");
             return;
         }
 
@@ -196,8 +200,6 @@ public class TableView<E> extends HorizontalScrollView {
         setHead(headData);
         setData(data);
     }
-
-
 
 
     /**
@@ -241,12 +243,10 @@ public class TableView<E> extends HorizontalScrollView {
             for (int i = 0; i < data.size(); i++) {
                 datas.add((E) new RowItem(data.get(i)));
             }
-            customeTableViewAdapter.getDatas().addAll(index,datas);
+            customeTableViewAdapter.getDatas().addAll(index, datas);
             notifyDataSetChanged();
         }
     }
-
-
 
 
     /**
@@ -272,12 +272,13 @@ public class TableView<E> extends HorizontalScrollView {
         clearTabData();
     }
 
-    private void clearHeadData(){
-        if(null!=headLayout){
+    private void clearHeadData() {
+        if (null != headLayout) {
             headLayout.removeAllViews();
         }
     }
-    public void clearTabData(){
+
+    public void clearTabData() {
         if (null != customeTableViewAdapter) {
             customeTableViewAdapter.getDatas().clear();
             notifyDataSetChanged();
@@ -351,9 +352,10 @@ public class TableView<E> extends HorizontalScrollView {
 
     /**
      * 设置单击每个单元格的点击事件
-     *
+     * <p>
      * 如果在 cellItem 回调中单独给某些view 设置了setOnClickListener 事件。则这些view的
      * OnCellItemClickListener 事件会被拦截
+     *
      * @param onCellItemClickListener
      */
 
@@ -366,8 +368,6 @@ public class TableView<E> extends HorizontalScrollView {
     }
 
 
-
-
     private void initView() {
 
         final LinearLayout wrapView = new LinearLayout(mContext);
@@ -377,16 +377,22 @@ public class TableView<E> extends HorizontalScrollView {
 
         if (viewConfig.isShowHead()) {
             headLayout = new LinearLayout(mContext);
-            ViewGroup.LayoutParams headLayoutParms = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams headLayoutParms = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (viewConfig.isEnableWeight()) {
+                //权重不能为空，否则界面不显示
+                headLayout.setWeightSum(viewConfig.getWeightHead().length);
+                Log.v("---------权重值：", String.valueOf(viewConfig.getWeightHead().length));
+            }
+
             headLayout.setLayoutParams(headLayoutParms);
             headLayout.setOrientation(LinearLayout.HORIZONTAL);
             wrapView.addView(headLayout);
         }
 
-
-        LinearLayout lineBg = new LinearLayout(mContext);
-        lineBg.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
-        lineBg.setBackgroundColor(viewConfig.getDividerColor());
+//
+//        LinearLayout lineBg = new LinearLayout(mContext);
+//        lineBg.setLayoutParams(new LinearLayout.LayoutParams(viewConfig.getDividerWidth(), LinearLayout.LayoutParams.MATCH_PARENT));
+//        lineBg.setBackgroundColor(viewConfig.getDividerColor());
 
 
         //表格列表
@@ -428,17 +434,13 @@ public class TableView<E> extends HorizontalScrollView {
 
             LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-            HashMap headMap = new LinkedHashMap();
-
-            for (int i = 0; i < headData.size(); i++) {
-                HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
-                headMap.put(headMap.size() + "", itemCell);
-            }
 
             boolean isCloseCysle = viewConfig.isCloseCycle();
             int dividerColor = viewConfig.getDividerColor();
 
-            for (int i = 0; i < headMap.size(); i++) {
+            for (int i = 0; i < headData.size(); i++) {
+                HeadItemCell itemCell = new HeadItemCell(headData.get(i), headViewWidth);
+
 
                 int specialWidth = -1;
                 if (null != columnController && columnController.isContainsKey(i)) {
@@ -451,7 +453,7 @@ public class TableView<E> extends HorizontalScrollView {
                     wrapHeadLayout.setOrientation(LinearLayout.VERTICAL);
 
                     LinearLayout topLine = new LinearLayout(mContext);
-                    if (i == headMap.size() - 1) {
+                    if (i == headData.size() - 1) {
                         topLine.setLayoutParams(new LayoutParams((specialWidth >= 0 ? specialWidth : headViewWidth) + 2 * dividerWidth, dividerHeight));
                     } else {
                         topLine.setLayoutParams(new LayoutParams((specialWidth >= 0 ? specialWidth : headViewWidth) + dividerWidth, dividerHeight));
@@ -485,7 +487,7 @@ public class TableView<E> extends HorizontalScrollView {
                     view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     wrapHeadLayoutContent.addView(view);
 
-                    if (i == headMap.size() - 1) {
+                    if (i == headData.size() - 1) {
                         LinearLayout rowlastLine = new LinearLayout(mContext);
                         rowlastLine.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                         rowlastLine.setBackgroundColor(dividerColor);
@@ -494,15 +496,24 @@ public class TableView<E> extends HorizontalScrollView {
                     headLayout.addView(wrapHeadLayout);
                 } else {
                     View view = contentListener.addHead(headData.get(i));
-                    if (specialWidth >= 0) {
-                        view.setLayoutParams(new LayoutParams(specialWidth, headViewHeight));
+                    if (viewConfig.isEnableWeight()) {
+
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, headViewHeight);
+                        layoutParams.weight = viewConfig.getWeightHead()[i];
+                        Log.v("---------权重值222：", String.valueOf( viewConfig.getWeightHead()[i]));
+                        view.setLayoutParams(layoutParams);
                     } else {
-                        view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                        if (specialWidth >= 0) {
+                            view.setLayoutParams(new LayoutParams(specialWidth, headViewHeight));
+                        } else {
+                            view.setLayoutParams(new LayoutParams(headViewWidth, headViewHeight));
+                        }
                     }
+
                     view.setMinimumHeight(viewConfig.getHeadViewHeight());
                     headLayout.addView(view);
 
-                    if (i != headMap.size() - 1) {
+                    if (i != headData.size() - 1) {
                         LinearLayout v_line = new LinearLayout(mContext);
                         v_line.setLayoutParams(new LinearLayout.LayoutParams(dividerWidth, LinearLayout.LayoutParams.MATCH_PARENT));
                         v_line.setBackgroundColor(dividerColor);
@@ -510,6 +521,9 @@ public class TableView<E> extends HorizontalScrollView {
                     }
                 }
             }
+
+
+
 
             //如果是自适应，则重新配置子元素高度
             if (autoWrapHeight) {
@@ -529,7 +543,7 @@ public class TableView<E> extends HorizontalScrollView {
                 });
             }
         } else {
-            Log.e(TAG, "please bind FillContentListener setHead before!!");
+            Log.e(TAG, "设置表头信息前，请先绑定FillContentListener 监听");
         }
     }
 

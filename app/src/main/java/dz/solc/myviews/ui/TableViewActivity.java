@@ -141,15 +141,20 @@ public class TableViewActivity extends AppCompatActivity {
 
 
         TableViewConfig config2 = new TableViewConfig()
+                .setEnableWeight(true)
+                .setWeightHead(new Float[]{1.0f,1.0f,1.0f,1.0f})
+                .setWeightBody(new Float[]{1.0f,1.0f,1.0f,1.0f})
+
+                .setShowHead(true)
                 .setCellsWidth(Utils.dp2px(this, 100))   // 设置单元格的宽度
                 .setCellsHeight(Utils.dp2px(this, 40))   //设置单元格的高度
                 .setDivider(Utils.dp2px(this, 1))          //设置分割线高
                 .setDividerColor(getResources().getColor(R.color.sandybrown))  //设置分割线颜色
-                .setCloseCycle(true);   //是否形成分割闭环样式
+                .setCloseCycle(false);   //是否形成分割闭环样式
 
-
-        test();
-        test1(config1);
+//
+//        test();
+//        test1(config1);
         test2(config2);
 
 
